@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <title> Putting Some Crunch in the Network |Ashish Dubey's Blog</title>
+    <link rel="stylesheet" href="http://ashishdubey.info/blog/static/style.css" type="text/css"/>
+     
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <div id="branding">
+          <a href="http://ashishdubey.info/blog">Ashish Dubey's Blog</a>
+        </div>
+        <div id="nav">
+          <ul>
+            <li><a href="http://ashishdubey.info/blog">Home</a></li>
+            <li><a href="http://ashishdubey.info/blog/posts.html">Archive</a></li>
+            <li><a href="http://ashishdubey.info/blog/about.html">About</a></li>
+          </ul>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+      <div id="content">
+  <div class="post">
+    <h1>Putting Some Crunch in the Network </h2>
+    <div class="post-meta">
+      <span class="post-date">Posted on November 09, 2012 </span>
+    </div>
+    <div class="post-content">
+      <p>Most of us, who write web pages, sometimes want to serve their content from the local server. Now if I'm one of the students of a college, where there are no ports forwarded on which I'm allowed to serve my content, being on the college's network. Thats bad because I often want to be able to serve some static pages or files from my local system to the internet. I wish there was no firewall but there are somethings you cannot change and have to live with. But certainly, one can adapt. I've made a small attempt towards such an adaptation.</p>
+
+<h2>What about adaptation?</h2>
+
+<p>I started writing some experimental tools which would allow me to serve content from any such network where I cannot serve directly to the internet. All I require is just one port that allows me to make outbound remote connections from my network and a remote server, which should be under my control. I need to run a python program on my local system and another on my remote server and I get a bypassing highway for my content(which is on my local system) to reach where it is needed. Its really that simple, but works, hence very useful.</p>
+
+<h2>Enter Crunch</h2>
+
+<p>So the tools consist of a server and client, which runs a serving node on your local machine. Lets call these serving nodes as crunch nodes. The server receives HTTP requests from the internet, and according to URI of the request, pulls content from a crunch node. Now an important thing to note here is that the crunch nodes create persistent connections with the server. They initialize these connections with the server, so the need to accept connections on crunch nodes is eliminated.</p>
+
+<p>The server and the crunch nodes communicate over a very basic TCP protocol(something like IRC). Since, it has just begun yet, there are limits to serving. It can only serve static files. Some HTML, CSS, JS, or any other file. Moreover, its also not fit for serving large files yet. I've seen it break while serving JPEGs of sizes like 200KBs. Its an issue, but not a big one, so it will be fixed soon. Apart from that, I've planned so many enhancements to it. Perhaps, too many to list here. To put it simply and in short, I would love to make it fit for serving any pretty thing someone would want to serve from a local system, even dynamic web content. But, thats long way ahead.</p>
+
+<h2>Usage</h2>
+
+<p>It does not make sense for such a thing to exist if you can't use it right? So lets squeeze out a simple feature of serving a small text file with crunch.</p>
+
+<p>Install crunch:</p>
+
+<style>.bash .hll { background-color: #ffffcc }
+.bash  { background: #f0f0f0; }
+.bash .c { color: #60a0b0; font-style: italic } /* Comment */
+.bash .err { border: 1px solid #FF0000 } /* Error */
+.bash .k { color: #007020; font-weight: bold } /* Keyword */
+.bash .o { color: #666666 } /* Operator */
+.bash .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
+.bash .cp { color: #007020 } /* Comment.Preproc */
+.bash .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
+.bash .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+.bash .gd { color: #A00000 } /* Generic.Deleted */
+.bash .ge { font-style: italic } /* Generic.Emph */
+.bash .gr { color: #FF0000 } /* Generic.Error */
+.bash .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.bash .gi { color: #00A000 } /* Generic.Inserted */
+.bash .go { color: #808080 } /* Generic.Output */
+.bash .gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+.bash .gs { font-weight: bold } /* Generic.Strong */
+.bash .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.bash .gt { color: #0040D0 } /* Generic.Traceback */
+.bash .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.bash .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.bash .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.bash .kp { color: #007020 } /* Keyword.Pseudo */
+.bash .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.bash .kt { color: #902000 } /* Keyword.Type */
+.bash .m { color: #40a070 } /* Literal.Number */
+.bash .s { color: #4070a0 } /* Literal.String */
+.bash .na { color: #4070a0 } /* Name.Attribute */
+.bash .nb { color: #007020 } /* Name.Builtin */
+.bash .nc { color: #0e84b5; font-weight: bold } /* Name.Class */
+.bash .no { color: #60add5 } /* Name.Constant */
+.bash .nd { color: #555555; font-weight: bold } /* Name.Decorator */
+.bash .ni { color: #d55537; font-weight: bold } /* Name.Entity */
+.bash .ne { color: #007020 } /* Name.Exception */
+.bash .nf { color: #06287e } /* Name.Function */
+.bash .nl { color: #002070; font-weight: bold } /* Name.Label */
+.bash .nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+.bash .nt { color: #062873; font-weight: bold } /* Name.Tag */
+.bash .nv { color: #bb60d5 } /* Name.Variable */
+.bash .ow { color: #007020; font-weight: bold } /* Operator.Word */
+.bash .w { color: #bbbbbb } /* Text.Whitespace */
+.bash .mf { color: #40a070 } /* Literal.Number.Float */
+.bash .mh { color: #40a070 } /* Literal.Number.Hex */
+.bash .mi { color: #40a070 } /* Literal.Number.Integer */
+.bash .mo { color: #40a070 } /* Literal.Number.Oct */
+.bash .sb { color: #4070a0 } /* Literal.String.Backtick */
+.bash .sc { color: #4070a0 } /* Literal.String.Char */
+.bash .sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+.bash .s2 { color: #4070a0 } /* Literal.String.Double */
+.bash .se { color: #4070a0; font-weight: bold } /* Literal.String.Escape */
+.bash .sh { color: #4070a0 } /* Literal.String.Heredoc */
+.bash .si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+.bash .sx { color: #c65d09 } /* Literal.String.Other */
+.bash .sr { color: #235388 } /* Literal.String.Regex */
+.bash .s1 { color: #4070a0 } /* Literal.String.Single */
+.bash .ss { color: #517918 } /* Literal.String.Symbol */
+.bash .bp { color: #007020 } /* Name.Builtin.Pseudo */
+.bash .vc { color: #bb60d5 } /* Name.Variable.Class */
+.bash .vg { color: #bb60d5 } /* Name.Variable.Global */
+.bash .vi { color: #bb60d5 } /* Name.Variable.Instance */
+.bash .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="bash"><pre><span class="nv">$ </span>pip install -e git+https://github.com/dash1291/crunch.git#egg<span class="o">=</span>crunch
+</pre></div>
+
+
+<p>Write your server:</p>
+
+<style>.python .hll { background-color: #ffffcc }
+.python  { background: #f0f0f0; }
+.python .c { color: #60a0b0; font-style: italic } /* Comment */
+.python .err { border: 1px solid #FF0000 } /* Error */
+.python .k { color: #007020; font-weight: bold } /* Keyword */
+.python .o { color: #666666 } /* Operator */
+.python .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
+.python .cp { color: #007020 } /* Comment.Preproc */
+.python .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
+.python .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+.python .gd { color: #A00000 } /* Generic.Deleted */
+.python .ge { font-style: italic } /* Generic.Emph */
+.python .gr { color: #FF0000 } /* Generic.Error */
+.python .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.python .gi { color: #00A000 } /* Generic.Inserted */
+.python .go { color: #808080 } /* Generic.Output */
+.python .gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+.python .gs { font-weight: bold } /* Generic.Strong */
+.python .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.python .gt { color: #0040D0 } /* Generic.Traceback */
+.python .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.python .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.python .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.python .kp { color: #007020 } /* Keyword.Pseudo */
+.python .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.python .kt { color: #902000 } /* Keyword.Type */
+.python .m { color: #40a070 } /* Literal.Number */
+.python .s { color: #4070a0 } /* Literal.String */
+.python .na { color: #4070a0 } /* Name.Attribute */
+.python .nb { color: #007020 } /* Name.Builtin */
+.python .nc { color: #0e84b5; font-weight: bold } /* Name.Class */
+.python .no { color: #60add5 } /* Name.Constant */
+.python .nd { color: #555555; font-weight: bold } /* Name.Decorator */
+.python .ni { color: #d55537; font-weight: bold } /* Name.Entity */
+.python .ne { color: #007020 } /* Name.Exception */
+.python .nf { color: #06287e } /* Name.Function */
+.python .nl { color: #002070; font-weight: bold } /* Name.Label */
+.python .nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+.python .nt { color: #062873; font-weight: bold } /* Name.Tag */
+.python .nv { color: #bb60d5 } /* Name.Variable */
+.python .ow { color: #007020; font-weight: bold } /* Operator.Word */
+.python .w { color: #bbbbbb } /* Text.Whitespace */
+.python .mf { color: #40a070 } /* Literal.Number.Float */
+.python .mh { color: #40a070 } /* Literal.Number.Hex */
+.python .mi { color: #40a070 } /* Literal.Number.Integer */
+.python .mo { color: #40a070 } /* Literal.Number.Oct */
+.python .sb { color: #4070a0 } /* Literal.String.Backtick */
+.python .sc { color: #4070a0 } /* Literal.String.Char */
+.python .sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+.python .s2 { color: #4070a0 } /* Literal.String.Double */
+.python .se { color: #4070a0; font-weight: bold } /* Literal.String.Escape */
+.python .sh { color: #4070a0 } /* Literal.String.Heredoc */
+.python .si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+.python .sx { color: #c65d09 } /* Literal.String.Other */
+.python .sr { color: #235388 } /* Literal.String.Regex */
+.python .s1 { color: #4070a0 } /* Literal.String.Single */
+.python .ss { color: #517918 } /* Literal.String.Symbol */
+.python .bp { color: #007020 } /* Name.Builtin.Pseudo */
+.python .vc { color: #bb60d5 } /* Name.Variable.Class */
+.python .vg { color: #bb60d5 } /* Name.Variable.Global */
+.python .vi { color: #bb60d5 } /* Name.Variable.Instance */
+.python .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="python"><pre><span class="kn">from</span> <span class="nn">crunch.server</span> <span class="kn">import</span> <span class="n">runserver</span>
+
+<span class="n">runserver</span><span class="p">(</span><span class="mi">8000</span><span class="p">,</span> <span class="mi">8001</span><span class="p">)</span>
+</pre></div>
+
+
+<p>When you run the above code, your server will start accepting HTTP requests on port 8000 and will accept connections from crunch nodes on port 8001. You have the liberty to choose those ports. As a general rule, the first port(HTTP) can be anything because on your remote server, you can accept connections on most of the ports. But the second port can only be a port which is open on your network, such that it allows outbound remote connections. For example, in my own setup, I use port 80 as the HTTP port, and 21 as the crunch port, because 21 is one of the few ports that I can use to make outbound remote connections. This could work for you or you might need to alter it a bit to make it work for you.</p>
+
+<p>We will need to create database schema for the users and atleast one user account to be able to connect to the server. So we'll do that from the Python shell.</p>
+
+<style>.pycon .hll { background-color: #ffffcc }
+.pycon  { background: #f0f0f0; }
+.pycon .c { color: #60a0b0; font-style: italic } /* Comment */
+.pycon .err { border: 1px solid #FF0000 } /* Error */
+.pycon .k { color: #007020; font-weight: bold } /* Keyword */
+.pycon .o { color: #666666 } /* Operator */
+.pycon .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
+.pycon .cp { color: #007020 } /* Comment.Preproc */
+.pycon .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
+.pycon .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+.pycon .gd { color: #A00000 } /* Generic.Deleted */
+.pycon .ge { font-style: italic } /* Generic.Emph */
+.pycon .gr { color: #FF0000 } /* Generic.Error */
+.pycon .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.pycon .gi { color: #00A000 } /* Generic.Inserted */
+.pycon .go { color: #808080 } /* Generic.Output */
+.pycon .gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+.pycon .gs { font-weight: bold } /* Generic.Strong */
+.pycon .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.pycon .gt { color: #0040D0 } /* Generic.Traceback */
+.pycon .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.pycon .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.pycon .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.pycon .kp { color: #007020 } /* Keyword.Pseudo */
+.pycon .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.pycon .kt { color: #902000 } /* Keyword.Type */
+.pycon .m { color: #40a070 } /* Literal.Number */
+.pycon .s { color: #4070a0 } /* Literal.String */
+.pycon .na { color: #4070a0 } /* Name.Attribute */
+.pycon .nb { color: #007020 } /* Name.Builtin */
+.pycon .nc { color: #0e84b5; font-weight: bold } /* Name.Class */
+.pycon .no { color: #60add5 } /* Name.Constant */
+.pycon .nd { color: #555555; font-weight: bold } /* Name.Decorator */
+.pycon .ni { color: #d55537; font-weight: bold } /* Name.Entity */
+.pycon .ne { color: #007020 } /* Name.Exception */
+.pycon .nf { color: #06287e } /* Name.Function */
+.pycon .nl { color: #002070; font-weight: bold } /* Name.Label */
+.pycon .nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+.pycon .nt { color: #062873; font-weight: bold } /* Name.Tag */
+.pycon .nv { color: #bb60d5 } /* Name.Variable */
+.pycon .ow { color: #007020; font-weight: bold } /* Operator.Word */
+.pycon .w { color: #bbbbbb } /* Text.Whitespace */
+.pycon .mf { color: #40a070 } /* Literal.Number.Float */
+.pycon .mh { color: #40a070 } /* Literal.Number.Hex */
+.pycon .mi { color: #40a070 } /* Literal.Number.Integer */
+.pycon .mo { color: #40a070 } /* Literal.Number.Oct */
+.pycon .sb { color: #4070a0 } /* Literal.String.Backtick */
+.pycon .sc { color: #4070a0 } /* Literal.String.Char */
+.pycon .sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+.pycon .s2 { color: #4070a0 } /* Literal.String.Double */
+.pycon .se { color: #4070a0; font-weight: bold } /* Literal.String.Escape */
+.pycon .sh { color: #4070a0 } /* Literal.String.Heredoc */
+.pycon .si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+.pycon .sx { color: #c65d09 } /* Literal.String.Other */
+.pycon .sr { color: #235388 } /* Literal.String.Regex */
+.pycon .s1 { color: #4070a0 } /* Literal.String.Single */
+.pycon .ss { color: #517918 } /* Literal.String.Symbol */
+.pycon .bp { color: #007020 } /* Name.Builtin.Pseudo */
+.pycon .vc { color: #bb60d5 } /* Name.Variable.Class */
+.pycon .vg { color: #bb60d5 } /* Name.Variable.Global */
+.pycon .vi { color: #bb60d5 } /* Name.Variable.Instance */
+.pycon .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="pycon"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">crunch.crunchauth</span> <span class="kn">import</span> <span class="n">add_account</span><span class="p">,</span> <span class="n">create_schema</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">create_schema</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_account</span><span class="p">(</span><span class="s">&#39;someone&#39;</span><span class="p">,</span> <span class="s">&#39;someonespassword&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Write your crunch client:</p>
+
+<div class="python"><pre><span class="kn">from</span> <span class="nn">crunch.crunchclient</span> <span class="kn">import</span> <span class="n">start_client</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;username&#39;</span><span class="p">:</span> <span class="s">&#39;someone&#39;</span><span class="p">,</span>
+    <span class="s">&#39;password&#39;</span><span class="p">:</span> <span class="s">&#39;someonespassword&#39;</span>
+    <span class="s">&#39;address&#39;</span><span class="p">:</span> <span class="s">&#39;something.com&#39;</span><span class="p">,</span>
+    <span class="s">&#39;port&#39;</span><span class="p">:</span> <span class="mi">8001</span>
+<span class="p">}</span>
+
+<span class="n">start_client</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+
+
+<p>When you run this code, you will be connected to the crunch server. Remember to put in the right values to the config fields. When its running, whenever, the server receives an HTTP request at <em>/someone/hello.txt</em>, the crunch client will look for the file <em>hello.txt</em> in the current directory and if found, it will send it to the server which is written back as a response to the HTTP request.</p>
+
+<p>Lets put it to test, assuming there is a <em>hello.txt</em> in the current directory which contains <em>Hello World</em>.</p>
+
+<div class="bash"><pre><span class="nv">$ </span>curl http://something.com:8000/someone/hello.txt
+Hello World
+</pre></div>
+
+
+<p>So thats it. One last point to note here is, the project is open for hacking. If you are over just suggestions, you are welcome to pitch in some code and make it better yourself. The code can be found on <a href="https://github.com/dash1291/crunch">GitHub</a>. Use it or fork it, if you want to make it better, and put some crunch in your network.</p>
+
+    </div>
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'ashishdubeysblog'; // required: replace example with your forum shortname
+     // var disqus_developer = 1
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+      <div id="footer">
+				Copyright &copy 2012 Ashish Dubey
+      </div>
+    </div>   
+  </body>
+</html>
