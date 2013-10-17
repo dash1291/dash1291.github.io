@@ -140,9 +140,21 @@ pre span {
     width: 100%;
   }
 
+  #header {
+    margin-bottom: 5px;
+  }
+
+  #nav {
+    margin-bottom: 0px;
+  }
+
   #branding {
     display: block;
     clear: both;
+  }
+
+  #branding a {
+    font-size: 40px;
   }
 
   .post-date {
