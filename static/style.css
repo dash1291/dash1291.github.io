@@ -61,7 +61,7 @@ a:hover {
 #footer {
   margin: 10px 5px 10px;
   color: #999;
-  font-size: 12pt;
+  font-size: 16px;
   font-style: italic;
   float: right;
 }
@@ -78,7 +78,7 @@ a:hover {
 
 #nav a {
   font-family: verdana, sans-serif;
-  font-size: 16pt;
+  font-size: 20px;
   display: block;
   float: left;
   height: 40px;
@@ -100,11 +100,11 @@ a:hover {
 
 .post-date {
   color: #aaa;
-  font-size: 12pt;
+  font-size: 16px;
 }
 
 .post-title-link {
-  font-size: 16pt;
+  font-size: 20px;
   margin-right: 20px;
 }
 
@@ -129,7 +129,7 @@ pre {
 
 pre span {
   font-family: 'Verdana', sans-serif;
-  font-size: 11pt;
+  font-size: 15px;
   font-weight: 300 !important;
 }
 
@@ -147,7 +147,7 @@ pre span {
 
   .post-date {
     color: #aaa;
-    font-size: 12pt;
+    font-size: 16px;
     display: block;
     margin-top: 5px;
   }
