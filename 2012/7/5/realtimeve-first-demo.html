@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width" />
     <title> Collaborative VisualEditor: First Demo |Ashish Dubey's Blog</title>
     <link rel="stylesheet" href="http://dash1291.github.io/static/style.css" type="text/css"/>
-     
+
   </head>
   <body>
     <div id="container">
@@ -30,7 +31,7 @@
     <div class="post-content">
       <p>I feel pretty bad for not having written about my Google Summer of Code project that I'm undertaking this summer for Wikimedia Foundation for prototyping collaborative editing feature for the new under-development VisualEditor(wysiwyg). Its been a while since I was selected, and started working on it, so I won't go into discussing the story around how I got started on it. But, I would like to discuss about the present state of the project, where its heading and also a bare working demo of the code produced so far.</p>
 
-<p>So the VisualEditor project is a wysiwyg editor for MediaWiki, designed from scratch keeping in mind the complexities of the Wikitext mapping to HTML and data structures suitable for inline editing. The changes to the text in VisualEditor are in the form of transactions. There are transactions for insertion/deletion of text as well as applying formatting attributes to a portion of text. 
+<p>So the VisualEditor project is a wysiwyg editor for MediaWiki, designed from scratch keeping in mind the complexities of the Wikitext mapping to HTML and data structures suitable for inline editing. The changes to the text in VisualEditor are in the form of transactions. There are transactions for insertion/deletion of text as well as applying formatting attributes to a portion of text.
 So most of the collaboration thing revolves around these transactions. There is a collaboration server which listens for new connections from clients who requests to initiate an editing session. A client module establishes connection with the server, and listens to the changes made in the document and translates the resulting transactions to the server. A thing that should be noted here is, the project is under Phase 1 which would support only one client who publishes changes to the server's document and other connected clients simply listen to these changes and apply them in their local documents. Phase 2 would support multiple publishers which would bring in conflicts and concurrency issues and perhaps measures to fight with them.</p>
 
 <p>So, there is a small list of things which have been done so far -</p>
@@ -120,6 +121,6 @@ So most of the collaboration thing revolves around these transactions. There is 
       <div id="footer">
 				Copyright &copy 2012 Ashish Dubey
       </div>
-    </div>   
+    </div>
   </body>
 </html>
