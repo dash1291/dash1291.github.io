@@ -112,6 +112,10 @@ a:hover {
   margin-bottom:5px;
 }
 
+.post img {
+  width: 100%;
+}
+
 .post-meta {
   margin-bottom:20px;
 }
