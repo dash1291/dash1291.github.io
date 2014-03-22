@@ -36,15 +36,15 @@
 <p>So, in the Marketplace workflow, we have three kinds of users namely, developers, reviewers and users (Firefox users who download the apps). The review process is basically hidden from the users as it is not relevant to them. Its the developers and reviewers which interact with each other during the review process mainly for feedback, reporting issues and asking questions. The Reviewer Tools provides a dashboard for the reviewers to review apps, which allows them to pick apps they want to review, and take actions on the apps they are reviewing (that is reject, make public, delete or ask for more information). On the other hand, Developer Hub is the dashboard for the developers, which they can manage apps (that is upload an app, edit uploaded apps). Though, this is an efficient workflow for both developers and reviewers, but on the communication front they are a bit disconnected. Every time, a reviewer takes an action on an app, its developer is notified about the action and the enclosed comments in an email. If the developer has any question or comment on the action, they reply back to the email which is delivered to a mailing list which has all the reviewers as its members. While the process works and is transparent, its not the best experience for both developers and especially reviewers. There is no central place in Marketplace where users can view all their conversation. It is totally tied up with their email. Also, communication on mailing lists gets messy after a while, reviewers have to keep track of developers' email addresses, among other hassles. So my project for the summer was to revamp this process in the following ways:</p>
 
 <ol>
-<li>Create a dashboard for both reviewers and developers to access their present and past conversations. This should be used to read and reply to the messages exchanged between the users.</li>
-<li>Bridge the email conversation and dashboard, so that the users can use both modes of communication as they please.</li>
+<li><p>Create a dashboard for both reviewers and developers to access their present and past conversations. This should be used to read and reply to the messages exchanged between the users.</p></li>
+<li><p>Bridge the email conversation and dashboard, so that the users can use both modes of communication as they please.</p></li>
 </ol>
 
 <h2>About the Solution</h2>
 
 <p>This is what a part of solution looked like:</p>
 
-<p><img src="/img/commbadgescreen.png" alt="Dashboard Screenshot" /></p>
+<p><img src="/static/img/commbadgescreen.png" alt="Dashboard Screenshot" /></p>
 
 <p>This is the communication dashboard frontend which is written over the same codebase that the Firefox Marketplace is based on, that is <a href="https://github.com/mozilla/fireplace">fireplace</a>, which is essentially a homegrown client-side framework with Marketplace specific bits like how the requests are dispatched, responses are cached, and rendered. Later, most of the Marketplacey commonware was abstracted out and <a href="https://github.com/mozilla/commonplace">commonplace</a> was born, which served as the base for all other Marketplace related projects, including communication dashboard frontend, source code of which resides in <a href="https://github.com/mozilla/commbadge">commbadge</a>.</p>
 
