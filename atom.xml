@@ -1,32 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Ashish Dubey's Blog</title>
-    <updated>2014-12-28T00:00:00Z</updated>
+    <updated>2014-03-22T00:00:00Z</updated>
   <id>http://dash1291.github.io/</id>
   <link rel="alternate" href="http://dash1291.github.io/" title="Ashish Dubey' Blog" type="text/html"/>
 	<link rel="self" href="http://dash1291.github.io/atom.rss" title="Ashish Dubey's Blog" type="application/atom+xml"/>
   <author><name>Ashish Dubey</name></author>
   
-    <entry>
-      <id>http://dash1291.github.io/2014/12/28/browserstack-infantry.html</id>
-      <title type="text">JS, Browsers in Cloud and Parallel Indexing</title>
-      <link href="http://dash1291.github.io/2014/12/28/browserstack-infantry.html" rel="alternate" type="text/html"/>
-      <updated>2014-12-28T00:00:00Z</updated>
-      <published>2014-12-28T00:00:00Z</published>
-			<content type="xhtml" xml:base="http://dash1291.github.io">
-        <div xmlns="http://www.w3.org/1999/xhtml"><p><em>This post is about a weekend hack I put together involving a tiny JavaScript library that I wrote a while ago (I call it "infantry") and using it on BrowserStack for experimentation and fun.</em></p>
-
-<h2>About Infantry</h2>
-
-<p>The idea of Infantry came into existence a while ago, when I was reading about techniques used for parallel processing of large datasets. At the same time, I was intrigued by the idea of having a website and distributing your processing power across your visitors' machines. The idea seemed pretty cool to me, so I started my research and found <a href="https://www.igvita.com/2009/03/03/collaborative-map-reduce-in-the-browser/">this cool blog post</a> which meant people had already tried this and it might work. I also learnt about project <a href="http://boinc.berkeley.edu/">BOINC</a> which seemed very impressive to me considering how well they used the concept of collaborative computing and achieve some great results out of it. As a matter of fact, I regularly use BOINC to volunteer some of my idle CPU power.</p>
-
-<p>Coming back to Infantry, I really wanted to build a small map-reduce libary in JS that can be used to parallelize simple logic across machines and run inside a web browser. After much procrastination, I decided to start working on it while I was on a 12 hours long flight. I tried to polish the framework further based on Google's map-reduce paper and ended up with something actually working.</p>
-
-<p>The code has always been on GitHub and can be found <a href="https://github.com/dash1291">here</a>.</p>
-</div>
-      </content>
-    </entry>
-	
     <entry>
       <id>http://dash1291.github.io/2014/03/22/mozilla-summer.html</id>
       <title type="text">Communication Dashboard in Firefox Marketplace</title>
