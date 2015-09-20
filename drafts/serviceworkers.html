@@ -26,11 +26,13 @@
       </div>
       <div id="content">
     <script>
-      var scope = '/';
-      function register() {
-        navigator.serviceWorker.register('/worker.js', {scope: scope})
+      if ('serviceWorker' in navigator) {
+        var scope = '/';
+        function register() {
+          navigator.serviceWorker.register('/worker.js', {scope: scope})
+        }
+        register();
       }
-      register();
     </script>
     <h1>ServiceWorkers! </h2>
     <div class="page-content">
