@@ -20,7 +20,7 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   console.log('got a request');
   var request = event.request;
-  fetch(request)
+  event.respondWith(fetch(request)
     .then(function(response) {
       console.log("got from network");
       return response;
@@ -29,4 +29,5 @@ self.addEventListener('fetch', function(event) {
       console.log("from cache");
       return caches.match(request.url);
     })
+  )
 });
