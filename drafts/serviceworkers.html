@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="keywords" content="python, javascript, django, open-source, ashish dubey, mozilla, wikimedia" />
     <meta name="description" content="Ashish Dubey's Blog" />
-    <title> About Me  | Ashish Dubey's Blog</title>
+    <title> ServiceWorkers!  | Ashish Dubey's Blog</title>
     <link rel="stylesheet" href="https://dash1291.github.io/static/style.css" type="text/css"/>
      
   </head>
@@ -25,15 +25,16 @@
         <div style="clear: both"></div>
       </div>
       <div id="content">
-    <h1>About Me </h2>
+    <script>
+      var scope = '/';
+      function register() {
+        navigator.serviceWorker.register('/worker.js', {scope: scope})
+      }
+      register();
+    </script>
+    <h1>ServiceWorkers! </h2>
     <div class="page-content">
-      <p>I'm Ashish. I'm a part of the team of awesome software developers at BrowserStack. I love internet. Also, I love listening to alternative music and eat (a lot).</p>
-
-<p>Get in touch with me if you have something to say. You can email me directly <a href="&#109;&#x61;&#x69;lt&#x6f;&#x3a;&#x61;&#x73;&#x68;&#105;&#x73;&#x68;&#46;d&#117;&#98;&#101;&#121;&#x39;&#x31;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x61;&#x73;&#x68;&#105;&#x73;&#x68;&#46;d&#117;&#98;&#101;&#121;&#x39;&#x31;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;</a>. I tweet occassionaly as <a href="https://twitter.com/dash1291">@dash1291</a>. I also have a <a href="https://github.com/dash1291">GitHub profile</a>, incase you want to checkout my code.</p>
-
-<h2 id="aboutsite">About this site</h2>
-
-<p>This is a static HTML website generated from <a href="http://daringfireball.net/projects/markdown/">Markdown</a> text using a script written in Python. It uses <a href="http://jinja.pocoo.org">Jinja2</a> for rendering HTML templates into static content. You can checkout the source <a href="http://github.com/dash1291/new-blog">here</a>.</p>
+      <p>This is draft ServiceWorkers experiment post.</p>
 
     </div>
 </div>
