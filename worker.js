@@ -8,10 +8,10 @@ self.addEventListener('install', function(event) {
         '/static/style.css',
         '/posts.html',
         '/about.html',
+        '/2015/09/20/serviceworkers.html',
         '/2014/12/28/browserstack-infantry.html',
         '/2014/03/22/mozilla-summer.html',
-        '/2012/11/9/crunch-in-network.html',
-        '/2012/7/5/realtimeve-first-demo.html'
+        '/2012/11/9/crunch-in-network.html'
       ]);
     })
   );
