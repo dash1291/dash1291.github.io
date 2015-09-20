@@ -5,6 +5,7 @@ self.addEventListener('install', function(event) {
     caches.open('dash1291.github.io.cache').then(function(cache) {
       return cache.addAll([
         '/',
+        '/static/style.css',
         '/posts.html',
         '/about.html',
         '/2014/12/28/browserstack-infantry.html',
