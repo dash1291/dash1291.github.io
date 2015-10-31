@@ -2,18 +2,18 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Ashish Dubey's Blog</title>
     <updated>2015-09-20T00:00:00Z</updated>
-  <id>https://dash1291.github.io/</id>
-  <link rel="alternate" href="https://dash1291.github.io/" title="Ashish Dubey' Blog" type="text/html"/>
-	<link rel="self" href="https://dash1291.github.io/atom.rss" title="Ashish Dubey's Blog" type="application/atom+xml"/>
+  <id>//</id>
+  <link rel="alternate" href="/" title="Ashish Dubey' Blog" type="text/html"/>
+	<link rel="self" href="/atom.rss" title="Ashish Dubey's Blog" type="application/atom+xml"/>
   <author><name>Ashish Dubey</name></author>
   
     <entry>
-      <id>https://dash1291.github.io/2015/09/20/serviceworkers.html</id>
+      <id>/2015/09/20/serviceworkers.html</id>
       <title type="text">Using ServiceWorkers for Offline Reading</title>
-      <link href="https://dash1291.github.io/2015/09/20/serviceworkers.html" rel="alternate" type="text/html"/>
+      <link href="/2015/09/20/serviceworkers.html" rel="alternate" type="text/html"/>
       <updated>2015-09-20T00:00:00Z</updated>
       <published>2015-09-20T00:00:00Z</published>
-			<content type="xhtml" xml:base="https://dash1291.github.io">
+			<content type="xhtml" xml:base="/">
         <div xmlns="http://www.w3.org/1999/xhtml"><p><em>While I was playing with ServiceWorkers, I got a lot of ideas on how I could use this powerful feature. But making my blog accessible offline seemed to be the easiest and least useless of them.</em></p>
 
 <p>So ServiceWorkers is this new-ish browser feature, still under rapid development, that allows web developers take control of the networking part of the requests they make. Using this, one can write pieces of JavaScript code that can intercept all the requests that their web application makes and take further control of them. A ServiceWorker can essentially act like a proxy server. You can use them for caching your HTTP requests, provide offline experience, selectively routing HTTP requests, etc.</p>
@@ -32,12 +32,12 @@
     </entry>
 	
     <entry>
-      <id>https://dash1291.github.io/2014/12/28/browserstack-infantry.html</id>
+      <id>/2014/12/28/browserstack-infantry.html</id>
       <title type="text">JS, Browsers in Cloud and Parallel Indexing</title>
-      <link href="https://dash1291.github.io/2014/12/28/browserstack-infantry.html" rel="alternate" type="text/html"/>
+      <link href="/2014/12/28/browserstack-infantry.html" rel="alternate" type="text/html"/>
       <updated>2014-12-28T00:00:00Z</updated>
       <published>2014-12-28T00:00:00Z</published>
-			<content type="xhtml" xml:base="https://dash1291.github.io">
+			<content type="xhtml" xml:base="/">
         <div xmlns="http://www.w3.org/1999/xhtml"><p><em>This post is about a weekend hack I put together involving a tiny JavaScript library that I wrote a while ago (I call it "infantry") and using it on BrowserStack for experimentation and fun.</em></p>
 
 <h2>Story of Infantry</h2>
@@ -62,12 +62,12 @@
     </entry>
 	
     <entry>
-      <id>https://dash1291.github.io/2014/03/22/mozilla-summer.html</id>
+      <id>/2014/03/22/mozilla-summer.html</id>
       <title type="text">Communication Dashboard in Firefox Marketplace</title>
-      <link href="https://dash1291.github.io/2014/03/22/mozilla-summer.html" rel="alternate" type="text/html"/>
+      <link href="/2014/03/22/mozilla-summer.html" rel="alternate" type="text/html"/>
       <updated>2014-03-22T00:00:00Z</updated>
       <published>2014-03-22T00:00:00Z</published>
-			<content type="xhtml" xml:base="https://dash1291.github.io">
+			<content type="xhtml" xml:base="/">
         <div xmlns="http://www.w3.org/1999/xhtml"><p><em>This is one of the awfully long-time overdue posts I've had in my mind, but have not been able to make it on this space. But since its never too late, I'm writing about the cool project I was working on while interning at Mozilla during the summer of 2013.</em></p>
 
 <h2>About Marketplace</h2>
@@ -117,12 +117,12 @@
     </entry>
 	
     <entry>
-      <id>https://dash1291.github.io/2012/11/9/crunch-in-network.html</id>
+      <id>/2012/11/9/crunch-in-network.html</id>
       <title type="text">Putting Some Crunch in the Network</title>
-      <link href="https://dash1291.github.io/2012/11/9/crunch-in-network.html" rel="alternate" type="text/html"/>
+      <link href="/2012/11/9/crunch-in-network.html" rel="alternate" type="text/html"/>
       <updated>2012-11-09T00:00:00Z</updated>
       <published>2012-11-09T00:00:00Z</published>
-			<content type="xhtml" xml:base="https://dash1291.github.io">
+			<content type="xhtml" xml:base="/">
         <div xmlns="http://www.w3.org/1999/xhtml"><p>Most of us, who write web pages, sometimes want to serve their content from the local server. Now if I'm one of the students of a college, where there are no ports forwarded on which I'm allowed to serve my content, being on the college's network. Thats bad because I often want to be able to serve some static pages or files from my local system to the internet. I wish there was no firewall but there are somethings you cannot change and have to live with. But certainly, one can adapt. I've made a small attempt towards such an adaptation.</p>
 
 <h2>What about adaptation?</h2>
@@ -193,12 +193,12 @@ Hello World
     </entry>
 	
     <entry>
-      <id>https://dash1291.github.io/2012/7/5/realtimeve-first-demo.html</id>
+      <id>/2012/7/5/realtimeve-first-demo.html</id>
       <title type="text">Collaborative VisualEditor: First Demo</title>
-      <link href="https://dash1291.github.io/2012/7/5/realtimeve-first-demo.html" rel="alternate" type="text/html"/>
+      <link href="/2012/7/5/realtimeve-first-demo.html" rel="alternate" type="text/html"/>
       <updated>2012-07-05T00:00:00Z</updated>
       <published>2012-07-05T00:00:00Z</published>
-			<content type="xhtml" xml:base="https://dash1291.github.io">
+			<content type="xhtml" xml:base="/">
         <div xmlns="http://www.w3.org/1999/xhtml"><p>I feel pretty bad for not having written about my Google Summer of Code project that I'm undertaking this summer for Wikimedia Foundation for prototyping collaborative editing feature for the new under-development VisualEditor(wysiwyg). Its been a while since I was selected, and started working on it, so I won't go into discussing the story around how I got started on it. But, I would like to discuss about the present state of the project, where its heading and also a bare working demo of the code produced so far.</p>
 
 <p>So the VisualEditor project is a wysiwyg editor for MediaWiki, designed from scratch keeping in mind the complexities of the Wikitext mapping to HTML and data structures suitable for inline editing. The changes to the text in VisualEditor are in the form of transactions. There are transactions for insertion/deletion of text as well as applying formatting attributes to a portion of text. 
@@ -274,12 +274,12 @@ So most of the collaboration thing revolves around these transactions. There is 
     </entry>
 	
     <entry>
-      <id>https://dash1291.github.io/2012/4/17/opensource-wowness.html</id>
+      <id>/2012/4/17/opensource-wowness.html</id>
       <title type="text">Open source Wowness</title>
-      <link href="https://dash1291.github.io/2012/4/17/opensource-wowness.html" rel="alternate" type="text/html"/>
+      <link href="/2012/4/17/opensource-wowness.html" rel="alternate" type="text/html"/>
       <updated>2012-04-17T00:00:00Z</updated>
       <published>2012-04-17T00:00:00Z</published>
-			<content type="xhtml" xml:base="https://dash1291.github.io">
+			<content type="xhtml" xml:base="/">
         <div xmlns="http://www.w3.org/1999/xhtml"><p>This is the first in set of the delayed blog posts that I wanted to write since long but somehow did not. After the awesome December dedicated to Python and Mozilla, and with Mozilla's AMO project being the first open source project that I contributed to, I easily understood the joy and learning that comes through contributing to an awesome open source project. And with that motivation, and mostly with a desire of contributing to another open source project I turned to <a href="http://mediawiki.org">MediaWiki</a>. I was definitely not here for PHP parts of it but still to get a hang of the software I developed a small experimental extension for it. It was a smooth run, so I continued to discover more until I discovered the project that I was maybe looking for, that is, the <a href="http://mediawiki.org/wiki/Visual_editor">Visual Editor project</a>. This looked to be a really cool project at first, because I've had some tough time editing wiki pages for the first time using the wiki markup text. But the Visual Editor project simply appeared to solve the wiki editing problems for ever and everyone, and so was it. Mostly with the desire to make some good amount of contribution to MediaWiki through GSoC, I started hacking on the Visual Editor project with an aim of prototyping the collaborative editing feature on Visual Editor. With hacking came the learning, mainly on numerous pro JS practices, so I was enjoying it! I talked to alot of devs mainly those onboard the VE team. They told me what made sense and what not in what I was aiming.</p>
 
 <p>By this time, I really wished to be the part of this community. I attended a hackathon in Pune in February which happened to be a great event where I worked on Wikipedia's official mobile app and met some awesome people from Wikimedia Foundation. And this is when I realized how awesome the Wiki community is and felt the desire to make some considerable contribution to it.</p>
@@ -290,12 +290,12 @@ So most of the collaboration thing revolves around these transactions. There is 
     </entry>
 	
     <entry>
-      <id>https://dash1291.github.io/2012/1/5/december-of-things.html</id>
+      <id>/2012/1/5/december-of-things.html</id>
       <title type="text">December of Things</title>
-      <link href="https://dash1291.github.io/2012/1/5/december-of-things.html" rel="alternate" type="text/html"/>
+      <link href="/2012/1/5/december-of-things.html" rel="alternate" type="text/html"/>
       <updated>2012-01-05T00:00:00Z</updated>
       <published>2012-01-05T00:00:00Z</published>
-			<content type="xhtml" xml:base="https://dash1291.github.io">
+			<content type="xhtml" xml:base="/">
         <div xmlns="http://www.w3.org/1999/xhtml"><p>I'm just done with a month long winter break after the semester finished at
 school. The month of December was about some travel, lot of sleep, occasional
 movie sprints, and lastly but most importantly it was about taking my
@@ -443,12 +443,12 @@ web around the globe.</p>
     </entry>
 	
     <entry>
-      <id>https://dash1291.github.io/2011/10/29/django-apache-modwsgi.html</id>
+      <id>/2011/10/29/django-apache-modwsgi.html</id>
       <title type="text">Setting up Apache Server for Django with mod_wsgi</title>
-      <link href="https://dash1291.github.io/2011/10/29/django-apache-modwsgi.html" rel="alternate" type="text/html"/>
+      <link href="/2011/10/29/django-apache-modwsgi.html" rel="alternate" type="text/html"/>
       <updated>2011-10-29T00:00:00Z</updated>
       <published>2011-10-29T00:00:00Z</published>
-			<content type="xhtml" xml:base="https://dash1291.github.io">
+			<content type="xhtml" xml:base="/">
         <div xmlns="http://www.w3.org/1999/xhtml"><p>Django is a very cool web development framework which comes with its own
 lightweight development server which is best for testing the application. But
 when it comes to deploying the application for the outer world, more efficient
