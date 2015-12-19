@@ -58,12 +58,18 @@ a:hover {
   min-width: 800px;
 }
 
-#footer {
-  margin: 10px 5px 10px;
+#footer, #footer a, #footer p {
   color: #999;
   font-size: 16px;
   font-style: italic;
+  margin: 0;
+  line-height: 1.5em;
+}
+
+#footer > div {
   float: right;
+  text-align: right;
+  margin: 10px 5px 10px;
 }
 
 #nav {
@@ -142,6 +148,10 @@ pre span {
     clear: both;
     text-align: center;
     width: 100%;
+  }
+  
+  #footer > div {
+    text-align: center;
   }
 
   #header {
