@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="keywords" content="python, javascript, django, open-source, ashish dubey, mozilla, wikimedia" />
     <meta name="description" content="Ashish Dubey's Blog" />
-    <title> JS, Browsers in Cloud and Parallel Indexing  | Ashish Dubey's Blog</title>
+    <title> Communication Dashboard in Firefox Marketplace  | Ashish Dubey's Blog</title>
     <link rel="stylesheet" href="https://ashishdubey.xyz/static/style.css" type="text/css"/>
      
   </head>
@@ -25,33 +25,56 @@
         <div style="clear: both"></div>
       </div>
       <div id="content">
-    <h1>JS, Browsers in Cloud and Parallel Indexing </h2>
+    <h1>Communication Dashboard in Firefox Marketplace </h2>
     <div class="page-content">
-      <p><em>This post is about a weekend hack I put together involving a tiny JavaScript library that I wrote a while ago (I call it "infantry") and using it on BrowserStack for experimentation and fun.</em></p>
+      <p><em>This is one of the awfully long-time overdue posts I've had in my mind, but have not been able to make it on this space. But since its never too late, I'm writing about the cool project I was working on while interning at Mozilla during the summer of 2013.</em></p>
 
-<h2>Story of Infantry</h2>
+<h2>About Marketplace</h2>
 
-<p>The idea of Infantry came into existence a while ago, when I was reading about techniques used for parallel processing of large datasets. At the same time, I was intrigued by the idea of having a website and distributing your processing power across your visitors' machines. The idea seemed pretty cool to me, so I started my research and found <a href="https://www.igvita.com/2009/03/03/collaborative-map-reduce-in-the-browser/">this cool blog post</a> which meant people had already tried this and it might work. I also learnt about project <a href="http://boinc.berkeley.edu/">BOINC</a> which seemed very impressive to me considering how well they used the concept of collaborative computing and achieve some great results out of it. As a matter of fact, I regularly use BOINC to volunteer some of my idle CPU power hoping that it might be helpful in finding extraterrestrial intelligence someday. Hope is a good thing.</p>
+<p><a href="https://marketplace.firefox.com">Firefox Marketplace</a>, for the uninitiated is the platform where developers can host their Firefox apps which run on desktop and mobile (of course including Firefox OS). It acts as the central repository of apps, from where users can download and install apps on their systems. And by that I don't mean a plain repository of apps which just allows you to download apps, but also essentials like compatibility checks, app analytics, ratings, reviews, etc. Just like <a href="https://addons.mozilla.org">Firefox Add-ons</a>, there are apps for various kinds of users on Marketplace. Since Mozilla cares much about the quality of the apps served to its users, it makes sure that the apps meet a quality standard before they are available on the Marketplace. For this purpose, there is process of App Review which comes after a new app is submitted to Firefox Marketplace and before it is available to the users for download. App reviewers, which include paid staff and volunteers, take a close look at the submitted apps, beyond just the description of it. It includes inspecting the app's functionality, performance, and security. If the reviewers like it, it goes live for the users to download, if not, the developer (who submits the app) is notified about the issues found during the review, and the developer is expected to fix those before it can be reviewed again and made public.</p>
 
-<p>Coming back to Infantry, I really wanted to build a small map-reduce libary in JS that can be used to parallelize simple logic across machines and run inside a web browser. After much procrastination, I decided to start working on it while I was on a 12 hours long flight. I tried to polish the framework further based on Google's map-reduce paper and ended up with something actually working.</p>
+<h2>About the Problem</h2>
 
-<p>The code has always been on GitHub and can be found <a href="https://github.com/dash1291/infantry">here</a>. I have tried to write documentation, but don't expect too much from it, instead just take a look at the example in the repo.</p>
+<p>So, in the Marketplace workflow, we have three kinds of users namely, developers, reviewers and users (Firefox users who download the apps). The review process is basically hidden from the users as it is not relevant to them. Its the developers and reviewers which interact with each other during the review process mainly for feedback, reporting issues and asking questions. The Reviewer Tools provides a dashboard for the reviewers to review apps, which allows them to pick apps they want to review, and take actions on the apps they are reviewing (that is reject, make public, delete or ask for more information). On the other hand, Developer Hub is the dashboard for the developers, which they can manage apps (that is upload an app, edit uploaded apps). Though, this is an efficient workflow for both developers and reviewers, but on the communication front they are a bit disconnected. Every time, a reviewer takes an action on an app, its developer is notified about the action and the enclosed comments in an email. If the developer has any question or comment on the action, they reply back to the email which is delivered to a mailing list which has all the reviewers as its members. While the process works and is transparent, its not the best experience for both developers and especially reviewers. There is no central place in Marketplace where users can view all their conversation. It is totally tied up with their email. Also, communication on mailing lists gets messy after a while, reviewers have to keep track of developers' email addresses, among other hassles. So my project for the summer was to revamp this process in the following ways:</p>
 
-<h2>About the Hack</h2>
+<ol>
+<li>Create a dashboard for both reviewers and developers to access their present and past conversations. This should be used to read and reply to the messages exchanged between the users.</li>
+<li>Bridge the email conversation and dashboard, so that the users can use both modes of communication as they please.</li>
+</ol>
 
-<p>For running map-reduce jobs with infantry, one needs to start the infantry server, which acts as master, and to start a worker one has to just navigate to the server's URL inside a browser. Since, BrowserStack allows you start browsers in cloud and test your web pages inside them, it occurred to me to try it as a test bed for Infantry. I wrote a piece of very buggy and fragile code to build an inverted index for a set of HTML pages. After a few minor fixes, I setup the code on my brand new DigitalOcean server, and when I tried to run it, this is the next thing I see:</p>
+<h2>About the Solution</h2>
 
-<p><img src="/static/img/infantry_scr.png" alt="Screenshot" /></p>
+<p>This is what a part of solution looked like:</p>
 
-<p>Everything worked as expected. Two workers were started on BrowserStack, and infantry was executing the jobs inside both of them, working to count words in a couple of articles from the <a href="http://aosabook.org/en/index.html">AOSA book</a> and build an inverted index.</p>
+<p>This is the communication dashboard frontend which is written over the same codebase that the Firefox Marketplace is based on, that is <a href="https://github.com/mozilla/fireplace">fireplace</a>, which is essentially a homegrown client-side framework with Marketplace specific bits like how the requests are dispatched, responses are cached, and rendered. Later, most of the Marketplacey commonware was abstracted out and <a href="https://github.com/mozilla/commonplace">commonplace</a> was born, which served as the base for all other Marketplace related projects, including communication dashboard frontend, source code of which resides in <a href="https://github.com/mozilla/commbadge">commbadge</a>.</p>
 
-<p>The code involved can be found <a href="https://github.com/dash1291/browserstack-infantry">here</a>. If I get a chance, maybe I will try to iron out the example a bit, and post some execution stats in the updates. Suggestions are welcome.</p>
+<h2>More About the Solution</h2>
+
+<p>A little about the frontend was described above, but that was only a part of the entire thing. The frontend is basically a client-side app which talks to the Marketplace REST API, for reading/writing communication dashboard data. This is actually how Firefox Marketplace works. The frontend is a client-side app which fetches data from the Marketplace API and renders it using <a href="http://jlongster.github.io/nunjucks">Nunjucks</a> templating library. The Marketplace API codebase is written in Python/Django (codename <a href="https://github.com/mozilla/zamboni">zamboni</a>), and is huge and might require an additional blog post to get into the details. For the purpose of this post, lets just stick to the details of Marketplace API relevant to the communication dashboard API.</p>
+
+<p>The REST API is written using the <a href="http://django-rest-framework.org">Django REST Framework</a>, which makes it really easy and quick for writing new API endpoints, once you understand how it works. Since, I had worked on Tastypie before, it took me a while to understand different parts of DRF work together, but spending time reading the documentation and codebase itself, yielded good results. I realized that DRF is infact, very simple and flexible framework, making it really easy to control different parts of an API request lifecycle in DRF, simply by extending different classes that DRF provides. I've actually used DRF for another personal project of mine, and it helped setup an API in no time.</p>
+
+<p>One requirement of the project, is to be able to handle the incoming email replies. This means that, a reply to a message sent from communication dashboard can be sent over email and the replies should be tied to the same conversation thread. This is done by sending an email for every message that is sent from the communication dashboard, to the recipients of the message through email. A unique reply token is embedded in the <em>Reply-To</em> address of each email, which internally corresponds to a single conversation thread. Whenever a reply is sent to the reply address, the email server pipes the email to the communication dashboard API, which in background then extracts this reply token and figures out which thread it belongs to and creates its record in the database. Works pretty neatly.</p>
+
+<h2>About the Result</h2>
+
+<p>Much of the prototyping was done by the time I was done with my internship, but the project could not get deployed, which kept me from addressing the real issues it might face in production. But it was a fun ride. It was challenging to find edge cases, and dozen of issues which would arise in every single bug that was part of the project.</p>
+
+<p>My project presentation can be viewed at <a href="https://air.mozilla.org/2013-intern-dubey">air.mozilla.org/2013-intern-dubey</a> slides of which are available <a href="http://slid.es/ashishdubey/internpresentation13">here</a>.</p>
+
+<p>In a nutshell, I had an awesome summer!</p>
+
+<h2>Thanks</h2>
+
+<p>The awesome summer would not be possible and much fun without my supervisor <a href="https://twitter.com/cvanw">cvan</a>. Learnt so much from him and (Matt Basta)[https://twitter.com/mattbasta] while working on commbadge, commonplace and zamboni, having fun code reviews. <a href="https://twitter.com/clouserw">Wil Clouser</a> and the entire Marketplace team for a place in the awesome team.</p>
+
+<p>Special thanks to <a href="http://ngokevin.com">Kevin Ngo</a> for taking forward the work on communication dashboard, making it awesome and suck less.</p>
 
     </div>
 </div>
       <div id="footer">
 	    <div>
-          <p>Copyright &copy 2015 Ashish Dubey</p>
+          Copyright &copy 2016 Ashish Dubey
           <p>Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike License</a></p>
         </div>
       </div>

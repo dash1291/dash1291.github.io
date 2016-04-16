@@ -76,8 +76,10 @@ to it</p>
 .apache .err { border: 1px solid #FF0000 } /* Error */
 .apache .k { color: #007020; font-weight: bold } /* Keyword */
 .apache .o { color: #666666 } /* Operator */
+.apache .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
 .apache .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
 .apache .cp { color: #007020 } /* Comment.Preproc */
+.apache .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
 .apache .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
 .apache .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
 .apache .gd { color: #A00000 } /* Generic.Deleted */
@@ -132,13 +134,13 @@ to it</p>
 .apache .vc { color: #bb60d5 } /* Name.Variable.Class */
 .apache .vg { color: #bb60d5 } /* Name.Variable.Global */
 .apache .vi { color: #bb60d5 } /* Name.Variable.Instance */
-.apache .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="apache"><pre><span class="nb">LoadModule</span> wsgi_module <span class="sx">/usr/lib/apache2/modules/mod_wsgi.so</span>
+.apache .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="apache"><pre><span></span><span class="nb">LoadModule</span> wsgi_module <span class="sx">/usr/lib/apache2/modules/mod_wsgi.so</span>
 </pre></div>
 
 
 <p>Also, at the end of the httpd.conf file, add the following directives</p>
 
-<div class="apache"><pre><span class="nb">WSGIScriptAlias</span> / &lt;path-to-your-django-project&gt;/test.wsgi
+<div class="apache"><pre><span></span><span class="nb">WSGIScriptAlias</span> / &lt;path-to-your-django-project&gt;/test.wsgi
 <span class="nt">&lt;Directory</span> <span class="s">path-to-your-django-project</span><span class="nt">&gt;</span>
 <span class="nb">Order</span> deny,allow
 <span class="nb">Allow</span> from <span class="k">all</span>
@@ -163,8 +165,10 @@ with the following content.</p>
 .python .err { border: 1px solid #FF0000 } /* Error */
 .python .k { color: #007020; font-weight: bold } /* Keyword */
 .python .o { color: #666666 } /* Operator */
+.python .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
 .python .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
 .python .cp { color: #007020 } /* Comment.Preproc */
+.python .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
 .python .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
 .python .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
 .python .gd { color: #A00000 } /* Generic.Deleted */
@@ -219,11 +223,11 @@ with the following content.</p>
 .python .vc { color: #bb60d5 } /* Name.Variable.Class */
 .python .vg { color: #bb60d5 } /* Name.Variable.Global */
 .python .vi { color: #bb60d5 } /* Name.Variable.Instance */
-.python .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="python"><pre><span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
-    <span class="n">status</span> <span class="o">=</span> <span class="s">&#39;200 OK&#39;</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="s">&#39;Hello World!&#39;</span>
-    <span class="n">response_headers</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&#39;Content-type&#39;</span><span class="p">,</span> <span class="s">&#39;text/plain&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;Content-Length&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)))]</span>
+.python .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="python"><pre><span></span><span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;200 OK&#39;</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;Hello World!&#39;</span>
+    <span class="n">response_headers</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Content-type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;Content-Length&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)))]</span>
     <span class="n">start_response</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">output</span><span class="p">]</span>
 </pre></div>
@@ -251,7 +255,7 @@ has its own). In such a situation, there is Segmentation Fault encountered by
 Apache and it crashes. To test it if you encounter that issue, just make the
 following entry in your test.wsgi file.</p>
 
-<div class="python"><pre><span class="kn">import</span> <span class="nn">pyexpat</span>
+<div class="python"><pre><span></span><span class="kn">import</span> <span class="nn">pyexpat</span>
 </pre></div>
 
 
@@ -280,12 +284,12 @@ create a new django.wsgi in the same directory as test.wsgi and set
 WSGIScriptAlias to that very file. Enter the following code to django.wsgi and
 you're on the go.</p>
 
-<div class="python"><pre><span class="kn">import</span> <span class="nn">os</span>
+<div class="python"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span><span class="s">&#39;..&#39;</span><span class="p">)</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
 
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">root</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;&lt;your-project&gt;.settings&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;&lt;your-project&gt;.settings&#39;</span>
 
 <span class="kn">import</span> <span class="nn">django.core.handlers.wsgi</span>
 <span class="n">application</span> <span class="o">=</span> <span class="n">django</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">wsgi</span><span class="o">.</span><span class="n">WSGIHandler</span><span class="p">()</span>
@@ -320,7 +324,7 @@ so that you don't encounter issues related to database and other stuff.</p>
 </div>
       <div id="footer">
 	    <div>
-          <p>Copyright &copy 2015 Ashish Dubey</p>
+          Copyright &copy 2016 Ashish Dubey
           <p>Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike License</a></p>
         </div>
       </div>

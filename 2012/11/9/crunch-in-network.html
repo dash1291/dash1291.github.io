@@ -55,8 +55,10 @@
 .bash .err { border: 1px solid #FF0000 } /* Error */
 .bash .k { color: #007020; font-weight: bold } /* Keyword */
 .bash .o { color: #666666 } /* Operator */
+.bash .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
 .bash .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
 .bash .cp { color: #007020 } /* Comment.Preproc */
+.bash .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
 .bash .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
 .bash .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
 .bash .gd { color: #A00000 } /* Generic.Deleted */
@@ -111,7 +113,7 @@
 .bash .vc { color: #bb60d5 } /* Name.Variable.Class */
 .bash .vg { color: #bb60d5 } /* Name.Variable.Global */
 .bash .vi { color: #bb60d5 } /* Name.Variable.Instance */
-.bash .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="bash"><pre><span class="nv">$ </span>pip install -e git+https://github.com/dash1291/crunch.git#egg<span class="o">=</span>crunch
+.bash .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="bash"><pre><span></span>$ pip install -e git+https://github.com/dash1291/crunch.git#egg<span class="o">=</span>crunch
 </pre></div>
 
 
@@ -123,8 +125,10 @@
 .python .err { border: 1px solid #FF0000 } /* Error */
 .python .k { color: #007020; font-weight: bold } /* Keyword */
 .python .o { color: #666666 } /* Operator */
+.python .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
 .python .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
 .python .cp { color: #007020 } /* Comment.Preproc */
+.python .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
 .python .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
 .python .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
 .python .gd { color: #A00000 } /* Generic.Deleted */
@@ -179,7 +183,7 @@
 .python .vc { color: #bb60d5 } /* Name.Variable.Class */
 .python .vg { color: #bb60d5 } /* Name.Variable.Global */
 .python .vi { color: #bb60d5 } /* Name.Variable.Instance */
-.python .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="python"><pre><span class="kn">from</span> <span class="nn">crunch.server</span> <span class="kn">import</span> <span class="n">runserver</span>
+.python .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="python"><pre><span></span><span class="kn">from</span> <span class="nn">crunch.server</span> <span class="kn">import</span> <span class="n">runserver</span>
 
 <span class="n">runserver</span><span class="p">(</span><span class="mi">8000</span><span class="p">,</span> <span class="mi">8001</span><span class="p">)</span>
 </pre></div>
@@ -195,8 +199,10 @@
 .pycon .err { border: 1px solid #FF0000 } /* Error */
 .pycon .k { color: #007020; font-weight: bold } /* Keyword */
 .pycon .o { color: #666666 } /* Operator */
+.pycon .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
 .pycon .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
 .pycon .cp { color: #007020 } /* Comment.Preproc */
+.pycon .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
 .pycon .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
 .pycon .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
 .pycon .gd { color: #A00000 } /* Generic.Deleted */
@@ -251,21 +257,21 @@
 .pycon .vc { color: #bb60d5 } /* Name.Variable.Class */
 .pycon .vg { color: #bb60d5 } /* Name.Variable.Global */
 .pycon .vi { color: #bb60d5 } /* Name.Variable.Instance */
-.pycon .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="pycon"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">crunch.crunchauth</span> <span class="kn">import</span> <span class="n">add_account</span><span class="p">,</span> <span class="n">create_schema</span>
+.pycon .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="pycon"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">crunch.crunchauth</span> <span class="kn">import</span> <span class="n">add_account</span><span class="p">,</span> <span class="n">create_schema</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">create_schema</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">add_account</span><span class="p">(</span><span class="s">&#39;someone&#39;</span><span class="p">,</span> <span class="s">&#39;someonespassword&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_account</span><span class="p">(</span><span class="s1">&#39;someone&#39;</span><span class="p">,</span> <span class="s1">&#39;someonespassword&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Write your crunch client:</p>
 
-<div class="python"><pre><span class="kn">from</span> <span class="nn">crunch.crunchclient</span> <span class="kn">import</span> <span class="n">start_client</span>
+<div class="python"><pre><span></span><span class="kn">from</span> <span class="nn">crunch.crunchclient</span> <span class="kn">import</span> <span class="n">start_client</span>
 
 <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;username&#39;</span><span class="p">:</span> <span class="s">&#39;someone&#39;</span><span class="p">,</span>
-    <span class="s">&#39;password&#39;</span><span class="p">:</span> <span class="s">&#39;someonespassword&#39;</span>
-    <span class="s">&#39;address&#39;</span><span class="p">:</span> <span class="s">&#39;something.com&#39;</span><span class="p">,</span>
-    <span class="s">&#39;port&#39;</span><span class="p">:</span> <span class="mi">8001</span>
+    <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="s1">&#39;someone&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="s1">&#39;someonespassword&#39;</span>
+    <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;something.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;port&#39;</span><span class="p">:</span> <span class="mi">8001</span>
 <span class="p">}</span>
 
 <span class="n">start_client</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
@@ -276,7 +282,7 @@
 
 <p>Lets put it to test, assuming there is a <em>hello.txt</em> in the current directory which contains <em>Hello World</em>.</p>
 
-<div class="bash"><pre><span class="nv">$ </span>curl http://something.com:8000/someone/hello.txt
+<div class="bash"><pre><span></span>$ curl http://something.com:8000/someone/hello.txt
 Hello World
 </pre></div>
 
@@ -303,7 +309,7 @@ Hello World
 </div>
       <div id="footer">
 	    <div>
-          <p>Copyright &copy 2015 Ashish Dubey</p>
+          Copyright &copy 2016 Ashish Dubey
           <p>Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike License</a></p>
         </div>
       </div>
