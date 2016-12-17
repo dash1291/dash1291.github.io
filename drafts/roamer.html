@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="python, javascript, django, open-source, ashish dubey, mozilla, wikimedia" />
+    <meta name="description" content="Ashish Dubey's Blog" />
+    <title> Of Mock Services, No Servers and Web Frontends  | Ashish Dubey's Blog</title>
+    <link rel="stylesheet" href="https://ashishdubey.xyz/static/style.css" type="text/css"/>
+     
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <div id="branding">
+          <a href="https://ashishdubey.xyz/">Ashish Dubey's Blog</a>
+        </div>
+        <div id="nav">
+          <ul>
+            <li><a href="https://ashishdubey.xyz/">Home</a></li>
+            <li><a href="https://ashishdubey.xyz/posts.html">Archive</a></li>
+            <li><a href="https://ashishdubey.xyz/about.html">About</a></li>
+          </ul>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+      <div id="content">
+    <h1>Of Mock Services, No Servers and Web Frontends </h2>
+    <div class="page-content">
+      <p><em>This post is about a hack on ServiceWorkers I did a while ago. Although, not a novel idea anymore, I'm still going to write about it to continue the legacy of this space, and to celebrate the first commit to the project after Nov 2015.</em></p>
+
+<h2>What is this?</h2>
+
+<p>We're going to talk about <a href="https://github.com/dash1291/roamer">Roamer</a>. Its a small library that utilizes the capability of ServiceWorkers to act like an intercepting proxy server, and turns it into a web server that serves inside your browser. When you achieve that, there are ton of things you can do. Mocking a web service is one of them, and thats the idea on which Roamer was born.</p>
+
+<h2>How it works?</h2>
+
+<p>Roamer is a JS script that can be dropped in your web app which needs to use mocked web services. Using a simple API, you can bind URL endpoints with the mock data that you want in the response for those endpoints.</p>
+
+<p>Take a look at the following snippet -</p>
+
+<style>.javascript .hll { background-color: #ffffcc }
+.javascript  { background: #f0f0f0; }
+.javascript .c { color: #60a0b0; font-style: italic } /* Comment */
+.javascript .err { border: 1px solid #FF0000 } /* Error */
+.javascript .k { color: #007020; font-weight: bold } /* Keyword */
+.javascript .o { color: #666666 } /* Operator */
+.javascript .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
+.javascript .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
+.javascript .cp { color: #007020 } /* Comment.Preproc */
+.javascript .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
+.javascript .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
+.javascript .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+.javascript .gd { color: #A00000 } /* Generic.Deleted */
+.javascript .ge { font-style: italic } /* Generic.Emph */
+.javascript .gr { color: #FF0000 } /* Generic.Error */
+.javascript .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.javascript .gi { color: #00A000 } /* Generic.Inserted */
+.javascript .go { color: #888888 } /* Generic.Output */
+.javascript .gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+.javascript .gs { font-weight: bold } /* Generic.Strong */
+.javascript .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.javascript .gt { color: #0044DD } /* Generic.Traceback */
+.javascript .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+.javascript .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+.javascript .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+.javascript .kp { color: #007020 } /* Keyword.Pseudo */
+.javascript .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+.javascript .kt { color: #902000 } /* Keyword.Type */
+.javascript .m { color: #40a070 } /* Literal.Number */
+.javascript .s { color: #4070a0 } /* Literal.String */
+.javascript .na { color: #4070a0 } /* Name.Attribute */
+.javascript .nb { color: #007020 } /* Name.Builtin */
+.javascript .nc { color: #0e84b5; font-weight: bold } /* Name.Class */
+.javascript .no { color: #60add5 } /* Name.Constant */
+.javascript .nd { color: #555555; font-weight: bold } /* Name.Decorator */
+.javascript .ni { color: #d55537; font-weight: bold } /* Name.Entity */
+.javascript .ne { color: #007020 } /* Name.Exception */
+.javascript .nf { color: #06287e } /* Name.Function */
+.javascript .nl { color: #002070; font-weight: bold } /* Name.Label */
+.javascript .nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+.javascript .nt { color: #062873; font-weight: bold } /* Name.Tag */
+.javascript .nv { color: #bb60d5 } /* Name.Variable */
+.javascript .ow { color: #007020; font-weight: bold } /* Operator.Word */
+.javascript .w { color: #bbbbbb } /* Text.Whitespace */
+.javascript .mb { color: #40a070 } /* Literal.Number.Bin */
+.javascript .mf { color: #40a070 } /* Literal.Number.Float */
+.javascript .mh { color: #40a070 } /* Literal.Number.Hex */
+.javascript .mi { color: #40a070 } /* Literal.Number.Integer */
+.javascript .mo { color: #40a070 } /* Literal.Number.Oct */
+.javascript .sb { color: #4070a0 } /* Literal.String.Backtick */
+.javascript .sc { color: #4070a0 } /* Literal.String.Char */
+.javascript .sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+.javascript .s2 { color: #4070a0 } /* Literal.String.Double */
+.javascript .se { color: #4070a0; font-weight: bold } /* Literal.String.Escape */
+.javascript .sh { color: #4070a0 } /* Literal.String.Heredoc */
+.javascript .si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+.javascript .sx { color: #c65d09 } /* Literal.String.Other */
+.javascript .sr { color: #235388 } /* Literal.String.Regex */
+.javascript .s1 { color: #4070a0 } /* Literal.String.Single */
+.javascript .ss { color: #517918 } /* Literal.String.Symbol */
+.javascript .bp { color: #007020 } /* Name.Builtin.Pseudo */
+.javascript .vc { color: #bb60d5 } /* Name.Variable.Class */
+.javascript .vg { color: #bb60d5 } /* Name.Variable.Global */
+.javascript .vi { color: #bb60d5 } /* Name.Variable.Instance */
+.javascript .il { color: #40a070 } /* Literal.Number.Integer.Long */</style><div class="javascript"><pre><span></span><span class="nx">Roamer</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Could not initialize roamer.&#39;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">Roamer</span><span class="p">.</span><span class="nx">bind</span><span class="p">({</span>
+    <span class="s1">&#39;/url1/&#39;</span><span class="o">:</span> <span class="s1">&#39;this is hope page&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/url2/&#39;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+      <span class="nx">syn</span><span class="o">:</span> <span class="s2">&quot;ack&quot;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>With something as simple as that, you can feed all the AJAX calls in your application with the mock data that they need for testing or prototyping purposes. You don't need to write a separate server side application and have it running to achieve this.</p>
+
+<h2>Caveats?</h2>
+
+<p>Yes! This has only been a toy project so far. Mocking capabilities are very limited. All you do is bind responses (strings and objects) to URL endpoints. You can bind different responses with same URL for different HTTP methods with the latest commit, but thats all. If you think there is some feature that would be useful to you, please <a href="https://github.com/dash1291/roamer/issues">open a issue on GitHub</a>. Much excited volunteers are welcome to open pull requests :)</p>
+
+    </div>
+</div>
+      <div id="footer">
+      <div>
+          Copyright &copy 2016 Ashish Dubey
+          <p>Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike License</a></p>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-24206813-4', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
