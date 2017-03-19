@@ -1,12 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Ashish Dubey's Blog</title>
-    <updated>2015-09-20T00:00:00Z</updated>
+    <updated>2017-03-20T00:00:00Z</updated>
   <id>https://ashishdubey.xyz//</id>
   <link rel="alternate" href="https://ashishdubey.xyz/" title="Ashish Dubey' Blog" type="text/html"/>
 	<link rel="self" href="https://ashishdubey.xyz/atom.rss" title="Ashish Dubey's Blog" type="application/atom+xml"/>
   <author><name>Ashish Dubey</name></author>
   
+    <entry>
+      <id>https://ashishdubey.xyz/2017/03/20/roamer.html</id>
+      <title type="text">Of Web Frontends and Serverless Mock Services</title>
+      <link href="https://ashishdubey.xyz/2017/03/20/roamer.html" rel="alternate" type="text/html"/>
+      <updated>2017-03-20T00:00:00Z</updated>
+      <published>2017-03-20T00:00:00Z</published>
+			<content type="xhtml" xml:base="https://ashishdubey.xyz/">
+        <div xmlns="http://www.w3.org/1999/xhtml"><p><em>This post is about a hack on ServiceWorkers I did a while ago. Although, not a novel idea anymore, I'm still going to write about it to continue the legacy of this space, and to celebrate the first commit to the project after Nov 2015.</em></p>
+
+<h2>What is this?</h2>
+
+<p>We're going to talk about <a href="https://github.com/dash1291/roamer">Roamer</a>. Its a small library that utilizes the capability of <a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers">ServiceWorkers</a> to act like an intercepting proxy server, and turns it into a web server that serves inside your browser. When you achieve that, there are ton of things you can do. Mocking a web service is one of them, and thats the idea on which Roamer was born.</p>
+
+<h2>How it works?</h2>
+
+<p>Roamer is a tiny JS script that can be dropped in your web app which needs to use mocked web services. Using a simple API, you can bind URL endpoints with the mock data that you want in the response for those endpoints.</p>
+
+<p>Take a look at the following snippet -</p>
+
+<pre class="javascript">
+Roamer.init(function(err) {
+  if (err) {
+    console.log('Could not initialize roamer.');
+    return;
+  }
+
+  Roamer.bind({
+    '/url1/': 'this is hope page',
+    '/url2/': {
+      foo: 'bar',
+      syn: "ack"
+    }
+  });
+});
+</pre>
+
+<p>With something as simple as that, you can feed all the AJAX calls in your application with the mock data that they need for testing or prototyping purposes. You don't need to write a separate server side application and have it running to achieve this.</p>
+
+<h2>Caveats?</h2>
+
+<p>Yes! This has only been a toy project so far. Mocking capabilities are very limited. All you can do is bind responses (strings or objects) to URL endpoints. After the latest commit, you can bind different responses with same URL for different HTTP methods, but thats all. But consider giving it a shot, because I'd love to hear how it goes. If you think there is some feature that would be useful to you, please <a href="https://github.com/dash1291/roamer/issues">open an issue on GitHub</a>. Much excited volunteers are welcome to open pull requests :)</p>
+</div>
+      </content>
+    </entry>
+	
     <entry>
       <id>https://ashishdubey.xyz/2015/09/20/serviceworkers.html</id>
       <title type="text">Using ServiceWorkers for Offline Reading</title>
