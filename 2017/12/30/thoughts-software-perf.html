@@ -6,20 +6,20 @@
     <meta name="keywords" content="python, javascript, django, open-source, ashish dubey, mozilla, wikimedia" />
     <meta name="description" content="Ashish Dubey's Blog" />
     <title> Thoughts on software performance  | Ashish Dubey's Blog</title>
-    <link rel="stylesheet" href="http://localhost:8000/static/style.css" type="text/css"/>
+    <link rel="stylesheet" href="https://ashishdubey.xyz/static/style.css" type="text/css"/>
      
   </head>
   <body>
     <div id="container">
       <div id="header">
         <div id="branding">
-          <a href="http://localhost:8000/">Ashish Dubey's Blog</a>
+          <a href="https://ashishdubey.xyz/">Ashish Dubey's Blog</a>
         </div>
         <div id="nav">
           <ul>
-            <li><a href="http://localhost:8000/">Home</a></li>
-            <li><a href="http://localhost:8000/posts.html">Archive</a></li>
-            <li><a href="http://localhost:8000/about.html">About</a></li>
+            <li><a href="https://ashishdubey.xyz/">Home</a></li>
+            <li><a href="https://ashishdubey.xyz/posts.html">Archive</a></li>
+            <li><a href="https://ashishdubey.xyz/about.html">About</a></li>
           </ul>
         </div>
         <div style="clear: both"></div>
@@ -31,17 +31,17 @@
       <span class="post-date">Posted on December 30, 2017 </span>
     </div>
     <div class="post-content">
-      <p>I love building software and in recent times something that I've loved doing in recent times is making the software perform faster. Performance is feature, an afterthought, an art, and so much people claim it to be. Lot has been said and done in this area of software engineering.</p>
+      <p>I love building software and in recent times something I've specifically loved about software is making it perform faster. Performance is a feature, an afterthought, an art, and so much people claim it to be. Lot has been said and done in this area of software engineering.</p>
 
-<p>If I reflect on what I've learnt about performance of software, I will majorly focus on the role that it plays in driving the experience of using a software and also the basic principles behind improving software performance.</p>
+<p>If I have to reflect on what I've learnt about performance of software, I will majorly focus on the role that it plays in driving the experience of using a software and also the basic principles behind improving software performance.</p>
 
-<p>Now for quite some time in recent times, I've worked on improving software performance for some good deal of time in recent years. It was improving remote streaming performance at Browserstack and web performance at Grofers. The systems and ways to make them faster were quite different in both the cases. But bunch of things remained the same.</p>
+<p>Now in recent years, I've spent some good amount of time on improving software performance. It was improving remote streaming performance at Browserstack and web performance at Grofers. Althought, the systems and the ways to make them perform better were quite different in both the cases, but a bunch of things remained the same.</p>
 
 <p>One thing is performance improvement should be a cycle of measurement and implementation. You need to spend time in both the states to figure out what to implement next and obtain enough data to know when to stop. Measurement should give you insights of how your perf experiments have improved the experience for your users. Measurement should also give you enough information to determine bottlenecks in your system so you can attack the right problem.</p>
 
-<p>Another thing I learned was that you know to understand your system well and decide what might work best for your system. Performance best practices are great but you combine the contextual knowledge of your system and the best practice to determine the best hack that will take you to your perf goal. At times, best practices don't even apply fruitfully on your system and you might need to do unconventional hacks to improve performance.</p>
+<p>Another thing I learned was that you should understand your system well so that you can decide what might work best for your system. Performance best practices are great but you combine the contextual knowledge of your system and the best practice to determine the best hack that will bring you closer to your performance goal. At times, best practices don't even apply fruitfully on your system and you might need to do unconventional hacks to improve performance.</p>
 
-<p>I realized this especially while improving the streaming performance at a point when best practices were in rarity. Not because there were not enough best practices for improving streaming performance in general but this was after we applied best practices which were applicable for our system. But after that we were left alone chilling with our knowledge of the system and then we had to go brothers in arms for finding hacks to improve the rate at which the video frames travelled from our data centers to the users browsers. Which involved working on network equipment rearrangement in our data center, leading to better quality video streams. Now this wasn't anything we found in the book of best practices. Similarly, so many times at Grofers, we improved perceived performance of our website either by optimizing just the critical product flow or tweaking the product flow to make it easier for the user. And actually that's right there, the best practice that applies universally in all systems. Performance is a feature that improves user experience. And that's the goal everyone is to be chasing - improving the user experience.</p>
+<p>I realized this especially while improving the streaming performance at a point when best practices were in rarity. Not because there were not enough best practices for improving streaming performance in general, but this was after we applied best practices which were applicable for our system. And after that we were left alone chilling with our knowledge of the system and then we had to go brothers in arms for finding ways to improve the rate at which the video frames travelled from our data centers to the users' browsers. Now one of the most effective ways in which we tried to achieve our goal involved working on network equipment rearrangement in our data center, leading to better quality video streams. Now this wasn't something that we could find in the book of best practices. Similarly, so many times at Grofers, we improved perceived performance of our website either by optimizing just the critical product flow or tweaking the product flow to make it easier for the user. And actually that's right there, the best practice that applies universally in all systems. Performance is a feature that improves user experience. And that's the goal everyone is to be chasing - improving the user experience.</p>
 
     </div>
   </div>

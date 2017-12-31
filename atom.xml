@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Ashish Dubey's Blog</title>
-    <updated>2017-12-27T00:00:00Z</updated>
+    <updated>2017-12-30T00:00:00Z</updated>
   <id>https://ashishdubey.xyz//</id>
   <link rel="alternate" href="https://ashishdubey.xyz/" title="Ashish Dubey' Blog" type="text/html"/>
 	<link rel="self" href="https://ashishdubey.xyz/atom.rss" title="Ashish Dubey's Blog" type="application/atom+xml"/>
   <author><name>Ashish Dubey</name></author>
   
+    <entry>
+      <id>https://ashishdubey.xyz/2017/12/30/thoughts-software-perf.html</id>
+      <title type="text">Thoughts on software performance</title>
+      <link href="https://ashishdubey.xyz/2017/12/30/thoughts-software-perf.html" rel="alternate" type="text/html"/>
+      <updated>2017-12-30T00:00:00Z</updated>
+      <published>2017-12-30T00:00:00Z</published>
+			<content type="xhtml" xml:base="https://ashishdubey.xyz/">
+        <div xmlns="http://www.w3.org/1999/xhtml"><p>I love building software and in recent times something that I've loved doing in recent times is making the software perform faster. Performance is feature, an afterthought, an art, and so much people claim it to be. Lot has been said and done in this area of software engineering.</p>
+
+<p>If I reflect on what I've learnt about performance of software, I will majorly focus on the role that it plays in driving the experience of using a software and also the basic principles behind improving software performance.</p>
+
+<p>Now in recent years, I've spent some good amount of time on improving software performance. It was improving remote streaming performance at Browserstack and web performance at Grofers. Althought, the systems and the ways to make them perform better were quite different in both the cases, but a bunch of things remained the same.</p>
+
+<p>One thing is performance improvement should be a cycle of measurement and implementation. You need to spend time in both the states to figure out what to implement next and obtain enough data to know when to stop. Measurement should give you insights of how your perf experiments have improved the experience for your users. Measurement should also give you enough information to determine bottlenecks in your system so you can attack the right problem.</p>
+
+<p>Another thing I learned was that you should understand your system well so that you can decide what might work best for your system. Performance best practices are great but you combine the contextual knowledge of your system and the best practice to determine the best hack that will bring you closer to your performance goal. At times, best practices don't even apply fruitfully on your system and you might need to do unconventional hacks to improve performance.</p>
+
+<p>I realized this especially while improving the streaming performance at a point when best practices were in rarity. Not because there were not enough best practices for improving streaming performance in general, but this was after we applied best practices which were applicable for our system. And after that we were left alone chilling with our knowledge of the system and then we had to go brothers in arms for finding ways to improve the rate at which the video frames travelled from our data centers to the users' browsers. Now one of the most effective ways in which we tried to achieve our goal involved working on network equipment rearrangement in our data center, leading to better quality video streams. Now this wasn't something that we could find in the book of best practices. Similarly, so many times at Grofers, we improved perceived performance of our website either by optimizing just the critical product flow or tweaking the product flow to make it easier for the user. And actually that's right there, the best practice that applies universally in all systems. Performance is a feature that improves user experience. And that's the goal everyone is to be chasing - improving the user experience.</p>
+</div>
+      </content>
+    </entry>
+	
     <entry>
       <id>https://ashishdubey.xyz/2017/12/27/waves-planes.html</id>
       <title type="text">Waves and planes</title>
