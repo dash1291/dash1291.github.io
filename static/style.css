@@ -61,7 +61,7 @@ a:hover {
   min-width: 800px;
 }
 
-#footer, #footer a, #footer p {
+#footer, #footer a, #footer p, #footer span {
   color: #999;
   font-size: 12px;
   font-style: italic;

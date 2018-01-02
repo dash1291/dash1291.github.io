@@ -14,9 +14,9 @@
       <updated>2017-12-30T00:00:00Z</updated>
       <published>2017-12-30T00:00:00Z</published>
 			<content type="xhtml" xml:base="https://ashishdubey.xyz/">
-        <div xmlns="http://www.w3.org/1999/xhtml"><p>I love building software and in recent times something that I've loved doing in recent times is making the software perform faster. Performance is feature, an afterthought, an art, and so much people claim it to be. Lot has been said and done in this area of software engineering.</p>
+        <div xmlns="http://www.w3.org/1999/xhtml"><p>I love building software and in recent times something I've specifically loved about software is making it perform faster. Performance is a feature, an afterthought, an art, and so much people claim it to be. Lot has been said and done in this area of software engineering.</p>
 
-<p>If I reflect on what I've learnt about performance of software, I will majorly focus on the role that it plays in driving the experience of using a software and also the basic principles behind improving software performance.</p>
+<p>If I have to reflect on what I've learnt about performance of software, I will majorly focus on the role that it plays in driving the experience of using a software and also the basic principles behind improving software performance.</p>
 
 <p>Now in recent years, I've spent some good amount of time on improving software performance. It was improving remote streaming performance at Browserstack and web performance at Grofers. Althought, the systems and the ways to make them perform better were quite different in both the cases, but a bunch of things remained the same.</p>
 
