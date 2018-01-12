@@ -24,7 +24,9 @@
 
 <p>Another thing I learned was that you should understand your system well so that you can decide what might work best for your system. Performance best practices are great but you combine the contextual knowledge of your system and the best practice to determine the best hack that will bring you closer to your performance goal. At times, best practices don't even apply fruitfully on your system and you might need to do unconventional hacks to improve performance.</p>
 
-<p>I realized this especially while improving the streaming performance at a point when best practices were in rarity. Not because there were not enough best practices for improving streaming performance in general, but this was after we applied best practices which were applicable for our system. And after that we were left alone chilling with our knowledge of the system and then we had to go brothers in arms for finding ways to improve the rate at which the video frames travelled from our data centers to the users' browsers. Now one of the most effective ways in which we tried to achieve our goal involved working on network equipment rearrangement in our data center, leading to better quality video streams. Now this wasn't something that we could find in the book of best practices. Similarly, so many times at Grofers, we improved perceived performance of our website either by optimizing just the critical product flow or tweaking the product flow to make it easier for the user. And actually that's right there, the best practice that applies universally in all systems. Performance is a feature that improves user experience. And that's the goal everyone is to be chasing - improving the user experience.</p>
+<p>I realized this especially while improving the streaming performance at a point when best practices were in rarity. Not because there were not enough best practices for improving streaming performance in general, but this was after we applied best practices which were applicable for our system. And after that we were left alone chilling with our knowledge of the system and then we had to go brothers in arms for finding ways to improve the rate at which the video frames travelled from our data centers to the users' browsers. Now one of the most effective ways in which we tried to achieve our goal involved working on network equipment rearrangement in our data center, leading to better quality video streams. Now this wasn't something that we could find in the book of best practices.</p>
+
+<p>Similarly, so many times at Grofers, we improved perceived performance of our website either by optimizing just the critical product flow. For instance, we are trying out ways in which we can make the website usable with smallest possible JavaScript and CSS, and without waiting for the third-party libraries that make up the foundation of our website, which involves React. Again, this was something that was very contextual for our website, which would allow our users to be able to use our site with less waiting. And actually that's right there, the best practice that applies universally in all systems. Performance is a feature that improves user experience. And that's the goal everyone is to be chasing - improving the user experience.</p>
 </div>
       </content>
     </entry>
@@ -686,6 +688,91 @@ application = django.core.handlers.wsgi.WSGIHandler()
 <p>So you've worked out all the way to the point where you would need to test if all
 your setup works fine. Its recommended that you use a clean Django application
 so that you don't encounter issues related to database and other stuff.</p>
+</div>
+      </content>
+    </entry>
+	
+    <entry>
+      <id>https://ashishdubey.xyz/2011/06/17/custom-auth-wordpress.html</id>
+      <title type="text">Customized authentication for WordPress users</title>
+      <link href="https://ashishdubey.xyz/2011/06/17/custom-auth-wordpress.html" rel="alternate" type="text/html"/>
+      <updated>2011-06-17T00:00:00Z</updated>
+      <published>2011-06-17T00:00:00Z</published>
+			<content type="xhtml" xml:base="https://ashishdubey.xyz/">
+        <div xmlns="http://www.w3.org/1999/xhtml"><p>I wanted to integrate Facebook's authentication with my WordPress site's user login system. This had led me stuck for a couple of days because of all the authentication routes that I've known in WordPress would require a correct password to complete authentication. But, in my case, I just needed to authenticate a user without actually user providing a password. That means, I needed a method by which I could authenticate users using just their username or user ID. So after a lot of hacking and reading, I finally found this method that works out for me.
+It basically deals with using filters, precisely <code>authenticate</code> filter. The functions added to this filter are executed in <code>wp_authenticate</code> function which is defined in <code>pluggable.php</code> and is the authentication end point in WordPress. If you watch the code in <code>user.php</code>, there you would find that two functions added to this <code>authenticate</code> filter, which are <code>wp_authenticate_username_password</code> with priority 20 and <code>wp_authenticate_cookie</code> with priority 30. <code>wp_authenticate_cookie</code> is not that we want to care about. <code>It's wp_authenticate_username_password</code> that we need to deal with. So when you want to bypass this username and password combined authentication you basically need to bypass the execution of this function and return the user before it. So we'll hook our own method to this filter with a priority less than 20 by the following line of code.</p>
+
+<pre class="php">
+add_filter('authenticate','forceLogin',0,3);
+</pre>
+
+<p>Now suppose you want to define an authentication that doesn't really need a password, just write a function <code>forceLogin()</code> like the following.</p>
+
+<pre class="php">
+function forceLogin($user,$username,$password)
+{
+  if(username_exists($username))
+  {
+    $user=get_user_by('login',$username);
+    remove_action('authenticate', 'wp_authenticate_username_password', 20);
+    return $user;
+  }
+}
+</pre>
+
+<p>Thats it, now when you call the <code>wp_signon()</code> with just a username in the credentials, the user with the username in the credentials will be authenticated without actually requiring the password. Thats how its done. One can integrate OAuth and construct customized logins for their WordPress websites.</p>
+</div>
+      </content>
+    </entry>
+	
+    <entry>
+      <id>https://ashishdubey.xyz/2011/05/05/eclipse-cpp-setup.html</id>
+      <title type="text">Setting up Eclipse as your C/C++ environment</title>
+      <link href="https://ashishdubey.xyz/2011/05/05/eclipse-cpp-setup.html" rel="alternate" type="text/html"/>
+      <updated>2011-05-05T00:00:00Z</updated>
+      <published>2011-05-05T00:00:00Z</published>
+			<content type="xhtml" xml:base="https://ashishdubey.xyz/">
+        <div xmlns="http://www.w3.org/1999/xhtml"><p>Eclipse is an awesome and seemingly the best IDE when it comes to Android, Java and PHP development. Well, it becomes excrutiating when we use an obsolete compiler for C/C++ or a compiler which is complicated as might be the case in a command line based gcc compiler. Talking about IDEs for C/C++, MS VC++ beats all odds, but then its beaten off by its own drawback of not being a cross-platform programming environment and being so Windows. This is where Eclipse starts ruling the stage. Eclipse being a highly flexible IDE, can support various developing languages and platforms, C/C++ not being among the exceptions. One can download the CDT plugin(c/c++ development tools) from the Eclipse's website and integrate it with their Eclipse environment to start using Eclipse for C/C++ development. It uses the GNU based C tools to compile the code developed using c/c++ so make sure you have gcc installed in your computer. So I would just enlist the steps in brief to configure your Eclipse environment with CDT plugin.</p>
+
+<p>If you dont have Eclipse already installed, you can simply download the pre-configured IDE. <a href="http://www.eclipse.org/downloads/packages/eclipse-ide-cc-developers/heliossr2">Download Link</a>
+Otherwise,follow these steps,</p>
+
+<ol>
+<li>Make sure you have gcc installed in your computer.</li>
+<li>Download the CDT plugin. <a href="http://www.eclipse.org/downloads/packages/eclipse-ide-cc-developers/heliossr2">Download Link</a></li>
+<li>Add your CDT plugin by going into Install New Software option that can be found in the help menu and browse the zip file of the CDT plugin that you downloaded.</li>
+<li>Thats it, start coding.</li>
+</ol>
+</div>
+      </content>
+    </entry>
+	
+    <entry>
+      <id>https://ashishdubey.xyz/2011/04/18/socialize-ff-extension.html</id>
+      <title type="text">Socialize extension for Firefox</title>
+      <link href="https://ashishdubey.xyz/2011/04/18/socialize-ff-extension.html" rel="alternate" type="text/html"/>
+      <updated>2011-04-18T00:00:00Z</updated>
+      <published>2011-04-18T00:00:00Z</published>
+			<content type="xhtml" xml:base="https://ashishdubey.xyz/">
+        <div xmlns="http://www.w3.org/1999/xhtml"><p>I just attended a boot-camp for extension development for Firefox, and got to say that Firefox is lot cooler than I ever thought. The boot-camp was organized by a group of open source developers in my college that comprised of the seniors from 2nd and 3rd year. It was all good, I enjoyed learning all the stuff related to extension development especially the new language XUL which is used to design extensions. One of the days included brainstorming of project ideas that we could implement our knowledge on. I had an idea of a social bookmarking/sharing plugin, so I thought I could give it a try. I trolled over and coded the extension throughout the night adding functionality to publish content on Facebook, StumbleUpon, Digg, and Twitter. The next day as the bootcamp concluded, I published my extension over the Mozilla's add-on website. It can be found <a href="https://addons.mozilla.org/en-US/firefox/addon/socialize-extension-for-fir">here</a>. If you use Firefox, I would be glad if you download it and give it a try and ofcourse comments and feedback is always welcome.</p>
+
+<p><a href="http://opensource.jiitu.org/wiki/index.php?title=Socialize_Extension_for_Mozilla_Firefox">Wiki page</a></p>
+
+<p><a href="http://code.google.com/p/socialize-addon-firefox">Google Project Hosting</a></p>
+</div>
+      </content>
+    </entry>
+	
+    <entry>
+      <id>https://ashishdubey.xyz/2010/12/07/html-interpreter.html</id>
+      <title type="text">The HTML Interpreter project</title>
+      <link href="https://ashishdubey.xyz/2010/12/07/html-interpreter.html" rel="alternate" type="text/html"/>
+      <updated>2010-12-07T00:00:00Z</updated>
+      <published>2010-12-07T00:00:00Z</published>
+			<content type="xhtml" xml:base="https://ashishdubey.xyz/">
+        <div xmlns="http://www.w3.org/1999/xhtml"><p>First semester in college marks the beginning of programming in more official terms than ever before. And with C language at the front, I cannot imagine it getting more official. It was a time when we were given introductory lectures on HTML. And it was this time that one of the lecturers talked about how a program would work that understands all the HTML code written and displays the web page accordingly and so beautifully or in coding an HTML browser.</p>
+
+<p>Well, on those terms I was well fascinated about making such a program in Visual Basic. But held on, the condition was developing it using C. While after then, some C lectures later, the first semester Mini-Project popped out into the scene and there I was, all setup with an idea to make a basic HTML Interpreter. The challenge wasn't much of the C language, but lied in using the Windows API to create all sorts of Windows, formatting and displaying text and related stuff. Idea seemed clear, about how to read files and the structure of the same, and the mechanism of flagging text and displaying them according to the enclosing tags. These routines never had technical names until I read Internet Explorer Development references, and then I knew the process was called <em>Pre-Parsing</em>. So I had my own Pre-parsing algorithm followed by a sort of messy text displaying mechanism using all kinds of fonts and text API functions of Win32 library. Text was done, when I thought about including image tag functionality in the same. BUT, already too big for the first semester?</p>
 </div>
       </content>
     </entry>
