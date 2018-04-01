@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Ashish Dubey's Blog</title>
-    <updated>2018-03-25T00:00:00Z</updated>
+    <updated>2018-04-01T00:00:00Z</updated>
   <id>https://ashishdubey.xyz//</id>
   <link rel="alternate" href="https://ashishdubey.xyz/" title="Ashish Dubey' Blog" type="text/html"/>
 	<link rel="self" href="https://ashishdubey.xyz/atom.rss" title="Ashish Dubey's Blog" type="application/atom+xml"/>
   <author><name>Ashish Dubey</name></author>
   
+    <entry>
+      <id>https://ashishdubey.xyz/2018/04/01/webaudio-viz-webusb.html</id>
+      <title type="text">Web of audio visualization devices</title>
+      <link href="https://ashishdubey.xyz/2018/04/01/webaudio-viz-webusb.html" rel="alternate" type="text/html"/>
+      <updated>2018-04-01T00:00:00Z</updated>
+      <published>2018-04-01T00:00:00Z</published>
+			<content type="xhtml" xml:base="https://ashishdubey.xyz/">
+        <div xmlns="http://www.w3.org/1999/xhtml"><p>One of the last tweets I read towards the end of 2017 was about the excitement about WebUSB in the upcoming year. WebUSB left a powerful first impression on me, especially with the promise of how it could take the web forward as a platform. With this new power, web engineers can build applications which can talk directly with USB devices. Since these applications would be written in Javascript and run as web applications, expertise in writing system specific software won’t be needed.</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Here is what I am most excited about for the web in 2018. <br><br>Web USB<br><br>The moment companies realize their custom hardware no longer requires per platform device drivers and instead can be browser based is going to open the flood gates.</p>&mdash; Sam Saccone (@samccone) <a href="https://twitter.com/samccone/status/945020246242377728?ref_src=twsrc%5Etfw">December 24, 2017</a></blockquote>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Every such promise comes with a myriad of new possibilities. If you followed my blog, not long ago, I wrote about my newly lost-and-found excitement towards building audio visualizations. What I haven’t ever written on my blog is my love towards LEDs. You can already see where this is going.</p>
+
+<p>I’ve wanted to play with RGB LEDs for a very long time, and the possibility of an educational hack got me pumped. I stumbled upon <a href="http://www.instructables.com/id/Bitbanging-step-by-step-Arduino-control-of-WS2811-/">WS2812 addressable LEDs</a>. I can’t fully describe here what addressable RGB LEDs are - but in a nutshell these LEDs are stuck to a circuit to which you can pass a timed signal to set the intensity of a particular color (R,G or B). It’s even possible to hook up more of these little circuits and control a whole array of LEDs with just one input. All you need is a perfectly timed signal to light up a particular LED with a particular color.</p>
+
+<p>While I was waiting for my LEDs, I already had an Arduino board to play with. Like every other new thing I start to play with, I forked the example project, and tried to make changes to it to understand how it all worked together. This was also the time when I couldn’t wait for my WS2812 LEDs and decided to hook up some of my WebAudio code with the WebUSB example project. The result was poor man’s beat detection driving my Arduino’s onboard LED.</p>
+
+<p>When I finally had my 4x4 matrix of WS2812 LEDs, a soldering kit, and mounting impatience to put everything together, I built my device, and was ready to start coding. After some amount fiddling with arduino code which read bytes from the USB port, and the JS code which fed into arduino the bytes representing audio levels at different frequencies (as in spectrum analyzer), I was beginning to see my new device in action. And, this is what it looked like -</p>
+
+<p><img src="/static/img/ws2812-action-fig.jpg" alt="action figure" /></p>
+
+<p>This turned out to be quite a fun experiment and developed my further interest in developing web apps and more so, devices, which could work together. And it's really so easy.</p>
+</div>
+      </content>
+    </entry>
+	
     <entry>
       <id>https://ashishdubey.xyz/2018/03/25/qcon-volunteer.html</id>
       <title type="text">Being a volunteer at QCon</title>
@@ -14,17 +42,17 @@
       <updated>2018-03-25T00:00:00Z</updated>
       <published>2018-03-25T00:00:00Z</published>
 			<content type="xhtml" xml:base="https://ashishdubey.xyz/">
-        <div xmlns="http://www.w3.org/1999/xhtml"><p>Earlier this month I got the opportunity to attended QCon in London. This was my first time at QCon, which was also the first of its kind of conferences I've attended. Most of the conferences I've attended before were community driven conferences like PyCon, RootConf, etc. Because I’ve always been to these conferences where people usually talk about open source software and not always processes or tools used for running the business at big companies, I was expecting less fun but was curious at the same time.</p>
+        <div xmlns="http://www.w3.org/1999/xhtml"><p>Earlier this month I got the opportunity to attend QCon in London. This was my first time at QCon, which was also the first of its kind of conferences for me. Most of the conferences I've attended before were community driven conferences like PyCon, RootConf, etc. Because I’ve always been to these conferences where people usually talk about open source software and not always processes or tools used for running the business at big companies, I was expecting less fun but was curious at the same time.</p>
 
-<p>Several tracks at the conference were around reliability and observability of large scale systems. Covering these subjects definitely holds importance at a conference intended for experienced engineers rather than hackers straight out of school and as a young engineer attending QCon for the first time, I could absolutely feel the difference. At Grofers, as we grow in business and team size, we face problems around running software at a larger scale. Engineering teams like us, working to help business grow, are constantly challenged to ship fast and often. Lot of people who were at QCon have either started facing these problems in recent times or have already solved these problems in their settings. From that perspective, it was good to hear from others facing similar problems and how they solved it. One of the major themes talked about at the conference was observability of software, as a practice of building reliable production systems. There was a big heap of one line sofware wisdom nuggets that I encountered at the conference, but I can easily pick one out. One that was thrown out by <a href="https://twitter.com/mipsytipsy">Charity Majors</a> -</p>
+<p>Several tracks at the conference were around reliability and observability of large scale systems. Covering these subjects definitely holds importance at a conference intended for experienced engineers rather than hackers straight out of school and as a young engineer attending QCon for the first time, I could absolutely feel the difference. At Grofers, as we grow in business and team size, we face problems around running software on a larger scale. Engineering teams like us, working to help business grow, are constantly challenged to ship fast and often. Lot of people who were at QCon have either started facing these problems in recent times or have already solved these problems in their settings. From that perspective, it was good to hear from others facing similar problems and how they solved them. One of the major themes talked about at the conference was observability of software, as a practice of building reliable production systems. There was a big heap of one line sofware wisdom nuggets that I encountered at the conference, but I can easily pick one out. One that was thrown out by <a href="https://twitter.com/mipsytipsy">Charity Majors</a> -</p>
 
 <blockquote>
   <p><em>Nines don't matter if users aren't happy</em></p>
 </blockquote>
 
-<p>It kind of highlights how the ability to design systems which are easily debuggable takes a backseat, when all infrastructure and reliablity efforts are driven by the uptime of services.</p>
+<p>It kind of highlights how the ability to design systems which are easily debuggable in production takes a backseat, when all infrastructure and reliablity efforts are driven by the uptime of services. There are a few things that we've been trying, or aspiring to do as an engineering team at Grofers to achieve that ability, so it was great to talk to several people and exchanging thoughts.</p>
 
-<p>While it was my first time at a conference like QCon, it was also my first time volunteering at a large conference. Having organized local meetups and a small city level conference, I was expecting way too much work, and probably less time for being able to actually grasp the content at the conference. However, everything was so well co-ordinated, thanks to the QCon staff and the volunteers who turned up in a decent number, that all volunteers got their fair share of the conference. They could attend talks which they were interested in, connect with the speakers, sponsors and other attendees and really be able to take away learnings from the conference like anyone else present there. All of this made my first experience of volunteering really fulfilling and has got me excited for any other volunteering opportunities that I may get in future.</p>
+<p>While it was my first time at a conference like QCon, it was also my first time volunteering at a large conference. I've organized local meetups and a small city level conference before, so I was expecting way too much work, and probably less time for being able to actually grasp the content at the conference. However, everything was so well co-ordinated, thanks to the QCon staff and the volunteers who turned up in a decent number, that all volunteers got their fair share of the conference. They could attend talks which they were interested in, connect with the speakers, sponsors and other attendees and really be able to take away learnings from the conference like anyone else present there. Not to forget that volunteering seems to be a great way to contribute to a conference if you're not an organizer or speaker. You are always involved and on the move, and because of that you also get a chance to interact with way more people than a normal attendee can (also, for free!). All of this made my first experience of volunteering really fulfilling and has got me excited for any other volunteering opportunities that I may get in future.</p>
 </div>
       </content>
     </entry>
