@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="python, javascript, django, open-source, ashish dubey, mozilla, wikimedia" />
+    <meta name="description" content="Ashish Dubey's Blog" />
+    <title> Amateur quest to generative music  | Ashish Dubey's Blog</title>
+    <link rel="stylesheet" href="https://ashishdubey.xyz/static/style.css" type="text/css"/>
+     
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <div id="branding">
+          <a href="https://ashishdubey.xyz/">Ashish Dubey's Blog</a>
+        </div>
+        <div id="nav">
+          <ul>
+            <li><a href="https://ashishdubey.xyz/">Home</a></li>
+            <li><a href="https://ashishdubey.xyz/posts.html">Archive</a></li>
+            <li><a href="https://ashishdubey.xyz/about.html">About</a></li>
+          </ul>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+      <div id="content">
+  <div class="post">
+    <h1>Amateur quest to generative music </h2>
+    <div class="post-meta">
+      <span class="post-date">Posted on November 18, 2018 </span>
+    </div>
+    <div class="post-content">
+      <p>In last few months, I’ve spent quite a bit of spare time and effort in learning about music theory and sound engineering. This includes learning enough about harmonics to be able to play simple musical motifs on an electric guitar, understanding basics of sound synthesis and processing. On top of this, I also got exposed to electronic art that is created on the basis of systems and processes rather than being written as a finite progression of harmonics. Incase you’re wondering what I’m talking about look up Brian Eno, Steve Reich, Terry Riley and related artists. This extensive article (https://teropa.info/blog/2016/07/28/javascript-systems-music.html) also set things straight on how these systems can be built programmatically.
+So, I’ve been interested in generative art of all kinds for a long time. Finally after being exposed to so much information all of a sudden gave me enough momentum to actually start tinkering with generative music systems myself.
+One of my recent hacks on these lines is noisescape.glitch.me. The system is simple enough. It’s a combination of phase music generated using xylophone notes playing in two loops and some piano notes looping at different intervals.
+I’m going to break down the experiment into the different components and write about them in the following paragraphs. This is an amateur classification so please let me know if I miss a detail or overstate a few.</p>
+
+<h2>Harmonics</h2>
+
+<p>It was important to make the generated music sound nice but there is also only so much that can be done and should be done here. It’s more about the patterns which the system creates with the combination of simple loops. All of the notes played in this system are taken from the C# Major arpeggio. If you play music you might already know that an arpeggio refers to the notes in a chord played in any order. Since these notes form a chord, they are consonant with each other. So we can be sure when we play any of these notes in any order or even together they’re going to reflect the tonic of the arpeggio that is C# major. However, just to make it a little more interesting, I picked another note from outside of the arpeggio but still not dissonant with other notes.</p>
+
+<h2>Sound design</h2>
+
+<p>I wanted to generate sounds of real instruments so that the output can be related to as familiar music. Tone.js instruments was used as an easy to use library to be able to use samples of different instruments in this experiment.</p>
+
+<p>Two synth nodes playing Xylophone samples (which are chosen as mentioned above in Harmonics) are connected with a Gain node with gain level = 0.25 which means the xylophone loops are played at 25% volume. Each of the loops are connected to Panner nodes which make the sound of each loop come through left and right channels giving it a stereo stage.</p>
+
+<p>While piano notes sounded great, I felt like they could be smoothened up a little to meld as slowly playing background music. For that I added a reverb node to the piano synth.</p>
+
+<h2>Noise interaction</h2>
+
+<p>One variation that happens to this looping music is controlled by the environment making this system more unpredictable. This variation is based on the noise level in the environment. To achieve this an analyser node is used to obtain frequency domain data of the default input and the values are averaged over the range to give an overall noise level. The noise level controls the speed at which one of the loops plays. This means as the noise in background increases, the loops phase out further and with a decrease, the loops come back in phase. </p>
+
+<p>The coolest part about this hack is that it has given me a mental framework to think over when trying to build procedural art in future. I can not only fantasize about creating something but I know how to proceed, which actually results in more ideas. It’s a circle. Not sure what exactly follows from here, but definitely a string of more experiments. If you're a musician (especially electronic) or a technologist interested in music, I'd love to hear your thoughts on this.</p>
+
+    </div>
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'ashishdubeysblog'; // required: replace example with your forum shortname
+     // var disqus_developer = 1
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+      <div id="footer">
+      <div>
+          Copyright &copy <span id="copyright-year">2017</span> Ashish Dubey
+          <p>Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike License</a></p>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.querySelector('#copyright-year').innerHTML = (new Date()).getFullYear();
+
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-24206813-4', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
