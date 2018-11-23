@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="keywords" content="python, javascript, django, open-source, ashish dubey, mozilla, wikimedia" />
     <meta name="description" content="Ashish Dubey's Blog" />
-    <title> Amateur quest to generative music  | Ashish Dubey's Blog</title>
+    <title> An amateur quest to generative music  | Ashish Dubey's Blog</title>
     <link rel="stylesheet" href="https://ashishdubey.xyz/static/style.css" type="text/css"/>
      
   </head>
@@ -26,7 +26,7 @@
       </div>
       <div id="content">
   <div class="post">
-    <h1>Amateur quest to generative music </h2>
+    <h1>An amateur quest to generative music </h2>
     <div class="post-meta">
       <span class="post-date">Posted on November 18, 2018 </span>
     </div>
@@ -41,12 +41,19 @@
 
 <p>It was important to make the generated music sound nice but there is also only so much that can be done and should be done here. It’s more about the patterns which the system creates with the combination of simple loops. All of the notes played in this system are taken from the C# Major arpeggio. If you play music you might already know that an arpeggio refers to the notes in a chord played in any order. This set of notes is used in two ways -</p>
 
-<ol>
-<li>Creating a simple 4 notes melody and running it in a loop that repeats after every 3/4th measure. These loops start together in phase and as the music progresses they phase changes and new patterns emerge.</li>
-<li>Creating a foreground piano line with 7 notes looping at different intervals. Since they loop at different intervals, the notes would play in various combinations for a long time.</li>
-</ol>
+<p>First is, creating a simple 4 notes melody and running it in a loop that repeats after every 3/4th measure. These loops start together in phase and as the music progresses they phase changes and new patterns emerge. I decided to make this post visually more appealing than my regular blog posts, so I included a pitch sheet below -</p>
+
+<p><img style="width: 60%; margin:auto; display: block" alt="Xylophone sheet" src="/static/img/xylosheet.png"></p>
+
+<p>Secondly, we use this arpeggio to create a foreground piano line with 7 notes looping at different intervals. Since they loop at different intervals, the notes would play in various combinations for a long time.</p>
 
 <p>Since these notes form a chord, they are consonant with each other. This bit helps because then we can be sure when we play any of these notes in any order (in either the 3 beat long xylophone line or piano loops) or even together they’re going to reflect the tonic of the arpeggio that is C# major. However, just to make the piano line a little more interesting, I picked another note from outside of the arpeggio but still not dissonant with other notes.</p>
+
+<p>Here are all the notes that are used -</p>
+
+<p><strong><em>G# and C# in octave 3</em></strong></p>
+
+<p><strong><em>G#, C#, F, F# and A# in octave 4</em></strong></p>
 
 <p>Playing all of these notes, and other musical aspects in this experiment are achieved with <a href="https://tonejs.github.io">Tone.js</a> library which is an amazing abstraction over WebAudio API in the browser.</p>
 
@@ -56,7 +63,11 @@
 
 <p>Using Tone.js API I wrote down two synth nodes playing Xylophone samples (which are chosen as mentioned above in Harmonics). These synths nodes are connected with a Gain node with gain level = 0.25 which means the xylophone loops are played at 25% volume. Each of the loops are connected to Panner nodes which make the sound of each loop come through left and right channels giving it a stereo stage. As the phase increases this leads to interesting sound effects which may seem like echo or ping-pong at different times.</p>
 
+<p><img style="width: 90%; margin:auto; display: block" alt="xylophone setup" src="/static/img/xyloloops.png"></p>
+
 <p>While piano notes sounded great, I felt like they could be smoothened up a little to meld as slowly playing background music while the xylophone phase varies. For that I added a reverb node to the piano synth. This seemed to do the trick as the signal grows and decays slowly.</p>
+
+<p><img style="width: 70%; margin:auto; display: block" alt="piano setup" src="/static/img/pianosetup.png"></p>
 
 <h2>Noise interaction</h2>
 
