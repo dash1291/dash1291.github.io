@@ -73,9 +73,11 @@
 
 <p><img style="width: 70%; margin:auto; display: block" alt="piano setup" src="/static/img/pianosetup.png"></p>
 
+<p>As these notes repeat, they tend to play in various combinations and patterns, which are hard to predict in the beginning. This makes the generated music feel like it's repetitive but something is always changing.</p>
+
 <h2>Noise interaction</h2>
 
-<p>One variation that happens to this looping music is controlled by the environment making this system more unpredictable. This variation is based on the noise levels in the environment. To achieve this an <a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode">Analyser node</a> is used to obtain <a href="http://www.elvers.us/perception/soundWave/">frequency domain data</a> of the default input and the values are averaged over the entire range to give an overall noise level. Although not accurately the noise level as it's prone to discounting few frequencies playing at high levels. Let's see if I can do better in future.</p>
+<p>Another variation that happens to this looping music is controlled by the environment making this system even more unpredictable. This variation is based on the noise levels in the environment. To achieve this an <a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode">Analyser node</a> is used to obtain <a href="http://www.elvers.us/perception/soundWave/">frequency domain data</a> of the default input and the values are averaged over the entire range to give an overall noise level. Although not accurately the noise level as it's prone to discounting few frequencies playing at high levels. Let's see if I can do better in future.</p>
 
 <p>Anyway, <strong><em>The noise level controls the speed at which one of the loops plays.</em></strong> This means as the noise in background increases, the loops phase out further and with a decrease, the loops come back in phase.</p>
 
