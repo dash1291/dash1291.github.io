@@ -39,15 +39,15 @@
 
 <h2>Harmonics</h2>
 
-<p>It was important to make the generated music sound nice but there is also only so much that can be done and should be done here. It’s more about the patterns which the system creates with the combination of simple loops. All of the notes played in this system are taken from the C# Major arpeggio. If you play music you might already know that an arpeggio refers to the notes in a chord played in any order. This set of notes is used in two ways -</p>
+<p>In this part we'll talk about the musical structure. There may be a bunch of music theory concepts which may not fit in the scope of this article, hence linked to external resources so that you can read about them.</p>
 
-<p>First is, creating a simple 4 notes melody and running it in a loop that repeats after every 3/4th measure. These loops start together in phase and as the music progresses they phase changes and new patterns emerge. I decided to make this post visually more appealing than my regular blog posts, so I included a pitch sheet below -</p>
+<p>It was important to make the generated music sound nice but there is also only so much that can be done and should be done here. It’s more about the patterns which the system creates with the combination of simple loops. So in order to make the generated output not sound bad, all of the notes played in this system are taken from the C# Major arpeggio. If you play music, you might already know that an <a href="https://en.wikipedia.org/wiki/Arpeggio">arpeggio</a> refers to the notes in a chord played in any order. This set of notes is used in two ways -</p>
+
+<p>First, for creating a simple melody based on 3 notes and running it in a loop that repeats after every <a href="https://en.wikipedia.org/wiki/Bar_(music">3/4th measure</a>. These loops start together in phase and as the music progresses they phase changes and new patterns emerge. For those who can read music, I included a pitch sheet below for indulgence -</p>
 
 <p><img style="width: 60%; margin:auto; display: block" alt="Xylophone sheet" src="/static/img/xylosheet.png"></p>
 
 <p>Secondly, we use this arpeggio to create a foreground piano line with 7 notes looping at different intervals. Since they loop at different intervals, the notes would play in various combinations for a long time.</p>
-
-<p>Since these notes form a chord, they are consonant with each other. This bit helps because then we can be sure when we play any of these notes in any order (in either the 3 beat long xylophone line or piano loops) or even together they’re going to reflect the tonic of the arpeggio that is C# major. However, just to make the piano line a little more interesting, I picked another note from outside of the arpeggio but still not dissonant with other notes.</p>
 
 <p>Here are all the notes that are used -</p>
 
@@ -55,17 +55,21 @@
 
 <p><strong><em>G#, C#, F, F# and A# in octave 4</em></strong></p>
 
-<p>Playing all of these notes, and other musical aspects in this experiment are achieved with <a href="https://tonejs.github.io">Tone.js</a> library which is an amazing abstraction over WebAudio API in the browser.</p>
+<p>Since these notes form a major chord, they are very consonant with each other. Consonance and dissonance are music theory concepts which you can learn better from <a href="https://en.wikipedia.org/wiki/Consonance_and_dissonance">other resources</a>. In the context of this experiment, this piece of information helps because we can be sure that when we play any of these notes in any order or even together (in either the 3 beat long xylophone line or the piano loops), they’re going to sound good. And the sound's tonic centre would be is C# major. However, just to make the piano line a little more interesting, I picked another note from outside of the arpeggio but still not dissonant with other notes.</p>
+
+<p>Playing all of these notes, and other musical aspects like timings and measures in this experiment are achieved with <a href="https://tonejs.github.io">Tone.js</a> library which is a great abstraction over WebAudio API in the browser.</p>
 
 <h2>Sound design</h2>
 
-<p>I wanted to generate sounds of real instruments so that the output can be related to by the variety of listeners. <a href="https://nbrosowsky.github.io/tonejs-instruments/">This library</a> made it really easy for me build something quickly because I didn't have to deal with the instrument samples myself. I used the already available xylophone and piano samples which are hosted by the author themselves.</p>
+<p>We've talked about what sounds we play in this experiment, but how we play them is as important. This is actually where much of the magic happens. The texture of sound and the machinery that keeps the music ever changing is discussed here.</p>
 
-<p>Using Tone.js API I wrote down two synth nodes playing Xylophone samples (which are chosen as mentioned above in Harmonics). These synths nodes are connected with a Gain node with gain level = 0.25 which means the xylophone loops are played at 25% volume. Each of the loops are connected to Panner nodes which make the sound of each loop come through left and right channels giving it a stereo stage. As the phase increases this leads to interesting sound effects which may seem like echo or ping-pong at different times.</p>
+<p>I wanted to generate sounds of real instruments so that the output can be related to by variety of listeners. <a href="https://nbrosowsky.github.io/tonejs-instruments/">This library</a> made it really easy for me to be able to generate sounds like of real instruments. I didn't have to deal with hooking up each instrument's recorded samples into Tone.js myself. I used the already available xylophone and piano samples which are hosted by the author themselves.</p>
+
+<p>Using Tonejs instruments' API I wrote down two synth nodes playing Xylophone notes (which are chosen as mentioned above in Harmonics). These synths nodes are connected with a <a href="https://tonejs.github.io/docs/r12/Gain">Gain node</a> with gain level = 0.25 which means the xylophone loops are played at 25% volume. Each of the loops are connected to <a href="https://tonejs.github.io/docs/r12/Panner">Panner nodes</a> which routes the sound of each loop through left and right channels giving it a stereo stage. As the phase increases this leads to interesting sound effects which may seem like echo or ping-pong at different times.</p>
 
 <p><img style="width: 90%; margin:auto; display: block" alt="xylophone setup" src="/static/img/xyloloops.png"></p>
 
-<p>While piano notes sounded great, I felt like they could be smoothened up a little to meld as slowly playing background music while the xylophone phase varies. For that I added a reverb node to the piano synth. This seemed to do the trick as the signal grows and decays slowly.</p>
+<p>While piano notes sounded great, I felt like they could be smoothened up a little to meld as slowly playing background music while the xylophone phase varies. For that I added a <a href="https://tonejs.github.io/docs/r12/Freeverb">Reverb node</a> to the piano synth. This seemed to do the trick as the signal grows and decays slowly.</p>
 
 <p><img style="width: 70%; margin:auto; display: block" alt="piano setup" src="/static/img/pianosetup.png"></p>
 
