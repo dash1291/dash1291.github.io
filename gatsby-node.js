@@ -37,11 +37,13 @@ exports.createPages = ({ graphql, actions }) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
       const next = index === 0 ? null : posts[index - 1].node
 
+      const newSlug = post.node.fields.slug
+
       createPage({
-        path: post.node.fields.slug,
+        path: newSlug,
         component: blogPost,
         context: {
-          slug: post.node.fields.slug,
+          slug: newSlug,
           previous,
           next,
         },
@@ -54,7 +56,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ node, getNode }).slice(0, -1) + '.html'
+    console.log(value)
     createNodeField({
       name: `slug`,
       node,
