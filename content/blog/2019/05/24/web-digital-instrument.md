@@ -1,0 +1,76 @@
+---
+title: "Building a web-based digital music instrument"
+date: 2019-05-24
+---
+
+*This post is about an experiment of mine that allows a person to create music from free-form drawing on a canvas. More than just being about that, I try to take that as an example and discuss a framework for building a digital music instrument that I* *recently read about. It helped me understand how to think structurally about my experiment and how others can do the same.*
+
+
+
+## About this experiment
+
+For a while, I've pondered the idea of generating music out of pictures. Imagining a picture of a sea shore, and somehow being able to generate sounds that would be representative of the content in the picture. Since I didn't have a clue of what I could  build, I carried that idea for a while, until other ideas collided with it ending up simplifying the idea a little bit.
+
+In my head, I iterated over something that could detect edges in a picture and play notes based on where a rolling playhead intersects an edge on a canvas. Edge detection seemed promising but then I imagined the results could be too random, mostly because the edge detection algorithms might not give the audience the kind of edges they are anticipating, and whatever output comes (often undesirable), it won't be in the control of the audience. So I thought why not let the audience draw these edges and make it look and sound whatever they want.
+
+As a result of this train of thoughts, I built a very simple web based drawing interface which can be used to generate music by drawing free-form shapes on a canvas. Some musical structure is embedded into the interface so that the user doesn't have to care so much about the musical details and can just focus on sketching.
+
+## Introduce instrumental model
+
+Lately, I picked up [Sonic Writing by Thor Magnusson](https://www.bloomsbury.com/uk/sonic-writing-9781501313868/) as it seemed like an interesting book for someone who holds the desire to understand what goes behind buiding a interactive musical experience.
+
+While going through the instrumentality part of the book, I came across music intrument design model which on an abstract level describes component of a digital music instrument. This seemed like a good way of thinking about my free-form drawing interface as a digital music instrument.
+
+
+
+## Map instrumental model to pastelloops
+
+In this section, we're going to take each component described in the instrument model, and try to explain how pastelloops satisfies that constraint.
+
+### Sound engine
+
+As of today, pastelloop has two brushes of different colors - a brown and a green. Each brush is associated with a specific sound that it generates. One of them is a synth with a custom set of overtones and slow attack and decay rate leading to a smooth tone color. Another is a synth loaded with grand piano samples.
+
+The sound engine in this application is powered by WebAudio API which makes it possible to function in a web browser. An amazing library called Tone.js is used for implementing all the functionality, which makes it easier than to use WebAudio directly.
+
+Another library called Tonejs-instruments is used to load grand piano samples and create an instrument node.
+
+### Mapping engine
+
+The sound is generated based on where the playhead intersects with the points drawn on the canvas. The color of the intersecting point decides which synth to be used for generating the sound. The pitch that is played is decided based on where on the y axis is that point. One thing about pastelloops that assists the user in generating a musical output regardless of what they draw is that all the notes that are played are form a single scale. Depending on which scale is selected by the user, the range of notes start from the root note of the scale in octave 1 and end at the last note of the scale in 5th octave.
+
+### The interface
+
+The interface looks like a very simple drawing application. Because the interface is a web application. it can open on any device with a modern browser (tested on Chrome, Firefox and Edge) without an installation requirement.
+
+When the interface has loaded, the user can use their trackpad or mouse on a computer or their finger on a touch-enabled device to draw on the canvas. The default selected brush is used unless the user decides to change it using the buttons corresponding to each brush. The eraser button can be used to enable erase tool which can be used to clear off specific parts of the canvas. P5.js which is a Javascript port of processing language has been used to build the sketching interface and do all the transitions.
+
+The default selected scale is A Major which can be changed using two dropdowns - one for selecting note of the tonic centre and the other for the type of scale. The foundation scale for the mapping engine changes as soon as any change happens to this selection, and the resulting music output changes based on that.
+
+### Sonic feedback
+
+An important part of any music instrument is the feedback that you receive when you interact with it, like hearing the sound of a guitar when you pluck a string. That is true for a digital instrument as well, and I tried to incorporate it somehow in pastelloops.
+
+A rolling playhead scans the canvas from left to right, looking for any pixels drawn along the vertical axis at a given x position. 
+
+While this is like a playback mechanism, it would seem lacking if there was no immediate sonic response to the drawing interaction with the canvas. To counter the lack, the playhead is moved to the place where user decides to draw. This ends up triggering all  the notes that fall along the playhead.
+
+
+
+## More possibilities on web?
+
+### Augmenting digital UI with physical interface
+
+Through different web APIs in the browser, it's already possible to interface with different devices which could act as supplementary affordances to the digital music interface.
+
+There is WebMIDI API using which one can build an experience around a MIDI controller. There is WebUSB using which one can build an experience involving wider variety of physical inputs - like different kind of sensors. Similarly, WebVR can open up all-new possibilities creating virtual worlds as interfaces to play music.
+
+### Collaborative musical experiences
+
+Because these interfaces are designed on web, not only they are easy to access for a user, but it's also easy to architect an application which can connect involve different users in the musical experience. Web APIs like WebRTC offer building p2p networked application, which can be used to transmit interactions. Very specifically in pastelloops, p2p networking can be used to build a collaborative sketching interface towards an experience of music jamming using sketches for friends located in different geographies.
+
+### Applying machine learning
+
+Real instruments are interesting because there is an unpredictability or noise that comes with them. The strings of a guitar get old, and leads to a change in tone color. One of the reasons why guitars sound different to varying extent which makes them kind of cool. With a digital instrument however, there is no variance that is introduced no matter how many times you play. A sound signal is 100% reproducible, every time a particular interaction is repeated. That doesn't sound as much as fun as physical instrument. How do you incorporate noisy characteristics of a physical instrument into a repeatable musical machine and yet ensure the output is musical?
+
+With latest research in musical applications of AI, we've come up with ways and means to do such things. [Google's Magenta project](https://magenta.tensorflow.org/) has some great examples of this. What's great? There's a JS library that brings Magenta project in the browser which lets you build applications which help you use AI to synthesize sounds, continue of a sequence of notes or interpolate a melody between a set of melodies that you feed into the system.
