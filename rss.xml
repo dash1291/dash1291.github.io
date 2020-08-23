@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ashish Dubey's Blog]]></title><description><![CDATA[Experiments with tech and their record on the internet]]></description><link>https://ashishdubey.xyz</link><generator>RSS for Node</generator><lastBuildDate>Thu, 06 Jun 2019 18:57:03 GMT</lastBuildDate><item><title><![CDATA[Building a web-based musical instrument]]></title><description><![CDATA[This post covers an experiment of mine that allows a person to generate music from free-form drawing on a canvas. More than just being about…]]></description><link>https://ashishdubey.xyz/2019/05/24/web-digital-instrument.html</link><guid isPermaLink="false">https://ashishdubey.xyz/2019/05/24/web-digital-instrument.html</guid><pubDate>Fri, 24 May 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;This post covers an experiment of mine that allows a person to generate music from free-form drawing on a canvas. More than just being about a musical drawing interface, I try to take this project as an example to discuss an electronic musical instrument mapping model that I&lt;/em&gt; &lt;em&gt;recently read about. It helped me understand how to think structurally about my experiment and maybe it could help others too.&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ashish Dubey's Blog]]></title><description><![CDATA[Experiments with tech and their record on the internet]]></description><link>https://ashishdubey.xyz</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 23 Aug 2020 20:32:28 GMT</lastBuildDate><item><title><![CDATA[Permanence factor of temporary solutions]]></title><description><![CDATA[If you saw bad software architecture in place - would you build systems to support it better or lean far from it (often towards discomfort…]]></description><link>https://ashishdubey.xyz/2020/08/24/permanent-temporary-solutions.html</link><guid isPermaLink="false">https://ashishdubey.xyz/2020/08/24/permanent-temporary-solutions.html</guid><pubDate>Mon, 24 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you saw bad software architecture in place - would you build systems to support it better or lean far from it (often towards discomfort) to steer change?&lt;/p&gt;
+&lt;p&gt;It may definitely not be an easy choice to make. You’d need to build supporting systems for business continuity. But the supporting systems you build may bring in complacency and often the supporting systems can be brittle and suck in countless engineering cycles to build and maintain.&lt;/p&gt;
+&lt;p&gt;I started out with this question on Twitter and figured that this needs to be written beyond 140 characters.&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;If you saw bad software architecture in place - would you build systems to support it better or lean far from it (often towards discomfort) to steer change?&lt;/p&gt;&amp;mdash; Ashish Dubey (@dash1291) &lt;a href=&quot;https://twitter.com/dash1291/status/1291605987736993794?ref_src=twsrc%5Etfw&quot;&gt;August 7, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;p&gt;A common and perhaps the wisest answer may lie in trying to hit the balance. The moment you turn in a patch to cover for a misplaced component, you set yourself on the course of removing it in future. Classic tech debt management - track and repay later. But how easy is it in practice?&lt;/p&gt;
+&lt;p&gt;Further, I still wonder if this discussion is better had with some context behind it. “It depends” as an answer to this question is perfectly valid because architecture can’t be without context and neither can be any decisions over it.&lt;/p&gt;
+&lt;p&gt;Let’s consider an example -&lt;/p&gt;
+&lt;p&gt;A customer facing web app that serves a hypothetical DIY electronics business is composed of multiple layers of microservices which depend on one another. Features usually cross-cut different microservices as if they’re big components of a single monolith. These components aren’t individually tested not because it’s impossible but it’s great deal of work given how interwoven the system behavior is and hence the system is tested as a whole.&lt;/p&gt;
+&lt;p&gt;One can’t simply rewrite the system because it serves critical business function. Striking a balance and addressing the rigidity of the system incrementally is still the best and ideal approach. You have concrete architecture patterns for addressing these issues like Anti-corruption layer (&lt;a href=&quot;https://docs.microsoft.com/en-us/Azure/architecture/patterns/anti-corruption-layer&quot;&gt;https://docs.microsoft.com/en-us/Azure/architecture/patterns/anti-corruption-layer&lt;/a&gt;) and strangler applications (&lt;a href=&quot;https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/&quot;&gt;https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;From the cultural aspect, Gregor Hohpe talks about the concept of having clutch(s) in the org ( &lt;a href=&quot;https://architectelevator.com/transformation/shifting_gears_clutch&quot;&gt;https://architectelevator.com/transformation/shifting&lt;em&gt;gears&lt;/em&gt;clutch&lt;/a&gt;) to propel two architectures (good and bad/ old and new) together and phasing out the old one and promoting the new one when the time is right.&lt;/p&gt;
+&lt;p&gt;What brings conflict to my mind is a set of situations where building infrastructural tooling to mask certain architectural patterns have been done to make lives easier while working with those systems but somehow they become boxes of innovation themselves and over time it becomes hard to snap out of them and really fix the underlying issues.&lt;/p&gt;
+&lt;p&gt;In the context of above example - such tooling could be synthetic test environments and large e2e tests as a major means of testing in the absence automated tests that can be used to verify changes in the service independent of and in isolation from other services.&lt;/p&gt;
+&lt;p&gt;This leads to a problems on different levels. First being, there is hell lot of redundant infrastructure provisioning happening. Simply for testing a simple change in one of the services and one needs to deploy service A, B, C and D because all of them need to be working together to be tested together. When you’re using a complex container orchestration platform like kubernetes, this means a lot of things happening. You have API calls, controllers manipulating resources, containers being scheduling, images pulled and finally the application can begin executing. Combine this with other components that this service needs to interact with, maybe databases which are run as Statefulsets. Now all of this, seems like a lot of work and the process can take time. Some effort can be put in to optimize and speed things up and it definitely runs faster but it’s still a lot of things happening, most of which aren’t needed if all I want to test is a small change in service A. This not only means wastage of resources and time but because there are so many moving parts, this whole process can be very fragile.&lt;/p&gt;
+&lt;p&gt;Which brings me to my second point - about test stability. When your tests depend on a complex orchestration process as discussed above as a pre-requisite, the fragility makes itself count in the reliability of tests as well. Moreover, this test suite relies on dozens of API calls covering all the services in order to test a simple change in service A, which could have been easily validated using 2-3 API calls (in the form of service level API tests).&lt;/p&gt;
+&lt;p&gt;Third, this especially gets worse when a team is in-charge of the support systems which is different from the one that owns the architecture of the systems in question. An external team managing this tooling and workflow leads to enormous cognitive load on them which in turn leads to never ending unplanned work and any creative work is very difficult to plan and execute.&lt;/p&gt;
+&lt;p&gt;If I set aside the problems, the goal with which you build this testing workflow would be to enable yourself to move the business forward and fast while gaining some headroom for improving the architecture or having better tests in place. And I think it certainly works in theory and in practice as well. But this is exactly where snapping out of being fully dependent on such workflows is important before it’s too late.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;That is it. This is basically a thought dump. It could grow over time as I ramble to myself more.&lt;/em&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Permanent temporary solutions]]></title><description><![CDATA[If you saw bad software architecture in place - would you build systems to support it better or lean far from it (often towards discomfort…]]></description><link>https://ashishdubey.xyz/2020/08/24/web-digital-instrument.html</link><guid isPermaLink="false">https://ashishdubey.xyz/2020/08/24/web-digital-instrument.html</guid><pubDate>Mon, 24 Aug 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you saw bad software architecture in place - would you build systems to support it better or lean far from it (often towards discomfort) to steer change?&lt;/p&gt;
+&lt;p&gt;It may definitely not be an easy choice to make. You’d need to build supporting systems for business continuity. But the supporting systems you build may bring in complacency and often the supporting systems can be brittle and suck in countless engineering cycles to build and maintain.&lt;/p&gt;
+&lt;p&gt;I started out with this question on Twitter and figured that this needs to be written beyond 140 characters.&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;If you saw bad software architecture in place - would you build systems to support it better or lean far from it (often towards discomfort) to steer change?&lt;/p&gt;&amp;mdash; Ashish Dubey (@dash1291) &lt;a href=&quot;https://twitter.com/dash1291/status/1291605987736993794?ref_src=twsrc%5Etfw&quot;&gt;August 7, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;p&gt;A common and perhaps the wisest answer may lie in trying to hit the balance. The moment you turn in a patch to cover for a misplaced component, you set yourself on the course of removing it in future. Classic tech debt management - track and repay later. But how easy is it in practice?&lt;/p&gt;
+&lt;p&gt;Further, I still wonder if this discussion is better had with some context behind it. “It depends” as an answer to this question is perfectly valid because architecture can’t be without context and neither can be any decisions over it.&lt;/p&gt;
+&lt;p&gt;Let’s consider an example -&lt;/p&gt;
+&lt;p&gt;A customer facing web app that serves a hypothetical DIY electronics business is composed of multiple layers of microservices which depend on one another. Features usually cross-cut different microservices as if they’re big components of a single monolith. These components aren’t individually tested not because it’s impossible but it’s great deal of work given how interwoven the system behavior is and hence the system is tested as a whole.&lt;/p&gt;
+&lt;p&gt;One can’t simply rewrite the system because it serves critical business function. Striking a balance and addressing the rigidity of the system incrementally is still the best and ideal approach. You have concrete architecture patterns for addressing these issues like Anti-corruption layer (&lt;a href=&quot;https://docs.microsoft.com/en-us/Azure/architecture/patterns/anti-corruption-layer&quot;&gt;https://docs.microsoft.com/en-us/Azure/architecture/patterns/anti-corruption-layer&lt;/a&gt;) and strangler applications (&lt;a href=&quot;https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/&quot;&gt;https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;From the cultural aspect, Gregor Hohpe talks about the concept of having clutch(s) in the org ( &lt;a href=&quot;https://architectelevator.com/transformation/shifting_gears_clutch&quot;&gt;https://architectelevator.com/transformation/shifting&lt;em&gt;gears&lt;/em&gt;clutch&lt;/a&gt;) to propel two architectures (good and bad/ old and new) together and phasing out the old one and promoting the new one when the time is right.&lt;/p&gt;
+&lt;p&gt;What brings conflict to my mind is a set of situations where building infrastructural tooling to mask certain architectural patterns have been done to make lives easier while working with those systems but somehow they become boxes of innovation themselves and over time it becomes hard to snap out of them and really fix the underlying issues.&lt;/p&gt;
+&lt;p&gt;In the context of above example - such tooling could be synthetic test environments and large e2e tests as a major means of testing in the absence automated tests that can be used to verify changes in the service independent of and in isolation from other services.&lt;/p&gt;
+&lt;p&gt;This leads to a problems on different levels. First being, there is hell lot of redundant infrastructure provisioning happening. Simply for testing a simple change in one of the services and one needs to deploy service A, B, C and D because all of them need to be working together to be tested together. When you’re using a complex container orchestration platform like kubernetes, this means a lot of things happening. You have API calls, controllers manipulating resources, containers being scheduling, images pulled and finally the application can begin executing. Combine this with other components that this service needs to interact with, maybe databases which are run as Statefulsets. Now all of this, seems like a lot of work and the process can take time. Some effort can be put in to optimize and speed things up and it definitely runs faster but it’s still a lot of things happening, most of which aren’t needed if all I want to test is a small change in service A. This not only means wastage of resources and time but because there are so many moving parts, this whole process can be very fragile.&lt;/p&gt;
+&lt;p&gt;Which brings me to my second point - about test stability. When your tests depend on a complex orchestration process as discussed above as a pre-requisite, the fragility makes itself count in the reliability of tests as well. Moreover, this test suite relies on dozens of API calls covering all the services in order to test a simple change in service A, which could have been easily validated using 2-3 API calls (in the form of service level API tests).&lt;/p&gt;
+&lt;p&gt;Third, this especially gets worse when a team is in-charge of the support systems which is different from the one that owns the architecture of the systems in question. An external team managing this tooling and workflow leads to enormous cognitive load on them which in turn leads to never ending unplanned work and any creative work is very difficult to plan and execute.&lt;/p&gt;
+&lt;p&gt;If I set aside the problems, the goal with which you build this testing workflow would be to enable yourself to move the business forward and fast while gaining some headroom for improving the architecture or having better tests in place. And I think it certainly works in theory and in practice as well. But this is exactly where snapping out of being fully dependent on such workflows is important before it’s too late.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;That is it. This is basically a thought dump. It could grow over time as I ramble to myself more.&lt;/em&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Building a web-based musical instrument]]></title><description><![CDATA[This post covers an experiment of mine that allows a person to generate music from free-form drawing on a canvas. More than just being about…]]></description><link>https://ashishdubey.xyz/2019/05/24/web-digital-instrument.html</link><guid isPermaLink="false">https://ashishdubey.xyz/2019/05/24/web-digital-instrument.html</guid><pubDate>Fri, 24 May 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;This post covers an experiment of mine that allows a person to generate music from free-form drawing on a canvas. More than just being about a musical drawing interface, I try to take this project as an example to discuss an electronic musical instrument mapping model that I&lt;/em&gt; &lt;em&gt;recently read about. It helped me understand how to think structurally about my experiment and maybe it could help others too.&lt;/em&gt;&lt;/p&gt;
 &lt;h2&gt;About this experiment&lt;/h2&gt;
 &lt;p&gt;For a while, I’ve pondered on the idea of generating music out of pictures. Imagining a picture of a seashore, and somehow being able to generate sounds that would be representative of the content in the picture. Since I didn’t have any clue of how I could build it, I carried that idea for a while, until other ideas got built on top ending up simplifying the original idea to an extent.&lt;/p&gt;
 &lt;p&gt;In my head, I iterated over something in which I would detect edges in a picture, paint them on a canvas and play notes based on where a rolling playhead intersects an edge on the canvas. Edge detection seemed promising but I imagined that the results could be too random, mostly because the edge detection algorithms might not give the audience the kind of edges they are anticipating. Moreover, whatever output comes out (often undesirable), it would be out of control of the audience. So I thought why not let the audience draw these edges and make the scene look and sound however they want.&lt;/p&gt;
@@ -6,14 +38,13 @@
 &lt;figure&gt;
     
   &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 74.81662591687042%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIBAwX/xAAVAQEBAAAAAAAAAAAAAAAAAAABAP/aAAwDAQACEAMQAAAB2hJG4Ub/xAAXEAADAQAAAAAAAAAAAAAAAAAAARAR/9oACAEBAAEFAtE6p//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABsQAAIBBQAAAAAAAAAAAAAAAAABERAhMUFh/9oACAEBAAE/Id5J1RZfRLtkn//aAAwDAQACAAMAAAAQ6A//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAXEQEAAwAAAAAAAAAAAAAAAAAAESFB/9oACAECAQE/ELxL/8QAGhAAAwEBAQEAAAAAAAAAAAAAAAEhEUFRcf/aAAgBAQABPxCoOPhpuutfLDXwRJmaFK2v0qs//9k=&amp;apos;); background-size: cover; display: block;&quot;&gt;
-      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;instrument model&quot; title=&quot;&quot; src=&quot;/static/4d3f52386abbf124bcaf6daec7b652da/f8fb9/wireframe.jpg&quot; srcset=&quot;/static/4d3f52386abbf124bcaf6daec7b652da/e8976/wireframe.jpg 148w,
-/static/4d3f52386abbf124bcaf6daec7b652da/63df2/wireframe.jpg 295w,
-/static/4d3f52386abbf124bcaf6daec7b652da/f8fb9/wireframe.jpg 590w,
-/static/4d3f52386abbf124bcaf6daec7b652da/85e3d/wireframe.jpg 885w,
-/static/4d3f52386abbf124bcaf6daec7b652da/d1924/wireframe.jpg 1180w,
-/static/4d3f52386abbf124bcaf6daec7b652da/9452e/wireframe.jpg 1770w,
-/static/4d3f52386abbf124bcaf6daec7b652da/7859e/wireframe.jpg 3272w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIBAwX/xAAVAQEBAAAAAAAAAAAAAAAAAAABAP/aAAwDAQACEAMQAAAB2hJG4Ub/xAAXEAADAQAAAAAAAAAAAAAAAAAAARAR/9oACAEBAAEFAtE6p//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABsQAAIBBQAAAAAAAAAAAAAAAAABERAhMUFh/9oACAEBAAE/Id5J1RZfRLtkn//aAAwDAQACAAMAAAAQ6A//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAWEQADAAAAAAAAAAAAAAAAAAAQIUH/2gAIAQIBAT8QcH//xAAaEAEAAwEBAQAAAAAAAAAAAAABABEhQVFx/9oACAEBAAE/ENWDjyWa26nzclvIASrgjbr7Naz/2Q==&amp;apos;); background-size: cover; display: block;&quot;&gt;
+      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;instrument model&quot; title src=&quot;/static/4d3f52386abbf124bcaf6daec7b652da/1c72d/wireframe.jpg&quot; srcset=&quot;/static/4d3f52386abbf124bcaf6daec7b652da/a80bd/wireframe.jpg 148w,
+/static/4d3f52386abbf124bcaf6daec7b652da/1c91a/wireframe.jpg 295w,
+/static/4d3f52386abbf124bcaf6daec7b652da/1c72d/wireframe.jpg 590w,
+/static/4d3f52386abbf124bcaf6daec7b652da/a8a14/wireframe.jpg 885w,
+/static/4d3f52386abbf124bcaf6daec7b652da/fbd2c/wireframe.jpg 1180w,
+/static/4d3f52386abbf124bcaf6daec7b652da/51d88/wireframe.jpg 3272w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot;&gt;
     &lt;/span&gt;
   &lt;/span&gt;
   
@@ -28,14 +59,13 @@
 &lt;figure&gt;
     
   &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 60.084477296726504%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABoUlEQVQoz3WSV4sDMQyE/f//U8hzCClk09umZ9N7L7r7BrQPB2cQlm1pNBo52O/6fr/23+JtvV7bbDaz1Wpl7/fbPp9Puv+NDQ7G7kFufn4+n7ZcLu1yudhms7HpdKoCh8MhzXWcFPB6vcpIOh6Pdjqd7PF4yCcRwP1+L380Gon1brfTPT5GfHC6nrxYLOz1eikYnyLn81lGkdvtJua8j8dju9/vKjSZTOQHgAjgUCwWrdvtij56lctlMWq32ypGXK/XkwSdTseazaZiKZoCQhkQNCExjmO1QQDJ2+3WqtWq/OFwaJVKRXe0TR5x6ApbgAMCZzIZazQaViqVbDAYKJjAQqGgtnO5nBgBEEWRAAGu1+vp9MmDSODQ7/elTT6fFxgyUBVAErLZrFpm0SYyANZqtXSPnkmSaDCaMpqgD5ewwJ/P52LNMOgChhgsWOy1Wk3fiqHAUICA0TuTRVQe0IzqgMHc/x/dwIh7dtjSOjKgLzGBCgjKI1PGpyUHIhEGfBmMsxsx/n8pQutq2St6dQLdYO1GN0jBb/AhwQrNiWX/AYO4iftp8ArAAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;
-      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;instrument model&quot; title=&quot;&quot; src=&quot;/static/6f2d2cab57f53c45fc61b8c6f9e68b07/fb8a0/mapping-model.png&quot; srcset=&quot;/static/6f2d2cab57f53c45fc61b8c6f9e68b07/1a291/mapping-model.png 148w,
-/static/6f2d2cab57f53c45fc61b8c6f9e68b07/2bc4a/mapping-model.png 295w,
-/static/6f2d2cab57f53c45fc61b8c6f9e68b07/fb8a0/mapping-model.png 590w,
-/static/6f2d2cab57f53c45fc61b8c6f9e68b07/526de/mapping-model.png 885w,
-/static/6f2d2cab57f53c45fc61b8c6f9e68b07/fa2eb/mapping-model.png 1180w,
-/static/6f2d2cab57f53c45fc61b8c6f9e68b07/08f6a/mapping-model.png 1770w,
-/static/6f2d2cab57f53c45fc61b8c6f9e68b07/d0903/mapping-model.png 1894w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 60.13513513513513%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABoUlEQVQoz3WSV4sDMQyE/f//U8hzCClk09umZ9N7L7r7BrQPB2cQlm1pNBo52O/6fr/23+JtvV7bbDaz1Wpl7/fbPp9Puv+NDQ7G7kFufn4+n7ZcLu1yudhms7HpdKoCh8MhzXWcFPB6vcpIOh6Pdjqd7PF4yCcRwP1+L380Gon1brfTPT5GfHC6nrxYLOz1eikYnyLn81lGkdvtJua8j8dju9/vKjSZTOQHgAjgUCwWrdvtij56lctlMWq32ypGXK/XkwSdTseazaZiKZoCQhkQNCExjmO1QQDJ2+3WqtWq/OFwaJVKRXe0TR5x6ApbgAMCZzIZazQaViqVbDAYKJjAQqGgtnO5nBgBEEWRAAGu1+vp9MmDSODQ7/elTT6fFxgyUBVAErLZrFpm0SYyANZqtXSPnkmSaDCaMpqgD5ewwJ/P52LNMOgChhgsWOy1Wk3fiqHAUICA0TuTRVQe0IzqgMHc/x/dwIh7dtjSOjKgLzGBCgjKI1PGpyUHIhEGfBmMsxsx/n8pQutq2St6dQLdYO1GN0jBb/AhwQrNiWX/AYO4iftp8ArAAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;
+      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;instrument model&quot; title src=&quot;/static/6f2d2cab57f53c45fc61b8c6f9e68b07/fcda8/mapping-model.png&quot; srcset=&quot;/static/6f2d2cab57f53c45fc61b8c6f9e68b07/12f09/mapping-model.png 148w,
+/static/6f2d2cab57f53c45fc61b8c6f9e68b07/e4a3f/mapping-model.png 295w,
+/static/6f2d2cab57f53c45fc61b8c6f9e68b07/fcda8/mapping-model.png 590w,
+/static/6f2d2cab57f53c45fc61b8c6f9e68b07/efc66/mapping-model.png 885w,
+/static/6f2d2cab57f53c45fc61b8c6f9e68b07/c83ae/mapping-model.png 1180w,
+/static/6f2d2cab57f53c45fc61b8c6f9e68b07/9efb3/mapping-model.png 1894w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot;&gt;
     &lt;/span&gt;
   &lt;/span&gt;
   
@@ -52,30 +82,30 @@
 &lt;p&gt;Another library called &lt;a href=&quot;https://github.com/nbrosowsky/tonejs-instruments&quot;&gt;Tonejs-instruments&lt;/a&gt; is used to load grand piano samples and create an instrument node.&lt;/p&gt;
 &lt;p&gt;For reference, I’m adding a snippet that shows the construction of two audio sources -&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; synth1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Tone&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;PolySynth&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Tone&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Synth&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  oscillator&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    type&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;custom&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    partials&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+  oscillator&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    type&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;custom&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    partials&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;token string&quot;&gt;&apos;envelope&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token string&quot;&gt;&apos;attack&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token string&quot;&gt;&apos;decay&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token string&quot;&gt;&apos;sustain&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token string&quot;&gt;&apos;release&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.5&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&apos;envelope&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;attack&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;decay&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;sustain&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;release&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.5&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 
 &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; synth2 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; SampleLibrary&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  instruments&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;piano&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  baseUrl&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://nbrosowsky.github.io/tonejs-instruments/samples/&apos;&lt;/span&gt;
+  instruments&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;piano&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  baseUrl&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://nbrosowsky.github.io/tonejs-instruments/samples/&apos;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;Mapping engine&lt;/h3&gt;
 &lt;p&gt;The sound is generated based on where the playhead intersects with the points drawn on the canvas. The color of the intersecting point decides which synth to be used for generating the sound. The pitch that is played is decided based on where on the &lt;code class=&quot;language-text&quot;&gt;y&lt;/code&gt; axis is that point. One thing about Pastelloops that assists the user in generating a musical output regardless of what they draw, is that all the notes that are played form a single scale. Depending on which scale is selected by the user, the range of notes &lt;em&gt;start from the root note of the scale in octave 1&lt;/em&gt; and end at the &lt;em&gt;last note of the scale in 5th octave&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The following is a snippet that is used to change the scale -&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; modeIntervals &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  major&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  dorian&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  myxolydian&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  phrygian&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+  major&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  dorian&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  myxolydian&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  phrygian&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;switchScale&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;tone&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
@@ -94,6 +124,28 @@
 &lt;p&gt;An important part of any musical instrument is the feedback that you receive when you interact with it, like hearing the sound of a guitar when you pluck a string. That is true for a digital instrument as well, and I tried to incorporate it somehow in Pastelloops.&lt;/p&gt;
 &lt;p&gt;A rolling playhead scans the canvas from left to right, looking for any pixels drawn along the vertical axis at a given &lt;code class=&quot;language-text&quot;&gt;x&lt;/code&gt; position. &lt;/p&gt;
 &lt;p&gt;While this is like a playback mechanism, it would seem lacking if there was no immediate sonic response to the drawing interaction with the canvas. To counter the lack, the playhead is moved to the place where the user decides to draw. This ends up triggering all the notes that fall along the playhead.&lt;/p&gt;
+&lt;h2&gt;Inspiration from other related ideas&lt;/h2&gt;
+&lt;p&gt;While much of the work done so far has been limited to personal exploration of the idea, some research along the similar lines has led to a lot of ideas which can be potentially used to improve the project further.&lt;/p&gt;
+&lt;h3&gt;In visual arts&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“One day I must be able to improvise freely on the keyboard of colors: the row of watercolors in my paintbox” - Paul Klee&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The ideas like associating shade of color with musical keys among so many others have existed for a long time in arts. Artists like &lt;a href=&quot;http://www.paul-klee.org/music/&quot;&gt;Paul Klee&lt;/a&gt; and &lt;a href=&quot;https://www.theguardian.com/artanddesign/2006/jun/24/art.art&quot;&gt;Kadinsky&lt;/a&gt; have reflected a strong inspiration from music into their art work as paintings. &lt;/p&gt;
+&lt;p&gt;Paul Klee had a deep interest in deriving relationships between musical rhythms and structural composition in his paintings. He studied pieces from Bach and Mozart, and tried to draw differences between individual and structural elements of music and tried to apply them in his paintings. Structural elements consist of the repeated patterns like measures or a chord progression whereas individual elements would be something like a melody line. Such ideas can be helpful in mapping the rhythmic components with a more aesthetic visual quality into the drawing surface of Pastelloops, making it appeal better to visually inclined users.&lt;/p&gt;
+&lt;h3&gt;In experimental music&lt;/h3&gt;
+&lt;p&gt;An area of potential application of this project is in live musical performance. In recent times, we have seen many alternate mediums of musical performance such as live coding environments like TidalCycles, Gibber, FoxDot etc. These help artists setup their musical tools as code and intertwine them as they perform.&lt;/p&gt;
+&lt;p&gt;I see Pastelloops functioning similarly except instead of musical tools or structures written in code, an artist can draw them on the canvas and traverse them in order to perform.&lt;/p&gt;
+&lt;p&gt;Such a performance can be seen here - &lt;a href=&quot;https://www.youtube.com/watch?v=WrLb8WA3yHs&quot;&gt;https://www.youtube.com/watch?v=WrLb8WA3yHs&lt;/a&gt; where the artists draw on a canvas using a brush and with multiple axes crossing the drawn area, sound is generated.&lt;/p&gt;
+&lt;h3&gt;In contemporary interactive music research&lt;/h3&gt;
+&lt;p&gt;Perhaps the closest related work to Pastelloops in terms of design motivation and implementation are other drawing based tools built for composing music.&lt;/p&gt;
+&lt;h4&gt;Griddy&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;http://hdl.handle.net/2027/spo.bbp2372.2014.053&quot;&gt;Griddy&lt;/a&gt; is a music composition system that uses drawing
+as its main interface, along with chord map and background image. It uses a background image for style-related features and applying an image sonification based method to probe the image to allow users to use the result as a base for their musical exploration.&lt;/p&gt;
+&lt;h4&gt;Hyperscore&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://opera-beta.media.mit.edu/portfolio/hyperscore&quot;&gt;Hyperscore&lt;/a&gt; is a graphical composition environment that interprets the gestures of the strokes and lines the user draws in an intuitive way. The user can pen musical ideas, store them for later use, and create new pieces—all in one expansive canvas. The graphical elements in the drawing are mapped to musical structures, allowing the user to interweave and shape musical voices and define harmonic progressions visually.&lt;/p&gt;
+&lt;p&gt;There are many parallels that can be drawn between the two and Pastelloops. Some notable divergence is in the live performance contexts. First is in the inspiration to make its usage analogous to a live coding environment. An artist can draw structures on the canvas mapping to desired musical structures. Throughout the performance, the artist can scan the canvas or parts of the canvas using one or more playheads and loop through the musical structures that they drew on the canvas.&lt;/p&gt;
+&lt;p&gt;Another is in the extension of the interface from a simple cursor based usage to a touch-based usage. Using touch gestures, the user may not just control the pitch structure, but also other attributes of the drawing which can be mapped to the timbre of the sound produced.&lt;/p&gt;
+&lt;p&gt;Finally, the design of the application allows for breaking it up into modules which can be indepedently changed and mashed up together in several different ways leading to new interactive musical experiences.&lt;/p&gt;
 &lt;h2&gt;More possibilities on the web?&lt;/h2&gt;
 &lt;p&gt;As you can see that this mapping model can help in breaking an interactive musical application into abstract components. Most often these abstract components can be changed independently to create a new overall experience. With so many capabilities on the web platform, different kinds of tweaks can be thought of and permuted in order to create new experiences . I’m using the following section for just that.&lt;/p&gt;
 &lt;h3&gt;Augmenting digital UI with a physical interface&lt;/h3&gt;
@@ -103,35 +155,28 @@
 &lt;p&gt;Because these interfaces are designed on the web, not only they are easy to access for a user, but it’s also easy to build an application that can involve different users in the musical experience. Web APIs like WebRTC offer to build a p2p networked application, which can be used to transmit interactions. Very specifically in Pastelloops, such a capability can be used to build a collaborative sketching interface towards an experience of music jamming using sketches for friends located in different geographies.&lt;/p&gt;
 &lt;h3&gt;Applying machine learning&lt;/h3&gt;
 &lt;p&gt;Real instruments are interesting because there is unpredictability or noise that comes with them. The strings of a guitar get old and lead to a change in tone color. One of the reasons why guitars sound different to a varying extent which makes them kind of cool. With a digital instrument, however, no variance is introduced no matter how many times you play it. A sound signal is 100% reproducible, every time a particular interaction is repeated. That doesn’t sound as much as fun as a physical instrument. How do we incorporate noisy characteristics of a physical instrument into a repeatable musical machine and yet ensure the output is musical?&lt;/p&gt;
-&lt;p&gt;With the latest research in musical applications of AI, we’ve come up with ways and means to do such things. &lt;a href=&quot;https://magenta.tensorflow.org/&quot;&gt;Google’s Magenta project&lt;/a&gt; has some great examples of this. What’s great? There’s a JS library that brings Magenta project in the browser which lets you build applications that help you use AI to synthesize sounds, continue of a sequence of notes or interpolate a melody between a set of melodies that you feed into the system.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Notes on Agile Testing]]></title><description><![CDATA[I recently started reading Agile Testing book and while I was learning a bunch of things and taking notes I figured it’d be nice to also…]]></description><link>https://ashishdubey.xyz/2019/01/31/agile-testing.html</link><guid isPermaLink="false">https://ashishdubey.xyz/2019/01/31/agile-testing.html</guid><pubDate>Tue, 29 Jan 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I recently started reading &lt;a href=&quot;https://books.google.co.in/books/about/Agile_Testing.html?id=68_lhPvoKS8C&amp;#x26;redir_esc=y&quot;&gt;Agile Testing book&lt;/a&gt; and while I was learning a bunch of things and taking notes I figured it’d be nice to also share these notes here. Mostly, in order to make it easy for myself to give to someone, my version of the summary of the book. It might be work in progress for a while, but hopefully covering something helpful.&lt;/p&gt;
+&lt;p&gt;With the latest research in musical applications of AI, we’ve come up with ways and means to do such things. &lt;a href=&quot;https://magenta.tensorflow.org/&quot;&gt;Google’s Magenta project&lt;/a&gt; has some great examples of this. What’s great? There’s a JS library that brings Magenta project in the browser which lets you build applications that help you use AI to synthesize sounds, continue of a sequence of notes or interpolate a melody between a set of melodies that you feed into the system.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Verdi, Richard. “Musical Influences on the Art of Paul Klee.” Art Institute of Chicago Museum Studies, vol. 3, 1968, pp. 81–107. JSTOR, www.jstor.org/stable/4104301.&lt;/li&gt;
+&lt;li&gt;Griddy: a Drawing Based Music Composition System
+with Multi-layered Structure &lt;/li&gt;
+&lt;li&gt;Hyperscore &lt;a href=&quot;https://opera-beta.media.mit.edu/portfolio/hyperscore&quot;&gt;https://opera-beta.media.mit.edu/portfolio/hyperscore&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Notes on Agile Testing]]></title><description><![CDATA[I recently started reading Agile Testing book and while I was learning a bunch of things and taking notes I figured it’d be nice to also…]]></description><link>https://ashishdubey.xyz/2019/01/31/agile-testing.html</link><guid isPermaLink="false">https://ashishdubey.xyz/2019/01/31/agile-testing.html</guid><pubDate>Tue, 29 Jan 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I recently started reading &lt;a href=&quot;https://books.google.co.in/books/about/Agile_Testing.html?id=68_lhPvoKS8C&amp;#x26;redir_esc=y&quot;&gt;Agile Testing book&lt;/a&gt; and while I was learning a bunch of things and taking notes I figured it’d be nice to also share these notes here. Mostly, in order to make it easy for myself to give to someone, my version of the summary of the book. It might be work in progress for a while, but hopefully covering something helpful.&lt;/p&gt;
 &lt;h2&gt;On agile testing mind-set&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Creativity, openness to ideas, willingness to take on any task or role, focus on the customer and a constant view of the big picture are some components of the agile testing mind-set.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Agile testing mind-set is one that is results-oriented, craftsman-like, collaborative, eager to learn, and passionate about delivering business value.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Creativity, openness to ideas, willingness to take on any task or role, focus on the customer and a constant view of the big picture are some components of the agile testing mind-set.&lt;/li&gt;
+&lt;li&gt;Agile testing mind-set is one that is results-oriented, craftsman-like, collaborative, eager to learn, and passionate about delivering business value.&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Some of the ten principles for agile testers -&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;continuous feedback&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;keeping testing and tooling simple&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;retrospective: continuous improvement and responding to change&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;customer first&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;continuous feedback&lt;/li&gt;
+&lt;li&gt;keeping testing and tooling simple&lt;/li&gt;
+&lt;li&gt;retrospective: continuous improvement and responding to change&lt;/li&gt;
+&lt;li&gt;customer first&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;To keep things simple doesn’t mean keep it easy. It means “just enough”. Agile testing should start with the lightest weight possible and whatever does the job. Tools can be as simple as a spreadsheet or a checklist. Smoke tests might be enough for a business facing test suite.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;To keep things simple doesn’t mean keep it easy. It means “just enough”. Agile testing should start with the lightest weight possible and whatever does the job. Tools can be as simple as a spreadsheet or a checklist. Smoke tests might be enough for a business facing test suite.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;On agile testing practices&lt;/h2&gt;
 &lt;ul&gt;
@@ -140,52 +185,30 @@
 &lt;/ul&gt;
 &lt;h2&gt;On building an agile testing team&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Agile teams is a good place for testers, because true agile teams are all about repeatable quality.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Agile teams is a good place for testers, because true agile teams are all about repeatable quality.&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;A job description for the agile tester should include cross functional experience -&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;An example:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Experience writing UI tests and helping business experts define requirements&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Experience writing SQL queries&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;At least one year of experience working with a programming / scripting language&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Ability to use unix&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Experience communication with programmers and product owners&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Experience writing UI tests and helping business experts define requirements&lt;/li&gt;
+&lt;li&gt;Experience writing SQL queries&lt;/li&gt;
+&lt;li&gt;At least one year of experience working with a programming / scripting language&lt;/li&gt;
+&lt;li&gt;Ability to use unix&lt;/li&gt;
+&lt;li&gt;Experience communication with programmers and product owners&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Face-to-face communication has no substitute. Agile development depends on constant collaboration. Like other agile team members, the people doing testing tasks will continually seek out customer and technical team members to discuss and collaborate.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Face-to-face communication has no substitute. Agile development depends on constant collaboration. Like other agile team members, the people doing testing tasks will continually seek out customer and technical team members to discuss and collaborate.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;On test automation&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Even with improved object recognition, scripts created with record and replay tend to be brittle and unmaintainable&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;With the reference of the famous &lt;a href=&quot;https://martinfowler.com/bliki/TestPyramid.html&quot;&gt;testing pyramid&lt;/a&gt;, the top tier (UI tests) should make the smallest automation effort, because these tests provide the lowest ROI. These tests are expensive to write, maintain and execute. They are written after the code is completed and so are usually written to critique the product and go directly to the regression suite.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The middle tier in the pyramid should contain the bulk of automated tests. These tests execute fast, helps developers build the right thing because they are more like acceptance tests. These tests generally have the biggest ROI.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;These middle tier tests are usually functional tests and should be implemented in framework built in the same language as that of the project&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Even with improved object recognition, scripts created with record and replay tend to be brittle and unmaintainable&lt;/li&gt;
+&lt;li&gt;With the reference of the famous &lt;a href=&quot;https://martinfowler.com/bliki/TestPyramid.html&quot;&gt;testing pyramid&lt;/a&gt;, the top tier (UI tests) should make the smallest automation effort, because these tests provide the lowest ROI. These tests are expensive to write, maintain and execute. They are written after the code is completed and so are usually written to critique the product and go directly to the regression suite.&lt;/li&gt;
+&lt;li&gt;The middle tier in the pyramid should contain the bulk of automated tests. These tests execute fast, helps developers build the right thing because they are more like acceptance tests. These tests generally have the biggest ROI.&lt;/li&gt;
+&lt;li&gt;These middle tier tests are usually functional tests and should be implemented in framework built in the same language as that of the project&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;That’s it folks. More notes to come here soon.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[An amateur quest to generative music]]></title><description><![CDATA[In the last few months, I’ve spent quite a bit of spare time and effort in learning about music theory and sound engineering. This includes…]]></description><link>https://ashishdubey.xyz/2018/11/18/generative-music.html</link><guid isPermaLink="false">https://ashishdubey.xyz/2018/11/18/generative-music.html</guid><pubDate>Sun, 18 Nov 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In the last few months, I’ve spent quite a bit of spare time and effort in learning about music theory and sound engineering. This includes learning enough about harmonics to be able to play simple musical motifs on an electric guitar, understanding basics of sound synthesis and processing. On top of this, I also got exposed to electronic art that is created on the basis of systems and processes rather than being written as a finite progression of harmonics. Incase you’re wondering what I’m talking about look up Brian Eno, Steve Reich, Terry Riley and related artists.&lt;/p&gt;
 &lt;p&gt;So, I’ve been interested in generative art of all kinds for a long time. And I gained some momentum after being exposed to all the information mentioned previously and really good hands-on material like &lt;a href=&quot;https://teropa.info/blog/2016/07/28/javascript-systems-music.html&quot;&gt;this extensive article&lt;/a&gt; which set things straight on how these systems can be built programmatically. One of my recent hacks on these lines lives at &lt;a href=&quot;https://noisescape.glitch.me&quot;&gt;noisescape.glitch.me&lt;/a&gt;. This is a simple systems music experiment written in JavaScript using WebAudio API. It’s a combination of &lt;a href=&quot;https://en.wikipedia.org/wiki/Phase_music&quot;&gt;phase music&lt;/a&gt; generated using xylophone notes playing in two loops and some piano notes looping at different intervals.&lt;/p&gt;
@@ -195,13 +218,13 @@
 &lt;p&gt;It was important to make the generated music sound nice but there is also only so much that can be done and should be done here. It’s more about the patterns which the system creates with the combination of simple loops. So in order to make the generated output not sound bad, all of the notes played in this system are taken from the C# Major arpeggio. If you play music, you might already know that an &lt;a href=&quot;https://en.wikipedia.org/wiki/Arpeggio&quot;&gt;arpeggio&lt;/a&gt; refers to the notes in a chord played in any order. This set of notes is used in two ways -&lt;/p&gt;
 &lt;p&gt;First, for creating a simple melody based on 3 notes and running it in a loop that repeats after every &lt;a href=&quot;https://en.wikipedia.org/wiki/Bar_(music)&quot;&gt;3/4th measure&lt;/a&gt;. These loops start together in phase and as the music progresses they phase changes and new patterns emerge. For those who can read music, I included a pitch sheet below for indulgence -&lt;/p&gt;
 
-  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/f524476283c5e580ef8bedf8ef0448aa/7b4ad/xylosheet.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/f524476283c5e580ef8bedf8ef0448aa/30d00/xylosheet.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
   
   &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block;  max-width: 557px; margin-left: auto; margin-right: auto;&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 39.85637342908438%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABcSAAAXEgFnn9JSAAABV0lEQVQoz62SyYoCQQyG+1G9+AB68uIbKHjvg9tJRC+KuIAoNgguiKK40S4oCOKCCoK4fE4CDs0wc5sfUkUqXcmXVBt86fF4cDqdOB6PrNdr7ve7HPN6vdSez6ea0/9IfKcMWQqFArPZjF6vRyqV4nw+a9B58eflT3JnEdk1oVAtFgt+k8Ta7Tbb7Vb92+2mxf+ScTgcSKfTJJNJ+v0+iUSCyWRCs9lkuVySy+UIBAL6TTgcplwuY5qmAsznczUpKufj8RhjOBzicrnIZDLUajU8Hg+NRoNgMEgsFtO5jkYjBoPBt9m2zWazoVgsks1mqVarRCIRSqUSRqfTwefzEQqFsCwLr9fLdDoln88rSTQaxe/343a7abVaSi+drFYr7aZSqSjZh964Xq/E43FtUWi63a7uMrN6va5FhFiSCJXE9vu9mvi73U7/EGldxqePIkSXy4X/0Bvj3T8jLSGFUAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;
-      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;Xylophone sheet&quot; title=&quot;&quot; src=&quot;/static/f524476283c5e580ef8bedf8ef0448aa/7b4ad/xylosheet.png&quot; srcset=&quot;/static/f524476283c5e580ef8bedf8ef0448aa/25bfb/xylosheet.png 148w,
-/static/f524476283c5e580ef8bedf8ef0448aa/b58bd/xylosheet.png 295w,
-/static/f524476283c5e580ef8bedf8ef0448aa/7b4ad/xylosheet.png 557w&quot; sizes=&quot;(max-width: 557px) 100vw, 557px&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 39.86486486486486%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABcSAAAXEgFnn9JSAAABV0lEQVQoz62SyYoCQQyG+1G9+AB68uIbKHjvg9tJRC+KuIAoNgguiKK40S4oCOKCCoK4fE4CDs0wc5sfUkUqXcmXVBt86fF4cDqdOB6PrNdr7ve7HPN6vdSez6ea0/9IfKcMWQqFArPZjF6vRyqV4nw+a9B58eflT3JnEdk1oVAtFgt+k8Ta7Tbb7Vb92+2mxf+ScTgcSKfTJJNJ+v0+iUSCyWRCs9lkuVySy+UIBAL6TTgcplwuY5qmAsznczUpKufj8RhjOBzicrnIZDLUajU8Hg+NRoNgMEgsFtO5jkYjBoPBt9m2zWazoVgsks1mqVarRCIRSqUSRqfTwefzEQqFsCwLr9fLdDoln88rSTQaxe/343a7abVaSi+drFYr7aZSqSjZh964Xq/E43FtUWi63a7uMrN6va5FhFiSCJXE9vu9mvi73U7/EGldxqePIkSXy4X/0Bvj3T8jLSGFUAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;
+      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;Xylophone sheet&quot; title src=&quot;/static/f524476283c5e580ef8bedf8ef0448aa/30d00/xylosheet.png&quot; srcset=&quot;/static/f524476283c5e580ef8bedf8ef0448aa/12f09/xylosheet.png 148w,
+/static/f524476283c5e580ef8bedf8ef0448aa/e4a3f/xylosheet.png 295w,
+/static/f524476283c5e580ef8bedf8ef0448aa/30d00/xylosheet.png 557w&quot; sizes=&quot;(max-width: 557px) 100vw, 557px&quot;&gt;
     &lt;/span&gt;
   &lt;/span&gt;
   
@@ -218,16 +241,16 @@
 &lt;p&gt;I wanted to generate sounds of real instruments so that the output can be related to by variety of listeners. &lt;a href=&quot;https://nbrosowsky.github.io/tonejs-instruments/&quot;&gt;This library&lt;/a&gt; made it really easy for me to be able to generate sounds like of real instruments. I didn’t have to deal with hooking up each instrument’s recorded samples into Tone.js myself. I used the already available xylophone and piano samples which are hosted by the author themselves.&lt;/p&gt;
 &lt;p&gt;Using Tonejs instruments’ API I wrote down two synth nodes playing Xylophone notes (which are chosen as mentioned above in Harmonics). These synths nodes are connected with a &lt;a href=&quot;https://tonejs.github.io/docs/r12/Gain&quot;&gt;Gain node&lt;/a&gt; with gain level = 0.25 which means the xylophone loops are played at 25% volume. Each of the loops are connected to &lt;a href=&quot;https://tonejs.github.io/docs/r12/Panner&quot;&gt;Panner nodes&lt;/a&gt; which routes the sound of each loop through left and right channels giving it a stereo stage. As the phase increases this leads to interesting sound effects which may seem like echo or ping-pong at different times.&lt;/p&gt;
 
-  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/db576e3ab917dce474607aae7749c446/9f6e6/xyloloops.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/db576e3ab917dce474607aae7749c446/c1b63/xyloloops.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
   
   &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 30.916666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsTAAALEwEAmpwYAAABB0lEQVQY021PWW+EIBD2//+hpn1r2td2D9cTQVFX8cADU1wVsNMjzT50Mhlg8l1Yw9Cxsqjrqu+5Uhs8u65NEhL4zrbNsxQ3Oc3zhHGAAidPyThw+3wIfZfG2AKc77nFNWes6DqOUIjC4Hw6Ht7fjNFCjCBHafz68uzYJ89zLvbx6fHBdS8EI4smMSERMCcxbutSVYyxEsY0iX3ftdZSfmzryr7WhRADb9sIhSAHAYFMUprUVQVo8MmytGnqsizrpoYgUkql1H5XWiuttmW5QVsRQmBeFldKE+g8y/I8Ixinaco5/+OY74IDrj8TPmWBT98BrAUrEIPVuq6QEwLv/5T5lTHaaPUJnX5NOuke5YAAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;
-      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;xylophone setup&quot; title=&quot;&quot; src=&quot;/static/db576e3ab917dce474607aae7749c446/fb8a0/xyloloops.png&quot; srcset=&quot;/static/db576e3ab917dce474607aae7749c446/1a291/xyloloops.png 148w,
-/static/db576e3ab917dce474607aae7749c446/2bc4a/xyloloops.png 295w,
-/static/db576e3ab917dce474607aae7749c446/fb8a0/xyloloops.png 590w,
-/static/db576e3ab917dce474607aae7749c446/526de/xyloloops.png 885w,
-/static/db576e3ab917dce474607aae7749c446/fa2eb/xyloloops.png 1180w,
-/static/db576e3ab917dce474607aae7749c446/9f6e6/xyloloops.png 1200w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 31.08108108108108%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsTAAALEwEAmpwYAAABB0lEQVQY021PWW+EIBD2//+hpn1r2td2D9cTQVFX8cADU1wVsNMjzT50Mhlg8l1Yw9Cxsqjrqu+5Uhs8u65NEhL4zrbNsxQ3Oc3zhHGAAidPyThw+3wIfZfG2AKc77nFNWes6DqOUIjC4Hw6Ht7fjNFCjCBHafz68uzYJ89zLvbx6fHBdS8EI4smMSERMCcxbutSVYyxEsY0iX3ftdZSfmzryr7WhRADb9sIhSAHAYFMUprUVQVo8MmytGnqsizrpoYgUkql1H5XWiuttmW5QVsRQmBeFldKE+g8y/I8Ixinaco5/+OY74IDrj8TPmWBT98BrAUrEIPVuq6QEwLv/5T5lTHaaPUJnX5NOuke5YAAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;
+      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;xylophone setup&quot; title src=&quot;/static/db576e3ab917dce474607aae7749c446/fcda8/xyloloops.png&quot; srcset=&quot;/static/db576e3ab917dce474607aae7749c446/12f09/xyloloops.png 148w,
+/static/db576e3ab917dce474607aae7749c446/e4a3f/xyloloops.png 295w,
+/static/db576e3ab917dce474607aae7749c446/fcda8/xyloloops.png 590w,
+/static/db576e3ab917dce474607aae7749c446/efc66/xyloloops.png 885w,
+/static/db576e3ab917dce474607aae7749c446/c83ae/xyloloops.png 1180w,
+/static/db576e3ab917dce474607aae7749c446/c1b63/xyloloops.png 1200w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot;&gt;
     &lt;/span&gt;
   &lt;/span&gt;
   
@@ -235,15 +258,15 @@
     
 &lt;p&gt;While piano notes sounded great, I felt like they could be smoothened up a little to meld as slowly playing background music while the xylophone phase varies. For that I added a &lt;a href=&quot;https://tonejs.github.io/docs/r12/Freeverb&quot;&gt;Reverb node&lt;/a&gt; to the piano synth. This seemed to do the trick as the signal decays slowly. &lt;a href=&quot;https://en.wikipedia.org/wiki/Reverberation&quot;&gt;Reverberation&lt;/a&gt; generally adds a feeling of spaciousness to a sound that is run through it.&lt;/p&gt;
 
-  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/41bb022f1749d719263e416bf8f93e8b/ad082/pianosetup.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+  &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/41bb022f1749d719263e416bf8f93e8b/1cfc2/pianosetup.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
   
   &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;&gt;
-    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 34.88888888888889%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQElEQVQY04WQyW6DQAyGef83adVzm/aS0ES9tBEJW0pYEpbAsA1rYIAZpk6jnvvLskaW/89jC5zzeZ57ECE9GYaRth1p2r6s2yTDcZpHceqcPcs5m5ZjQ7ZPxtHWDoas6sJEqSTtXNctyypO0qpuAEfGSVH1b8OEvJNVQKA4DULknFwLzCZAPAghDEPDMDDOYXSW50CZZ46L8mXxut587BXt4fEJnF4QLsX18+LtcyttJSjrlygWoLuqqqIokiQpy9L3/bquUYTOrqdqh6NpG0cruCBZ0VfierkSd3tFVjXxfZPlpYAQiiKU4wJjnGVZ13X8V5TSYZxG2IrNjPM4yTz/AlsA62srwez2SgTGZui7n40xdnfCm/8JzCNlXT8kKYav+kEIlKJqmrYT+H9i880/0VsMI+vJ2JGxbrq6uf4AG2iAUVYGdngAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;
-      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;piano setup&quot; title=&quot;&quot; src=&quot;/static/41bb022f1749d719263e416bf8f93e8b/fb8a0/pianosetup.png&quot; srcset=&quot;/static/41bb022f1749d719263e416bf8f93e8b/1a291/pianosetup.png 148w,
-/static/41bb022f1749d719263e416bf8f93e8b/2bc4a/pianosetup.png 295w,
-/static/41bb022f1749d719263e416bf8f93e8b/fb8a0/pianosetup.png 590w,
-/static/41bb022f1749d719263e416bf8f93e8b/526de/pianosetup.png 885w,
-/static/41bb022f1749d719263e416bf8f93e8b/ad082/pianosetup.png 900w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 35.13513513513513%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQElEQVQY04WQyW6DQAyGef83adVzm/aS0ES9tBEJW0pYEpbAsA1rYIAZpk6jnvvLskaW/89jC5zzeZ57ECE9GYaRth1p2r6s2yTDcZpHceqcPcs5m5ZjQ7ZPxtHWDoas6sJEqSTtXNctyypO0qpuAEfGSVH1b8OEvJNVQKA4DULknFwLzCZAPAghDEPDMDDOYXSW50CZZ46L8mXxut587BXt4fEJnF4QLsX18+LtcyttJSjrlygWoLuqqqIokiQpy9L3/bquUYTOrqdqh6NpG0cruCBZ0VfierkSd3tFVjXxfZPlpYAQiiKU4wJjnGVZ13X8V5TSYZxG2IrNjPM4yTz/AlsA62srwez2SgTGZui7n40xdnfCm/8JzCNlXT8kKYav+kEIlKJqmrYT+H9i880/0VsMI+vJ2JGxbrq6uf4AG2iAUVYGdngAAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;
+      &lt;img class=&quot;gatsby-resp-image-image&quot; style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot; alt=&quot;piano setup&quot; title src=&quot;/static/41bb022f1749d719263e416bf8f93e8b/fcda8/pianosetup.png&quot; srcset=&quot;/static/41bb022f1749d719263e416bf8f93e8b/12f09/pianosetup.png 148w,
+/static/41bb022f1749d719263e416bf8f93e8b/e4a3f/pianosetup.png 295w,
+/static/41bb022f1749d719263e416bf8f93e8b/fcda8/pianosetup.png 590w,
+/static/41bb022f1749d719263e416bf8f93e8b/efc66/pianosetup.png 885w,
+/static/41bb022f1749d719263e416bf8f93e8b/1cfc2/pianosetup.png 900w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot;&gt;
     &lt;/span&gt;
   &lt;/span&gt;
   
@@ -348,7 +371,7 @@ Roamer.init(function(err) {
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/71bf391b1de34143859879d0bd208bf7/6b333/infantry_scr.png&quot;
+    href=&quot;/static/71bf391b1de34143859879d0bd208bf7/9c701/infantry_scr.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -360,21 +383,20 @@ Roamer.init(function(err) {
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 18.714768883878243%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAoUlEQVQY02WPzQqEMBCDfaFVURGt3UMF+y948P1fJdvMoizuIaSd0m+S6jgOeO9FKaVbOecyC1jXFcuyYBxHdF2Hvu9FwzCIN02Dtm1vVSEEge37DuvcFxwTrLVydmVmjBHoPM9FCkopaP0W/wPGGCUNwVprTNMkSa40dH6i6rr+0UuckOtdgN55bNuG8zzB+rnU5RIm5p1z1uZS1nwmet4/rOuIAFLFVu8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 18.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAoUlEQVQY02WPzQqEMBCDfaFVURGt3UMF+y948P1fJdvMoizuIaSd0m+S6jgOeO9FKaVbOecyC1jXFcuyYBxHdF2Hvu9FwzCIN02Dtm1vVSEEge37DuvcFxwTrLVydmVmjBHoPM9FCkopaP0W/wPGGCUNwVprTNMkSa40dH6i6rr+0UuckOtdgN55bNuG8zzB+rnU5RIm5p1z1uZS1nwmet4/rOuIAFLFVu8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Screenshot&quot;
         title=&quot;&quot;
-        src=&quot;/static/71bf391b1de34143859879d0bd208bf7/fb8a0/infantry_scr.png&quot;
-        srcset=&quot;/static/71bf391b1de34143859879d0bd208bf7/1a291/infantry_scr.png 148w,
-/static/71bf391b1de34143859879d0bd208bf7/2bc4a/infantry_scr.png 295w,
-/static/71bf391b1de34143859879d0bd208bf7/fb8a0/infantry_scr.png 590w,
-/static/71bf391b1de34143859879d0bd208bf7/526de/infantry_scr.png 885w,
-/static/71bf391b1de34143859879d0bd208bf7/fa2eb/infantry_scr.png 1180w,
-/static/71bf391b1de34143859879d0bd208bf7/08f6a/infantry_scr.png 1770w,
-/static/71bf391b1de34143859879d0bd208bf7/6b333/infantry_scr.png 1774w&quot;
+        src=&quot;/static/71bf391b1de34143859879d0bd208bf7/fcda8/infantry_scr.png&quot;
+        srcset=&quot;/static/71bf391b1de34143859879d0bd208bf7/12f09/infantry_scr.png 148w,
+/static/71bf391b1de34143859879d0bd208bf7/e4a3f/infantry_scr.png 295w,
+/static/71bf391b1de34143859879d0bd208bf7/fcda8/infantry_scr.png 590w,
+/static/71bf391b1de34143859879d0bd208bf7/efc66/infantry_scr.png 885w,
+/static/71bf391b1de34143859879d0bd208bf7/c83ae/infantry_scr.png 1180w,
+/static/71bf391b1de34143859879d0bd208bf7/9c701/infantry_scr.png 1774w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -389,19 +411,15 @@ Roamer.init(function(err) {
 &lt;h2&gt;About the Problem&lt;/h2&gt;
 &lt;p&gt;So, in the Marketplace workflow, we have three kinds of users namely, developers, reviewers and users (Firefox users who download the apps). The review process is basically hidden from the users as it is not relevant to them. Its the developers and reviewers which interact with each other during the review process mainly for feedback, reporting issues and asking questions. The Reviewer Tools provides a dashboard for the reviewers to review apps, which allows them to pick apps they want to review, and take actions on the apps they are reviewing (that is reject, make public, delete or ask for more information). On the other hand, Developer Hub is the dashboard for the developers, which they can manage apps (that is upload an app, edit uploaded apps). Though, this is an efficient workflow for both developers and reviewers, but on the communication front they are a bit disconnected. Every time, a reviewer takes an action on an app, its developer is notified about the action and the enclosed comments in an email. If the developer has any question or comment on the action, they reply back to the email which is delivered to a mailing list which has all the reviewers as its members. While the process works and is transparent, its not the best experience for both developers and especially reviewers. There is no central place in Marketplace where users can view all their conversation. It is totally tied up with their email. Also, communication on mailing lists gets messy after a while, reviewers have to keep track of developers’ email addresses, among other hassles. So my project for the summer was to revamp this process in the following ways:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Create a dashboard for both reviewers and developers to access their present and past conversations. This should be used to read and reply to the messages exchanged between the users.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Bridge the email conversation and dashboard, so that the users can use both modes of communication as they please.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Create a dashboard for both reviewers and developers to access their present and past conversations. This should be used to read and reply to the messages exchanged between the users.&lt;/li&gt;
+&lt;li&gt;Bridge the email conversation and dashboard, so that the users can use both modes of communication as they please.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;About the Solution&lt;/h2&gt;
 &lt;p&gt;This is what a part of solution looked like:&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/56b71cb147afc4990eb059c0ecaa27a2/cac6d/commbadgescreen.png&quot;
+    href=&quot;/static/56b71cb147afc4990eb059c0ecaa27a2/d61a0/commbadgescreen.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -413,21 +431,20 @@ Roamer.init(function(err) {
   &gt;
     &lt;span
       class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 51.54998258446535%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAABYklEQVQoz32Sy07DMBBF8/9/UjZsu2CB2HQBVIIKiVYVUIUmaRwntvOw86CXsduUpBQsXdnOeI7vTOwJISBVDh74+FjM8RmECLZbZFkGG/tPUkqkaTo66zHGwJIEcRQi9DcIowgBQXcsAU8zcIolZ+Kc08xhc+M4dnMvz97ipJRzarTG1WSC29kDIi7QNg3OR1mWyPMcSh1yVc8geZfKeFr7eA8YiqpG03Touv1Idd2iqgwBlTs/zD85FEIegQrPmwThNoKhJK07AuxPMuYLbQtqRwLff6UeJi6nNzMAHh3SrfN1gLfVElnMHNBCbOU91K7LUlMv2Qn0C+g+HgOmaiFFQWtFZdEL4Bn9SUHrwu3z3PawcM6GsIsO7eHp3TXul8+QhSZ3mvpVORljnIrCQsewP0u2N08fbzBbLSAyiUtD00s4OBy7OwP+BF98hXQXI085uanJXTNQ6/pa0Qs4h1l9A4qT+Z5QLF7XAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+      style=&quot;padding-bottom: 51.35135135135135%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAABYklEQVQoz32Sy07DMBBF8/9/UjZsu2CB2HQBVIIKiVYVUIUmaRwntvOw86CXsduUpBQsXdnOeI7vTOwJISBVDh74+FjM8RmECLZbZFkGG/tPUkqkaTo66zHGwJIEcRQi9DcIowgBQXcsAU8zcIolZ+Kc08xhc+M4dnMvz97ipJRzarTG1WSC29kDIi7QNg3OR1mWyPMcSh1yVc8geZfKeFr7eA8YiqpG03Touv1Idd2iqgwBlTs/zD85FEIegQrPmwThNoKhJK07AuxPMuYLbQtqRwLff6UeJi6nNzMAHh3SrfN1gLfVElnMHNBCbOU91K7LUlMv2Qn0C+g+HgOmaiFFQWtFZdEL4Bn9SUHrwu3z3PawcM6GsIsO7eHp3TXul8+QhSZ3mvpVORljnIrCQsewP0u2N08fbzBbLSAyiUtD00s4OBy7OwP+BF98hXQXI085uanJXTNQ6/pa0Qs4h1l9A4qT+Z5QLF7XAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
     &gt;
       &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Dashboard Screenshot&quot;
         title=&quot;&quot;
-        src=&quot;/static/56b71cb147afc4990eb059c0ecaa27a2/fb8a0/commbadgescreen.png&quot;
-        srcset=&quot;/static/56b71cb147afc4990eb059c0ecaa27a2/1a291/commbadgescreen.png 148w,
-/static/56b71cb147afc4990eb059c0ecaa27a2/2bc4a/commbadgescreen.png 295w,
-/static/56b71cb147afc4990eb059c0ecaa27a2/fb8a0/commbadgescreen.png 590w,
-/static/56b71cb147afc4990eb059c0ecaa27a2/526de/commbadgescreen.png 885w,
-/static/56b71cb147afc4990eb059c0ecaa27a2/fa2eb/commbadgescreen.png 1180w,
-/static/56b71cb147afc4990eb059c0ecaa27a2/08f6a/commbadgescreen.png 1770w,
-/static/56b71cb147afc4990eb059c0ecaa27a2/cac6d/commbadgescreen.png 2871w&quot;
+        src=&quot;/static/56b71cb147afc4990eb059c0ecaa27a2/fcda8/commbadgescreen.png&quot;
+        srcset=&quot;/static/56b71cb147afc4990eb059c0ecaa27a2/12f09/commbadgescreen.png 148w,
+/static/56b71cb147afc4990eb059c0ecaa27a2/e4a3f/commbadgescreen.png 295w,
+/static/56b71cb147afc4990eb059c0ecaa27a2/fcda8/commbadgescreen.png 590w,
+/static/56b71cb147afc4990eb059c0ecaa27a2/efc66/commbadgescreen.png 885w,
+/static/56b71cb147afc4990eb059c0ecaa27a2/c83ae/commbadgescreen.png 1180w,
+/static/56b71cb147afc4990eb059c0ecaa27a2/d61a0/commbadgescreen.png 2871w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
