@@ -1,0 +1,38 @@
+---
+title: "Permanence factor of temporary solutions"
+date: 2020-08-24
+---
+
+If you saw bad software architecture in place - would you build systems to support it better or lean far from it (often towards discomfort) to steer change?
+
+It may definitely not be an easy choice to make. You'd need to build supporting systems for business continuity. But the supporting systems you build may bring in complacency and often the supporting systems can be brittle and suck in countless engineering cycles to build and maintain.
+
+I started out with this question on Twitter and figured that this needs to be written beyond 140 characters.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">If you saw bad software architecture in place - would you build systems to support it better or lean far from it (often towards discomfort) to steer change?</p>&mdash; Ashish Dubey (@dash1291) <a href="https://twitter.com/dash1291/status/1291605987736993794?ref_src=twsrc%5Etfw">August 7, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+A common and perhaps the wisest answer may lie in trying to hit the balance. The moment you turn in a patch to cover for a misplaced component, you set yourself on the course of removing it in future. Classic tech debt management - track and repay later. But how easy is it in practice?
+
+Further, I still wonder if this discussion is better had with some context behind it. "It depends" as an answer to this question is perfectly valid because architecture can't be without context and neither can be any decisions over it.
+
+Let's consider an example -
+
+A customer facing web app that serves a hypothetical DIY electronics business is composed of multiple layers of microservices which depend on one another. Features usually cross-cut different microservices as if they're big components of a single monolith. These components aren't individually tested not because it's impossible but it's great deal of work given how interwoven the system behavior is and hence the system is tested as a whole.
+
+One can't simply rewrite the system because it serves critical business function. Striking a balance and addressing the rigidity of the system incrementally is still the best and ideal approach. You have concrete architecture patterns for addressing these issues like Anti-corruption layer ([https://docs.microsoft.com/en-us/Azure/architecture/patterns/anti-corruption-layer](https://docs.microsoft.com/en-us/Azure/architecture/patterns/anti-corruption-layer)) and strangler applications ([https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/](https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/)).
+
+From the cultural aspect, Gregor Hohpe talks about the concept of having clutch(s) in the org ( [https://architectelevator.com/transformation/shifting_gears_clutch](https://architectelevator.com/transformation/shifting_gears_clutch)) to propel two architectures (good and bad/ old and new) together and phasing out the old one and promoting the new one when the time is right.
+
+What brings conflict to my mind is a set of situations where building infrastructural tooling to mask certain architectural patterns have been done to make lives easier while working with those systems but somehow they become boxes of innovation themselves and over time it becomes hard to snap out of them and really fix the underlying issues.
+
+In the context of above example - such tooling could be synthetic test environments and large e2e tests as a major means of testing in the absence automated tests that can be used to verify changes in the service independent of and in isolation from other services.
+
+This leads to a problems on different levels. First being, there is hell lot of redundant infrastructure provisioning happening. Simply for testing a simple change in one of the services and one needs to deploy service A, B, C and D because all of them need to be working together to be tested together. When you're using a complex container orchestration platform like kubernetes, this means a lot of things happening. You have API calls, controllers manipulating resources, containers being scheduling, images pulled and finally the application can begin executing. Combine this with other components that this service needs to interact with, maybe databases which are run as Statefulsets. Now all of this, seems like a lot of work and the process can take time. Some effort can be put in to optimize and speed things up and it definitely runs faster but it's still a lot of things happening, most of which aren't needed if all I want to test is a small change in service A. This not only means wastage of resources and time but because there are so many moving parts, this whole process can be very fragile.
+
+Which brings me to my second point - about test stability. When your tests depend on a complex orchestration process as discussed above as a pre-requisite, the fragility makes itself count in the reliability of tests as well. Moreover, this test suite relies on dozens of API calls covering all the services in order to test a simple change in service A, which could have been easily validated using 2-3 API calls (in the form of service level API tests).
+
+Third, this especially gets worse when a team is in-charge of the support systems which is different from the one that owns the architecture of the systems in question. An external team managing this tooling and workflow leads to enormous cognitive load on them which in turn leads to never ending unplanned work and any creative work is very difficult to plan and execute.
+
+If I set aside the problems, the goal with which you build this testing workflow would be to enable yourself to move the business forward and fast while gaining some headroom for improving the architecture or having better tests in place. And I think it certainly works in theory and in practice as well. But this is exactly where snapping out of being fully dependent on such workflows is important before it's too late.
+
+*That is it. This is basically a thought dump. It could grow over time as I ramble to myself more.*
