@@ -1,5 +1,5 @@
 ---
-title: "Permanence factor of temporary solutions"
+title: "Permanent temporary solutions"
 date: 2020-08-24
 ---
 
