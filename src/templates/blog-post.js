@@ -37,7 +37,6 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
-        <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
 
         <ul
           style={{
