@@ -6,11 +6,10 @@ import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import { rhythm } from '../utils/typography'
 
-class BlogIndex extends React.Component {
+class Homepage extends React.Component {
   render() {
     const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+    const siteTitle = 'Ashish Dubey'
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -18,50 +17,26 @@ class BlogIndex extends React.Component {
           title="Ashish Dubey's Blog"
           keywords={[`ashish dubey`, `blog`, `javascript`, `generative music`, `devops`]}
         />
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          )
-        })}
+        <p>Hi, I'm Ashish, a full-stack software engineer from India.</p>
+
+        <p>Currently I work with the engineering team at Grofers, focussing on continuous delivery and developer experience. In past I've worked with the infrastructure team and web dev team.</p>
+        <p>In 2014 I joined Browserstack after I graduated from college where I worked as a software engineer on the mobile device cloud team. As part of this team, I worked on the platform that'd allow our users to interact with real mobile devices which we had setup in a custom data center setup.</p>
+        
+        <p>Throughout my encounters with programming, audio and music related applications have held a special spot. Recently, I've become more active in exploring the intersection of technology and music especially through Web Audio.</p>
+        
+        <p>Read my <a href="/blog">blog</a></p>
       </Layout>
     )
   }
 }
 
-export default BlogIndex
+export default Homepage
 
 export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
         title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-          }
-        }
       }
     }
   }

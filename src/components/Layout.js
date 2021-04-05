@@ -8,8 +8,10 @@ class Layout extends React.Component {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
     let header
-
+    
     if (location.pathname === rootPath) {
+      header = ''
+    } else if (location.pathname === '/blog/') {
       header = (
         <div>
           <h1
@@ -66,10 +68,6 @@ class Layout extends React.Component {
 				<hr />
         <footer>
           © {new Date().getFullYear()}, Ashish Dubey
-          <span> // </span>
-          <a href="https://twitter.com/dash1291">Twitter</a>
-          <span> // </span>
-          <a href="https://github.com/dash1291">GitHub</a>
         </footer>
       </div>
     )
