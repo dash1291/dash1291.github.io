@@ -17,7 +17,7 @@ class Homepage extends React.Component {
           title="Ashish Dubey's Blog"
           keywords={[`ashish dubey`, `blog`, `javascript`, `generative music`, `devops`]}
         />
-        <p>Hi, I'm Ashish Dubey</p>
+        <p><b>Hello, I'm Ashish Dubey</b></p>
             
         <p>I'm a full-stack software engineer from India.</p>
 
