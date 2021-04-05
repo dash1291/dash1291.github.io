@@ -17,7 +17,9 @@ class Homepage extends React.Component {
           title="Ashish Dubey's Blog"
           keywords={[`ashish dubey`, `blog`, `javascript`, `generative music`, `devops`]}
         />
-        <p>Hi, I'm Ashish, a full-stack software engineer from India.</p>
+        <p>Hi, I'm Ashish Dubey</p>
+            
+        <p>I'm a full-stack software engineer from India.</p>
 
         <p>Currently I work with the engineering team at Grofers, focussing on continuous delivery and developer experience. In past I've worked with the infrastructure team and web dev team.</p>
         <p>In 2014 I joined Browserstack after I graduated from college where I worked as a software engineer on the mobile device cloud team. As part of this team, I worked on the platform that'd allow our users to interact with real mobile devices which we had setup in a custom data center setup.</p>
