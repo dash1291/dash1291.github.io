@@ -11,7 +11,7 @@ class Layout extends React.Component {
     
     if (location.pathname === rootPath) {
       header = ''
-    } else if (location.pathname === '/blog/') {
+    } else if (location.pathname.startsWith('/blog')) {
       header = (
         <div>
           <h1
