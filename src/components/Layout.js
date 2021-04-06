@@ -28,7 +28,7 @@ class Layout extends React.Component {
               }}
               to={`/blog`}
             >
-              {title}
+              Ashish Dubey's blog
             </Link>
           </h1>
         </div>
@@ -49,7 +49,7 @@ class Layout extends React.Component {
             }}
             to={`/blog`}
           >
-            {title}
+            Ashish Dubey's blog
           </Link>
         </h3>
       )
