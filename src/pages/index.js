@@ -21,7 +21,7 @@ class Homepage extends React.Component {
             
         <p>I'm a full-stack software engineer from India.</p>
 
-        <p>Currently I work with <a href="https://lambda.grofers.com/">the engineering team at Grofers</a>, focusing on continuous delivery and developer experience in a cloud-native environment. Earlier, I worked with the web dev team for full-stack product engineering resolving around <a href="https://grofers.com">Grofers.com</a>. Before that I've worked with the infrastructure team, helping teams scale their applications on AWS and setting up automation to help with auto-scaling and monitoring.</p>
+        <p>Currently I work with <a href="https://lambda.grofers.com/">the engineering team at Grofers</a>, focusing on continuous delivery and developer experience in a cloud-native environment. Earlier, I worked with the web dev team for full-stack product engineering revolving around <a href="https://grofers.com">Grofers.com</a>. Before that I've worked with the infrastructure team, helping teams scale their applications on AWS and setting up automation to help with auto-scaling and monitoring.</p>
         <p>In 2014 I joined <a href="https://www.browserstack.com/">BrowserStack</a> after I graduated from college where I worked as a software engineer on the mobile device cloud team. As part of this team, I worked on the platform that'd allow our users to interact with real mobile devices which we had setup in a custom data center setup.</p>
         <p>Throughout my encounters with programming, audio and music related applications have held a special spot. Recently, I've become more active in exploring the intersection of technology and music especially through Web Audio.</p>
         
