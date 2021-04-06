@@ -26,6 +26,8 @@ class Homepage extends React.Component {
         <p>Throughout my encounters with programming, audio and music related applications have held a special spot. Recently, I've become more active in exploring the intersection of technology and music especially through Web Audio.</p>
         
         <p>Sometimes I write about my personal projects and other topics that I'm interested in. You can read those on my <a href="/blog">blog</a>.</p>
+
+        <p>You can also find me on <a href="https://github.com/dash1291">GitHub</a>, <a href="https://twitter.com/dash1291">Twitter</a> and <a href="https://www.linkedin.com/in/ashishdd/">LinkedIn</a></p>
       </Layout>
     )
   }
