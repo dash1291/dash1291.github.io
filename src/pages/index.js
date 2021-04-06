@@ -14,7 +14,7 @@ class Homepage extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          title=""
+        title={''}
           keywords={[`ashish dubey`, `blog`, `javascript`, `generative music`, `devops`]}
         />
         <p><b>Hello, I'm Ashish Dubey</b></p>
