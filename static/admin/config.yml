@@ -10,7 +10,6 @@ collections:
     label: 'Blog'
     folder: 'content/blog'
     create: true
-    slug: 'index'
     media_folder: ''
     public_folder: ''
     path: '{{slug}}/index'
