@@ -1,6 +1,6 @@
 ---
 title: The missing curriculum
-date: 2021-04-11T16:48:32.748Z
+date: 2019-01-16T16:48:32.748Z
 description: The missing curriculum
 ---
 I chose to study computer science engineering in college with absolute intent to become a computer engineer. I was interested in programming much before that, so it was a natural choice for me. While I was very interested in programming, I was not really a person who was into reading books and following course work. As a result, I sucked at college coursework. I ended up with average grades and at times borderline passing grades. 
