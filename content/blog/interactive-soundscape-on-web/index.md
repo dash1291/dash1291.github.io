@@ -11,13 +11,14 @@ One of the artworks was done by Abhinay Khoparzi as along with being a co-develo
 
 The initial sketch involved a very simple interface that featured a couple of dots - each representing a live visitor. A user on the web page can move its dot across the 2D plane which reflects on every user's webpage. Each change in position is also accompanied by a change in panner configuration which changes the perception of sound for each visitor in 2D space.
 
-<video controls>
-  <source src="myVideo.mp4" type="video/mp4">
-  <source src="myVideo.webm" type="video/webm">
-  <p>Your browser doesn't support HTML5 video. Here is
-     a <a href="myVideo.mp4">link to the video</a> instead.</p>
+<video controls width="100%">
+  <source src="oldgrab.mp4" type="video/mp4">
 </video>
 
 I used [socket.io](http://socket.io) to allow for dealing with the network bits of communicating the joining and leaving of a visitor and sharing changes in position. Essentially, it's pretty much like a chat application in which the messages result in changes in the visual and musical output. Tone.js has been used to implement the audio parts of it.
 
 When I showed this to Khoparzi, he had a bunch of cool ideas right away to apply over it. Some of the things that came out of his mind were using custom tunings, more elaborate compositions, and a major visual revamp. After spending a couple of days, the experiment had transformed into a more visual and aurally pleasing experience and looked like artwork.
+
+<video controls width="100%">
+  <source src="newgrab.mp4" type="video/mp4">
+</video>
