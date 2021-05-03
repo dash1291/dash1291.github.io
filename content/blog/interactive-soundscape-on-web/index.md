@@ -5,7 +5,7 @@ description: Project post about FutureLanding
 ---
 When it comes to generative music, one idea that has intrigued me for a while is building dynamic soundscapes. Elements in a visual scene moving around, like people or objects, resulting in music gradually changing as the composition of the scene changes. If you've followed some of my work, some synaesthetic elements might seem related as in the Pastelloops project (link). I think more than simply the sonification of a changing scene, what excited me was the unpredictable interplay of a growing number of elements in the scene. Like a lot of good ideas, this never materialized until I got a chance to work on [FutureLanding](https://futurelanding.serendipityartsvirtual.com/), a digital art-curation project on the web, as part of Serendipity Arts Festival 2021 Virtual.
 
-I worked along with \[Abhinay Khoparzi](http://khoparzi.com/) and \[Samarth Gulati](https://samarthgulati.com/) on the [FutureLanding](https://futurelanding.serendipityartsvirtual.com/) website which would be a collection of artworks from some really brilliant artists. It'd be a dynamic website where artists would keep uploading their content which would be displayed in different formats appropriately designed for the artwork.
+I worked along with [Abhinay Khoparzi](http://khoparzi.com/) and [Samarth Gulati](https://samarthgulati.com/) on the [FutureLanding](https://futurelanding.serendipityartsvirtual.com/) website which would be a collection of artworks from some really brilliant artists. It'd be a dynamic website where artists would keep uploading their content which would be displayed in different formats appropriately designed for the artwork.
 
 When we first got together for brainstorming around what possibilities we could explore, it became evident that we could try a lot of things. Interactivity, generative, and collaborative were some of the keywords. The combination of these prodded my imagination towards a collaborative soundscape. I wasn't sure what it'd look like and if it could help in the project, but I still had some ideas that I wanted to try out.
 
@@ -23,4 +23,4 @@ When I showed this to Khoparzi, he had a bunch of cool ideas right away to apply
   <source src="newgrab.mp4" type="video/mp4">
 </video>
 
-This is a snapshot of what lives on \[the site](https://futurelanding.serendipityartsvirtual.com/abhinaykhoparzi)(and ask some of your friends to do it as well). Please feel free to load it in your browser (ideally desktop), put on your headphones, move around, listen and ask some of your friends to do it as well. Also, check out the works of other artists.
+This is a snapshot of what lives on [the site](https://futurelanding.serendipityartsvirtual.com/abhinaykhoparzi). Please feel free to load it in your browser (ideally desktop), put on your headphones, move around, listen and ask some of your friends to do it as well. Also, check out the works of the other artists.
