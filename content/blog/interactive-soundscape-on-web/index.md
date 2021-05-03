@@ -1,5 +1,5 @@
 ---
-title: Interactive soundscapes on web
+title: Collaborative soundscapes on web
 date: 2021-05-02T16:43:11.056Z
 description: Project post about FutureLanding
 ---
