@@ -24,3 +24,5 @@ When I showed this to Khoparzi, he had a bunch of cool ideas right away to apply
 </video>
 
 This is a snapshot of what lives on [the site](https://futurelanding.serendipityartsvirtual.com/abhinaykhoparzi). Please feel free to load it in your browser (ideally desktop), put on your headphones, move around, listen and ask some of your friends to do it as well. Also, check out the works of the other artists.
+
+For developers out there who are interested in the source code, it's open-source and lives [here](https://github.com/dash1291/collabscape).
