@@ -15,9 +15,9 @@ The initial sketch involved a very simple web interface that featured a couple o
   <source src="oldgrab.mp4" type="video/mp4">
 </video>
 
-I used [socket.io](http://socket.io) to allow for dealing with the network bits of communicating the joining and leaving of a visitor and sharing changes in position. Essentially, it's pretty much like a chat application in which the messages result in changes in the visual and musical output. Tone.js has been used to implement the audio parts of it.
+I used [socket.io](http://socket.io) to allow for dealing with the network bits of communicating the joining and leaving of a visitor and sharing changes in position. Essentially, it's pretty much like a chat application in which the messages result in changes in the visual and musical output. [Tone.js](https://tonejs.github.io/) has been used to implement the audio bits of the application.
 
-When I showed this to Khoparzi, he had a bunch of cool ideas right away to apply over it. Some of the things that came out of his mind were using custom tunings, more elaborate compositions, and a major visual revamp. After spending a couple of days, the experiment had transformed into a more visual and aurally pleasing experience and looked like artwork.
+When I showed this to Khoparzi, he had a bunch of cool ideas right away to apply over it. Some of the things that came out of his mind were using custom tunings, more elaborate compositions, and a major visual revamp. Thanks to his ideas, I got to learn about [tune.js](https://github.com/abbernie/tune) which is a library that supports 1000s of tunings to choose from and use in your WebAudio application. After spending a couple of days, Khoparzi had the experiment transformed into a more visual and aurally pleasing experience and it started looking more like artwork.
 
 <video controls width="100%">
   <source src="newgrab.mp4" type="video/mp4">
