@@ -48,9 +48,9 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-plausible`,
       options: {
-        trackingId: `UA-24206813-4`,
+        domain: `ashishdubey.xyz`,
       },
     },
     `gatsby-plugin-feed`,
