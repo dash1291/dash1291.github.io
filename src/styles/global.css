@@ -1,0 +1,9 @@
+
+body, h3, h1, h2, p {
+  font-family: 'Montserrat', sans-serif;
+  color: hsla(0,0%,0%,0.8);
+}
+
+h3, h1, h2 {
+    font-weight: 400;
+}
