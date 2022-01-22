@@ -20,8 +20,8 @@ class Homepage extends React.Component {
         <p><b>Hello, I'm Ashish Dubey</b></p>
             
         <p>I'm a full-stack software engineer from India.</p>
-
-        <p>Currently I work with <a href="https://lambda.grofers.com/">the engineering team at Grofers</a>, focusing on continuous delivery and developer experience in a cloud-native environment. Earlier, I worked with the web dev team for full-stack product engineering revolving around <a href="https://grofers.com">Grofers.com</a>. Before that I've worked with the infrastructure team, helping teams scale their applications on AWS.</p>
+        <p>Currently, I work with a brilliant group of techies and musicians at <a href="https://www.beatoven.ai">Beatoven.ai</a> where we are building simplified tools to help content creators make their videos and podcasts sound great.</p>
+        <p>Earlier, I spent around 6 years with <a href="https://lambda.grofers.com/">the engineering team at Grofers</a>. I was fortunate to spend enough time working on various problems in different roles in a growing startup environment. At the time of leaving, my focus was on continuous delivery and developer experience in a cloud-native environment. Earlier, I worked with the web dev team for full-stack product engineering revolving around Grofers.com. Before that I've worked with the infrastructure team, helping teams scale their applications on AWS.</p>
         <p>In 2014, I joined <a href="https://www.browserstack.com/">BrowserStack</a> after I graduated from college, where I worked as a software engineer on the mobile device cloud team. As part of this team, I worked on the platform that'd allow our users to test their websites on real mobile devices by interacting with them within a web browser.</p>
         <p>Throughout my encounters with programming, audio, and music related applications have held a special spot. Recently, I've become more active in exploring the intersection of technology and music especially through WebAudio.</p>
         
