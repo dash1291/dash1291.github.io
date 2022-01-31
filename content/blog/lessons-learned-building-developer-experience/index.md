@@ -1,7 +1,10 @@
 ---
 title: Lessons learned building developer experience
 date: 2022-01-31T18:04:02.428Z
-description: Lessons learned building developer experience
+description: I've spent a big fraction of my time at Grofers building tools for
+  developers to be productive in shipping their applications to users. The
+  problems in focus have changed, but there were common ideas in terms of
+  principles behind solving the problems.
 ---
 I've spent a big fraction of my time at Grofers building tools for developers to be productive in shipping their applications to users. The problems in focus have changed, but there were common ideas in terms of principles behind solving the problems.
 
