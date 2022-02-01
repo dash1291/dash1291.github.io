@@ -5,11 +5,7 @@ description: In this post, I'll take examples of some of the initiatives and use
   them as context for explaining some of the lessons that I've learned while
   building platforms/tools for developers.
 ---
-I've spent a big fraction of my time at Grofers building tools for developers to be productive in shipping their applications to users. The problems in focus have changed, but there were common ideas in terms of principles behind solving the problems.
-
-Since I started out, we undertook many initiatives and they all varied in their levels of success. Some became success stories that we wanted to replicate whenever a new problem was at hand and some became examples that we used as cautionary tales whenever we planned a new initiative. In this post, I'll take examples of some of those initiatives and use them as context for explaining some of the lessons that I've learned while building platforms/tools for developers.
-
-
+I've spent a big fraction of my time at Grofers building tools for developers to be productive in shipping their applications to users. Since I started out, we undertook many initiatives and they all varied in their levels of success. Some became success stories that we wanted to replicate whenever a new problem was at hand and some became examples that we used as cautionary tales whenever we planned a new initiative. In this post, I'll take examples of some of those initiatives and use them as context for explaining some of the lessons that I've learned while building platforms/tools for developers.
 
 ## Good ideas might fail if timed wrong
 
