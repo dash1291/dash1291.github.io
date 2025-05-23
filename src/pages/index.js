@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import Image from 'gatsby-image'
 
-import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import { rhythm } from '../utils/typography'
@@ -18,7 +18,15 @@ class Homepage extends React.Component {
           keywords={[`ashish dubey`, `blog`, `javascript`, `generative music`, `devops`]}
         />
         <p><b>Hello, I'm Ashish Dubey</b></p>
-            
+        <Image
+          fixed={data.avatar.childImageSharp.fixed}
+          alt="Ashish Dubey"
+          style={{
+            float: 'right',
+            marginLeft: rhythm(1),
+            marginBottom: rhythm(1),
+          }}
+        />    
         <p>I'm a full-stack software engineer from India.</p>
         <p>Currently I'm working as an independent contractor on infrastructure problems.</p>
         <p>Earlier, I worked with a brilliant group of techies and musicians at <a href="https://www.beatoven.ai">Beatoven.ai</a> where we are building simplified tools to help content creators make their videos and podcasts sound great.</p>
@@ -38,6 +46,13 @@ export default Homepage
 
 export const pageQuery = graphql`
   query {
+    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+      childImageSharp {
+        fixed(width: 200, height: 200) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     site {
       siteMetadata {
         title

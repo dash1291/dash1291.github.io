@@ -63,6 +63,32 @@ class Layout extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
+        <nav style={{
+          marginBottom: rhythm(1),
+          padding: `${rhythm(0.5)} 0`,
+          borderBottom: '1px solid #ccc',
+          textAlign: 'right'
+        }}>
+          <Link
+            to="/"
+            style={{
+              textDecoration: 'none',
+              marginRight: rhythm(1),
+              fontWeight: location.pathname === '/' ? 'bold' : 'normal'
+            }}
+          >
+            About
+          </Link>
+          <Link
+            to="/blog"
+            style={{
+              textDecoration: 'none',
+              fontWeight: location.pathname.startsWith('/blog') ? 'bold' : 'normal'
+            }}
+          >
+            Blog
+          </Link>
+        </nav>
         {header}
         {children}
 				<hr />
