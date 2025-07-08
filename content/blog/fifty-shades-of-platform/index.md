@@ -30,4 +30,4 @@ It doesn't have to be that way though. Between the opinionated hands-off solutio
 
 In my personal experience, it has not been super easy and not being able to find the right tool for the job, I had to cross the chasm and set up an IaC scaffold ([Terraform](https://www.terraform.io/)/[Pulumi](https://www.pulumi.com/)) to provision an infrastructure that had requirements *mostly* met by existing platforms except for maybe one or two, like compliance and cost. I've found myself doing some of these things a few times like setting up a service to run on AWS ECS which prompted me to put together a side-project in an attempt to fill this chasm a little bit.
 
-In an ideal world, it should be possible to start with the Minimum Viable Infrastructure, which evolves as the platform requirements of the team evolve over time.
+In an ideal world, it should be possible for a team to start with the Minimum Viable Infrastructure, which evolves as the platform requirements of the team evolve over time.
