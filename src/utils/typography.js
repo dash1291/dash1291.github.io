@@ -9,6 +9,9 @@ Wordpress2016.overrideThemeStyles = () => {
   }
 }
 
+// Override the body font to use Lora
+Wordpress2016.bodyFontFamily = ['Lora', 'Georgia', 'serif']
+
 delete Wordpress2016.googleFonts
 
 const typography = new Typography(Wordpress2016)
