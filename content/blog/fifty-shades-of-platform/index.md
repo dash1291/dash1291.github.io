@@ -1,3 +1,8 @@
+---
+title: Fifty Shades of Platform
+date: 2025-07-07
+---
+
 Yesterday, I started getting my hands dirty with [buildpacks](https://buildpacks.io/) for a side-project. I have known buildpacks for a while and back in the day at Grofers, we had made plans to potentially integrate buildpacks into our developer experience, but we never got to it. I first got introduced to the idea of buildpacks back when I got introduced to [Heroku](https://www.heroku.com/). It seemed like magic when you could, with a very minimal configuration, deploy a python application on the cloud without worrying about scripting the process of pulling the code, install dependencies, and bootstrap the application with the right configuration. It made everything very easy. In a way, it created a bubble. The bubble in which deploying an application was so easy. The bubble which would be burst pretty soon. Heroku was great for simple applications, but I found out fairly quickly during my career that application deployment is more nuanced in different organizations.
 
 Different organizations have different preferences for how much control and flexibility that they want. These preferences are driven by real-world factors like cost and performance. Performance in terms of not only the application performance but also how your infrastructure affects the performance of your team in terms of delivering business value. Cost shows up in your infrastructure bill and also your engineers' time in building infrastructure instead of business value. I've been fortunate enough to see different variations of these requirements, which prompts me to reflect a bit on how I've seen platforms being setup and evolving as the requirements of an evolving team change over time.
