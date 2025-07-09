@@ -9,51 +9,28 @@ class Layout extends React.Component {
     const rootPath = `${__PATH_PREFIX__}/`
     let header
     
-    if (location.pathname === rootPath) {
-      header = ''
-    } else if (location.pathname.startsWith('/blog')) {
+    if (location.pathname.startsWith('/blog')) {
       header = (
-        <div>
-          <h1
-            style={{
-              marginBottom: rhythm(1),
-              marginTop: 0,
-            }}
-          >
-            <Link
-              style={{
-                boxShadow: `none`,
-                textDecoration: `none`,
-                color: `inherit`,
-              }}
-              to={`/blog`}
-            >
-              Ashish Dubey's blog
-            </Link>
-          </h1>
-        </div>
-      )
-    } else {
-      header = (
-        <h3
+        <Link
           style={{
             fontFamily: `Montserrat, sans-serif`,
+            fontSize: '18px',
             marginTop: 0,
+            marginBottom: 0,
+            fontWeight: 400,
+            boxShadow: `none`,
+            textDecoration: `none`,
+            color: `inherit`,
           }}
+          to={`/blog`}
         >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/blog`}
-          >
-            Ashish Dubey's blog
-          </Link>
-        </h3>
+          Ashish Dubey's Blog
+        </Link>
       )
+    } else {
+      header = '';
     }
+
     return (
       <div
         style={{
@@ -63,33 +40,41 @@ class Layout extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
+
         <nav style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
           marginBottom: rhythm(1),
           padding: `${rhythm(0.5)} 0`,
           borderBottom: '1px solid #ccc',
           textAlign: 'right'
         }}>
-          <Link
-            to="/"
-            style={{
-              textDecoration: 'none',
-              marginRight: rhythm(1),
-              fontWeight: location.pathname === '/' ? 'bold' : 'normal'
-            }}
-          >
-            About
-          </Link>
-          <Link
-            to="/blog"
-            style={{
-              textDecoration: 'none',
-              fontWeight: location.pathname.startsWith('/blog') ? 'bold' : 'normal'
-            }}
-          >
-            Blog
-          </Link>
+          <div>
+            {header}
+          </div>
+          <div>
+            <Link
+              to="/"
+              style={{
+                textDecoration: 'none',
+                marginRight: rhythm(0.75),
+                fontWeight: location.pathname === '/' ? 'bold' : 'normal'
+              }}
+            >
+              About
+            </Link>
+            <Link
+              to="/blog"
+              style={{
+                textDecoration: 'none',
+                fontWeight: location.pathname.startsWith('/blog') ? 'bold' : 'normal'
+              }}
+            >
+              Blog
+            </Link>
+          </div>
         </nav>
-        {header}
         {children}
 				<hr />
         <footer>
