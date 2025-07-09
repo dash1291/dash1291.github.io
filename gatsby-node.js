@@ -56,11 +56,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    let value = createFilePath({ node, getNode }).slice(0, -1) + '.html'
-    // Ensure the slug starts with /blog/
-    if (!value.startsWith('/blog/')) {
-      value = `/blog${value}`
-    }
+    const value = createFilePath({ node, getNode }).slice(0, -1) + '.html'
+    console.log(value)
     createNodeField({
       name: `slug`,
       node,
