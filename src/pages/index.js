@@ -27,7 +27,7 @@ class Homepage extends React.Component {
             marginBottom: rhythm(1),
           }}
         />    
-        <p>I'm a full-stack software engineer from India.</p>
+        <p>I'm a software engineer from India.</p>
         <p>Currently I'm working as an independent contractor on infrastructure problems.</p>
         <p>Earlier, I worked with a brilliant group of techies and musicians at <a href="https://www.beatoven.ai">Beatoven.ai</a> where we are building simplified tools to help content creators make their videos and podcasts sound great.</p>
         <p>Before that, I spent around 6 years with <a href="https://lambda.grofers.com/">the engineering team at Grofers</a>. I was fortunate to spend enough time working on various problems in different roles in a growing startup environment. At the time of leaving, my focus was on continuous delivery and developer experience in a cloud-native environment. Earlier, I worked with the web dev team for full-stack product engineering revolving around Grofers.com. Before that I've worked with the infrastructure team, helping teams scale their applications on AWS.</p>
