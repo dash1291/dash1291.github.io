@@ -33,6 +33,9 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 590,
+              // Render a <figcaption> from the image's markdown title:
+              // ![alt](./img.png "This becomes the caption")
+              showCaptions: [`title`],
             },
           },
           {
