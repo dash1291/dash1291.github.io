@@ -14,6 +14,8 @@ module.exports = {
       options: {
         path: `${__dirname}/content/blog`,
         name: `blog`,
+        // Keep Obsidian's metadata and the post template out of the build.
+        ignore: [`**/.obsidian/**`, `**/_templates/**`],
       },
     },
     {

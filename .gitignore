@@ -67,3 +67,7 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# Obsidian (vault lives in content/blog) — ignore volatile UI state, keep shared config
+content/blog/.obsidian/workspace*.json
+content/blog/.obsidian/cache
